@@ -1,5 +1,13 @@
 #### Bruk av Gitlab verktøy (forslag)
 
+## Oppsummering funksjonalitet: 
+- Liste med filmer 
+- Klikke inn på hver film for å se detaljer 
+- Søke på tittel
+- Sortere søk alfabetisk og etter utgivelsesår 
+- Filtrere søk på sjanger 
+- Lagre tommel opp/tommel ned (anonymt)
+
 ISSUES: 
 - Kort navn, beskrivelse (med tasks) inni 
 - Alle issues skal ha en label open/doing/closed
