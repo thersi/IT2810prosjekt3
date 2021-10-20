@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { isPropertySignature } from "typescript";
 import MovieList from "../MovieList";
 import "./style.css";
-const MovieScroll = () => {
+const MovieScroll = (props: any) => {
   const [movies, setMovies] = useState([
     {
       Title: "Star Wars: Episode IV - A New Hope",
@@ -28,14 +29,15 @@ const MovieScroll = () => {
         "https://m.media-amazon.com/images/M/MV5BOWZlMjFiYzgtMTUzNC00Y2IzLTk1NTMtZmNhMTczNTk0ODk1XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg",
     },
   ]);
+
   return (
-    <div className="movieContainer">
-      <div className="movieRow">
-        <MovieList movies={movies} />
-        <MovieList movies={movies} />
-        <MovieList movies={movies} />
+    <>
+      <div className="movieContainer">
+        <MovieList movies={movies} search={props.search} />
+        <MovieList movies={movies} search={props.search} />
+        <MovieList movies={movies} search={props.search} />
       </div>
-    </div>
+    </>
   );
 };
 
