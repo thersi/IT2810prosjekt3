@@ -1,9 +1,14 @@
-const Movs = require('../model.ts');
+//import Movie from '../model'
+const Movie = require('../model')
+const { gql } = require("apollo-server");
+import { makeExecutableSchema } from '@graphql-tools/schema';
 
-const res = {
+// DENNE KAN BYTTE NAVN TIL SCHEMA. INKLUDERER BÅDE RESOLVERS OG TYPEDEFS. 
+
+const resolvers = {
     Query: {
         movies () { //prøv å endre denne til ny logikk
-            return Movs.find()
+            return Movie.find()
             .then((movie: any[]) => {
                 return movie.map((r: { _doc: any; }) => ({...r._doc}))
             })
@@ -15,7 +20,7 @@ const res = {
     Mutation: { //prøvd å endre denne men får feilmelding i apollo på localhost
         createMovie: (args: { title: String; thumbsUp: Number; year: Number; genre: [String]; actors: [String]; thumbsDown: Number; }) => {
             const {title, thumbsUp, year, genre, actors, thumbsDown} = args
-            const movieObj = new Movs({
+            const movieObj = new Movie({
                 title, 
                 thumbsUp,
                 year,
@@ -33,4 +38,40 @@ const res = {
         }
     }
 }
-module.exports = { res };
+
+const typeDefs = gql`
+
+    type Movie {
+        _id: ID!
+        title: String!
+        thumbsUp: Int!
+        thumbsDown: Int!
+        year: Int!
+        genere: [String!]!
+        actors: [String!]
+    }
+
+    input CreateMovieInput {
+        title: String!
+        thumbsUp: Int!
+        thumbsDown: Int!
+        year: Int!
+        genere: [String!]!
+    }
+
+
+    type Query {
+        movies: [Movie!]!
+    }
+
+    type Mutation {
+       createMovie(input: CreateMovieInput!): Movie!
+    }
+`
+//export default{ resolvers };
+const schema = makeExecutableSchema({
+    typeDefs,
+    resolvers,
+  });
+
+export default(schema);

@@ -1,8 +1,12 @@
 const { gql } = require("apollo-server");
+//import gql from 'apollo-server';
 
-const defs = gql`
+//DENNE KAN SLETTES NÅR VI VÅR TIL Å KJØRE QUERIES IGJEN
+//ER INTEGRERT I RESOLVERS
 
-    type Movies {
+export default gql`
+
+    type Movie {
         _id: ID!
         title: String!
         thumbsUp: Int!
@@ -11,6 +15,15 @@ const defs = gql`
         genere: [String!]!
         actors: [String!]
     }
+
+    input CreateMovieInput {
+        title: String!
+        thumbsUp: Int!
+        thumbsDown: Int!
+        year: Int!
+        genere: [String!]!
+    }
+
 
     type Query {
         movies: [Movie!]!
@@ -21,4 +34,5 @@ const defs = gql`
     }
 `
 
-module.exports = { defs };
+//module.exports = { defs };
+

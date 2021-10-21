@@ -1,11 +1,13 @@
 const { ApolloServer } = require("apollo-server");
-const { resolvers } = require("./schema/resolvers.ts");
-const { types } = require("./schema/type-defs.ts");
-const mongoose = require('mongoose');
+//const { resolvers } = require("./schema/resolvers.ts");
+//const { typeDefs } = require("./schema/type-defs.ts");
+import typeDefs from './schema/type-defs';
+//import resolvers from './schema/resolvers';
+import schema from './schema/resolvers'
+//import defs from "./schema/type-defs";
+import mongoose from 'mongoose'
 
-
-const server = new ApolloServer({
-    typeDefs: types, resolvers });
+const server = new ApolloServer({schema});
 
 mongoose.connect(
     "mongodb://it2810:passord@it2810-37.idi.ntnu.no:27017/?authSource=moviedb"
@@ -17,5 +19,6 @@ mongoose.connect(
     }).catch((err: any) => {
         console.log(err);
         console.log("could not connect to database");
-    });
+    }); 
+
 
