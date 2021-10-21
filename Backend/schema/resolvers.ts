@@ -1,13 +1,15 @@
 //import Movie from '../model'
-const Movie = require('../model')
+const { Movie, IMovie, MovieSchema } = require('../model')
 const { gql } = require("apollo-server");
 import { makeExecutableSchema } from '@graphql-tools/schema';
+
+
 
 // DENNE KAN BYTTE NAVN TIL SCHEMA. INKLUDERER BÅDE RESOLVERS OG TYPEDEFS. 
 
 const resolvers = {
     Query: {
-        movies () { //prøv å endre denne til ny logikk
+/*          movies () { //prøv å endre denne til ny logikk
             return Movie.find()
             .then((movie: any[]) => {
                 return movie.map((r: { _doc: any; }) => ({...r._doc}))
@@ -16,8 +18,26 @@ const resolvers = {
                 console.error(err)
             })
         }
-    },
-    Mutation: { //prøvd å endre denne men får feilmelding i apollo på localhost
+    },  */
+             movies:(root: any)=>{
+                return new Promise((resolve,reject)=>{
+                    Movie.find((err: any, movies: unknown)=>{
+                        if(err) reject(err);
+                        else resolve(movies);
+                    })
+                })
+            },
+            movieById:(root: any,{id}: any)=>{
+                return new Promise((resolve,reject)=>{
+                    Movie.findOne({_id:id},(err: any,movie: unknown)=>{
+                    if(err) reject(err);
+                    else resolve(movie);
+                })
+            })
+        }
+    }, 
+
+    Mutation: { //DENNE FUNKER IKKE ENDA
         createMovie: (args: { title: String; thumbsUp: Number; year: Number; genre: [String]; actors: [String]; thumbsDown: Number; }) => {
             const {title, thumbsUp, year, genre, actors, thumbsDown} = args
             const movieObj = new Movie({
@@ -39,29 +59,44 @@ const resolvers = {
     }
 }
 
+/* export const UserInput = new GraphQLInputObjectType({
+    name: 'UserInput',
+    fields: () => ({
+        _id: { type: GraphQLString },
+        title: { type: new GraphQLNonNull(GraphQLString) }, //* Mandatory field
+        thumbsUp: { type: new GraphQLNonNull(GraphQLInt) }, //* Mandatory field
+        year: { type: new GraphQLNonNull(GraphQLInt) },
+        genre: { type: new GraphQLNonNull(new GraphQLList(GraphQLString))},
+        actors: { type: GraphQLString },
+        thumbsDown: { type: new GraphQLNonNull(GraphQLInt) }
+    })
+}); */
+
 const typeDefs = gql`
 
     type Movie {
         _id: ID!
         title: String!
         thumbsUp: Int!
-        thumbsDown: Int!
         year: Int!
-        genere: [String!]!
+        genre: [String!]!
         actors: [String!]
+        thumbsDown: Int!
     }
 
     input CreateMovieInput {
         title: String!
         thumbsUp: Int!
-        thumbsDown: Int!
         year: Int!
         genere: [String!]!
+        actors: [String]
+        thumbsDown: Int!
     }
 
 
     type Query {
         movies: [Movie!]!
+        movieById(id: ID!): Movie
     }
 
     type Mutation {

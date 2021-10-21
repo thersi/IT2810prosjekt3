@@ -3,7 +3,7 @@
 //const { Schema } = mongoose
 import {Schema, model, Model, Document} from 'mongoose'
 
-interface IMovie extends Document {
+export interface IMovie extends Document {
     title: String;
     thumbsUp: Number;
     year: Number;
@@ -12,7 +12,7 @@ interface IMovie extends Document {
     thumbsDown: Number;
 }
 
-const MovieSchema: Schema = new Schema({
+export const MovieSchema: Schema = new Schema({
     title: {
         type: String,
         required: true
@@ -38,8 +38,10 @@ const MovieSchema: Schema = new Schema({
     }
 });
 
-const Movie: Model<IMovie> = model('movies', MovieSchema);
-export default{Movie};
+export const Movie: Model<IMovie> = model('movies', MovieSchema);
+
+export default{Movie, MovieSchema};
+
 
 
 /* export default new Schema<Movie>({
