@@ -29,10 +29,11 @@ const resolvers = {
         },
         containsString: (root: any, { word }: any) => {
             return new Promise((resolve, reject) => {
-                Movie.find({ title: { $search: word } }, (err: any, movies: unknown) => {
-                    if (err) reject(err);
-                    else resolve(movies);
-                })
+                Movie.find({ title: { $regex: word, $options: '$i' } },
+                    (err: any, movies: unknown) => {
+                        if (err) reject(err);
+                        else resolve(movies);
+                    })
             })
         },
 
