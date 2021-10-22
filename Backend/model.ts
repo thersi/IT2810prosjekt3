@@ -19,22 +19,19 @@ export const MovieSchema: Schema = new Schema({
     },
     thumbsUp: {
         type: Number,
-        required: true                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-    },
+        required: true},
     year: {
         type: Number,
-        required: true                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-    },
+        required: true},
     genre: {
         type: [String],
-        required: true                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-    },
+        required: true},
     actors: {
-        type: [String],                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+        type: [String], 
     },
     thumbsDown: {
         type: Number,
-        required: true                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+        required: true                                             
     }
 });
 
