@@ -24,7 +24,47 @@ const resolvers = {
                     Movie.find((err: any, movies: unknown)=>{
                         if(err) reject(err);
                         else resolve(movies);
+                    }).limit(5)
+                })
+            },
+            containsString:(root: any, {word}:any)=>{
+                return new Promise((resolve,reject)=>{
+                    Movie.find({ title: { $search: word } },(err: any, movies: unknown)=>{
+                        if(err) reject(err);
+                        else resolve(movies);
                     })
+                })
+            },
+            sortedByTitleAsc:(root: any)=>{
+                return new Promise((resolve,reject)=>{
+                    Movie.find((err: any, movies: unknown)=>{
+                        if(err) reject(err);
+                        else resolve(movies);
+                    }).sort({"title":1})
+                })
+            }, 
+            sortedByTitleDesc:(root: any)=>{
+                return new Promise((resolve,reject)=>{
+                    Movie.find((err: any, movies: unknown)=>{
+                        if(err) reject(err);
+                        else resolve(movies);
+                    }).sort({"title":-1})
+                })
+            },
+            sortedByYearDesc:(root: any)=>{
+                return new Promise((resolve,reject)=>{
+                    Movie.find((err: any, movies: unknown)=>{
+                        if(err) reject(err);
+                        else resolve(movies);
+                    }).sort({"year":-1})
+                })
+            },
+            sortedByYearAsc:(root: any)=>{
+                return new Promise((resolve,reject)=>{
+                    Movie.find((err: any, movies: unknown)=>{
+                        if(err) reject(err);
+                        else resolve(movies);
+                    }).sort({"year":1})
                 })
             },
             movieById:(root: any,{id}: any)=>{
@@ -34,8 +74,26 @@ const resolvers = {
                     else resolve(movie);
                 })
             })
-        }
+        },
+        movieByTitle:(root: any,{title}: any)=>{
+            return new Promise((resolve,reject)=>{
+                Movie.findOne({title:title},(err: any,movie: unknown)=>{
+                if(err) reject(err);
+                else resolve(movie);
+            })
+        })
+    },
+/*             titleContains: (root: any,{word}: any) => {
+                return new Promise((resolve, reject)=>{
+                    Movie.find( {title: word}, (err: any, movie: unknown) => {
+                        if (err) reject (err);
+                        else resolve(word);
+                    })
+                })
+            } */
+
     }, 
+    
 
     Mutation: { //DENNE FUNKER IKKE ENDA
         createMovie: (args: { title: String; thumbsUp: Number; year: Number; genre: [String]; actors: [String]; thumbsDown: Number; }) => {
@@ -92,11 +150,22 @@ const typeDefs = gql`
         actors: [String]
         thumbsDown: Int!
     }
+    input paginationInput{
+        lim: Int!
+        ofs: Int!
+    }
+
 
 
     type Query {
         movies: [Movie!]!
+        containsString(word: String!): [Movie!]!
         movieById(id: ID!): Movie
+        movieByTitle(title: String!): Movie
+        sortedByTitleAsc: [Movie!]!
+        sortedByTitleDesc: [Movie!]!
+        sortedByYearAsc: [Movie!]!
+        sortedByYearDesc: [Movie!]!
     }
 
     type Mutation {
