@@ -19,12 +19,12 @@ const resolvers = {
                     })
                 }
             },  */
-        movies: (root: any) => {
+        movies: (root: any, {limit}:any, {offset}:any) => {
             return new Promise((resolve, reject) => {
                 Movie.find((err: any, movies: unknown) => {
                     if (err) reject(err);
                     else resolve(movies);
-                }).limit(5)
+                }).limit(limit)
             })
         },
         containsString: (root: any, { word }: any) => {
@@ -32,40 +32,40 @@ const resolvers = {
                 Movie.find({ title: { $search: word } }, (err: any, movies: unknown) => {
                     if (err) reject(err);
                     else resolve(movies);
-                })
+                }).limit(5)
             })
         },
 
-        sortedByTitleAsc: (root: any) => {
+        sortedByTitleAsc: (root: any, {limit}:any) => {
             return new Promise((resolve, reject) => {
                 Movie.find((err: any, movies: unknown) => {
                     if (err) reject(err);
                     else resolve(movies);
-                }).sort({ "title": 1 })
+                }).sort({ "title": 1 }).limit(limit)
             })
         },
-        sortedByTitleDesc: (root: any) => {
+        sortedByTitleDesc: (root: any, {limit}:any) => {
             return new Promise((resolve, reject) => {
                 Movie.find((err: any, movies: unknown) => {
                     if (err) reject(err);
                     else resolve(movies);
-                }).sort({ "title": -1 })
+                }).sort({ "title": -1 }).limit(limit)
             })
         },
-        sortedByYearDesc: (root: any) => {
+        sortedByYearDesc: (root: any, {limit}:any) => {
             return new Promise((resolve, reject) => {
                 Movie.find((err: any, movies: unknown) => {
                     if (err) reject(err);
                     else resolve(movies);
-                }).sort({ "year": -1 })
+                }).sort({ "year": -1 }).limit(limit)
             })
         },
-        sortedByYearAsc: (root: any) => {
+        sortedByYearAsc: (root: any, {limit}:any) => {
             return new Promise((resolve, reject) => {
                 Movie.find((err: any, movies: unknown) => {
                     if (err) reject(err);
                     else resolve(movies);
-                }).sort({ "year": 1 })
+                }).sort({ "year": 1 }).limit(limit)
             })
         },
         movieById: (root: any, { id }: any) => {
@@ -178,20 +178,20 @@ const typeDefs = gql`
         thumbsDown: Int!
     }
     input paginationInput{
-        lim: Int!
-        ofs: Int!
+        limit: Int!
+        offset: Int!
     }
 
 
     type Query {
-        movies: [Movie!]!
+        movies(limit: Int! offset: Int!): [Movie!]!
         containsString(word: String!): [Movie!]!
         movieById(id: ID!): Movie
         movieByTitle(title: String!): Movie
-        sortedByTitleAsc: [Movie!]!
-        sortedByTitleDesc: [Movie!]!
-        sortedByYearAsc: [Movie!]!
-        sortedByYearDesc: [Movie!]!
+        sortedByTitleAsc(limit: Int!): [Movie!]!
+        sortedByTitleDesc(limit: Int!): [Movie!]!
+        sortedByYearAsc(limit: Int!): [Movie!]!
+        sortedByYearDesc(limit: Int!): [Movie!]!
     }
 
     type Mutation {
