@@ -9,97 +9,98 @@ import { makeExecutableSchema } from '@graphql-tools/schema';
 
 const resolvers = {
     Query: {
-/*          movies () { //prøv å endre denne til ny logikk
-            return Movie.find()
-            .then((movie: any[]) => {
-                return movie.map((r: { _doc: any; }) => ({...r._doc}))
-            })
-            .catch((err: any) => {
-                console.error(err)
-            })
-        }
-    },  */
-             movies:(root: any)=>{
-                return new Promise((resolve,reject)=>{
-                    Movie.find((err: any, movies: unknown)=>{
-                        if(err) reject(err);
-                        else resolve(movies);
-                    }).limit(5)
-                })
-            },
-            containsString:(root: any, {word}:any)=>{
-                return new Promise((resolve,reject)=>{
-                    Movie.find({ title: { $search: word } },(err: any, movies: unknown)=>{
-                        if(err) reject(err);
-                        else resolve(movies);
+        /*          movies () { //prøv å endre denne til ny logikk
+                    return Movie.find()
+                    .then((movie: any[]) => {
+                        return movie.map((r: { _doc: any; }) => ({...r._doc}))
                     })
+                    .catch((err: any) => {
+                        console.error(err)
+                    })
+                }
+            },  */
+        movies: (root: any) => {
+            return new Promise((resolve, reject) => {
+                Movie.find((err: any, movies: unknown) => {
+                    if (err) reject(err);
+                    else resolve(movies);
+                }).limit(5)
+            })
+        },
+        containsString: (root: any, { word }: any) => {
+            return new Promise((resolve, reject) => {
+                Movie.find({ title: { $search: word } }, (err: any, movies: unknown) => {
+                    if (err) reject(err);
+                    else resolve(movies);
                 })
-            },
-            sortedByTitleAsc:(root: any)=>{
-                return new Promise((resolve,reject)=>{
-                    Movie.find((err: any, movies: unknown)=>{
-                        if(err) reject(err);
-                        else resolve(movies);
-                    }).sort({"title":1})
-                })
-            }, 
-            sortedByTitleDesc:(root: any)=>{
-                return new Promise((resolve,reject)=>{
-                    Movie.find((err: any, movies: unknown)=>{
-                        if(err) reject(err);
-                        else resolve(movies);
-                    }).sort({"title":-1})
-                })
-            },
-            sortedByYearDesc:(root: any)=>{
-                return new Promise((resolve,reject)=>{
-                    Movie.find((err: any, movies: unknown)=>{
-                        if(err) reject(err);
-                        else resolve(movies);
-                    }).sort({"year":-1})
-                })
-            },
-            sortedByYearAsc:(root: any)=>{
-                return new Promise((resolve,reject)=>{
-                    Movie.find((err: any, movies: unknown)=>{
-                        if(err) reject(err);
-                        else resolve(movies);
-                    }).sort({"year":1})
-                })
-            },
-            movieById:(root: any,{id}: any)=>{
-                return new Promise((resolve,reject)=>{
-                    Movie.findOne({_id:id},(err: any,movie: unknown)=>{
-                    if(err) reject(err);
+            })
+        },
+
+        sortedByTitleAsc: (root: any) => {
+            return new Promise((resolve, reject) => {
+                Movie.find((err: any, movies: unknown) => {
+                    if (err) reject(err);
+                    else resolve(movies);
+                }).sort({ "title": 1 })
+            })
+        },
+        sortedByTitleDesc: (root: any) => {
+            return new Promise((resolve, reject) => {
+                Movie.find((err: any, movies: unknown) => {
+                    if (err) reject(err);
+                    else resolve(movies);
+                }).sort({ "title": -1 })
+            })
+        },
+        sortedByYearDesc: (root: any) => {
+            return new Promise((resolve, reject) => {
+                Movie.find((err: any, movies: unknown) => {
+                    if (err) reject(err);
+                    else resolve(movies);
+                }).sort({ "year": -1 })
+            })
+        },
+        sortedByYearAsc: (root: any) => {
+            return new Promise((resolve, reject) => {
+                Movie.find((err: any, movies: unknown) => {
+                    if (err) reject(err);
+                    else resolve(movies);
+                }).sort({ "year": 1 })
+            })
+        },
+        movieById: (root: any, { id }: any) => {
+            return new Promise((resolve, reject) => {
+                Movie.findOne({ _id: id }, (err: any, movie: unknown) => {
+                    if (err) reject(err);
                     else resolve(movie);
                 })
             })
         },
-        movieByTitle:(root: any,{title}: any)=>{
-            return new Promise((resolve,reject)=>{
-                Movie.findOne({title:title},(err: any,movie: unknown)=>{
-                if(err) reject(err);
-                else resolve(movie);
-            })
-        })
-    },
-/*             titleContains: (root: any,{word}: any) => {
-                return new Promise((resolve, reject)=>{
-                    Movie.find( {title: word}, (err: any, movie: unknown) => {
-                        if (err) reject (err);
-                        else resolve(word);
-                    })
+        movieByTitle: (root: any, { title }: any) => {
+            return new Promise((resolve, reject) => {
+                Movie.findOne({ title: title }, (err: any, movie: unknown) => {
+                    if (err) reject(err);
+                    else resolve(movie);
                 })
-            } */
+            })
+        },
+        /*             titleContains: (root: any,{word}: any) => {
+                        return new Promise((resolve, reject)=>{
+                            Movie.find( {title: word}, (err: any, movie: unknown) => {
+                                if (err) reject (err);
+                                else resolve(word);
+                            })
+                        })
+                    } */
 
-    }, 
-    
+    },
+
 
     Mutation: { //DENNE FUNKER IKKE ENDA
         createMovie: (args: { title: String; thumbsUp: Number; year: Number; genre: [String]; actors: [String]; thumbsDown: Number; }) => {
-            const {title, thumbsUp, year, genre, actors, thumbsDown} = args
+            const { title, thumbsUp, year, genre, actors, thumbsDown } = args
             const movieObj = new Movie({
-                title, 
+                title,
                 thumbsUp,
                 year,
                 genre,
@@ -108,11 +109,37 @@ const resolvers = {
             })
             return movieObj.save()
                 .then((result: { _doc: any; }) => {
-                    return{ ...result._doc}
+                    return { ...result._doc }
                 })
                 .catch((err: any) => {
                     console.log(err)
                 })
+        },
+        thumbsUpById: (root: any, { id }: any) => {
+            return new Promise((resolve, reject) => {
+                Movie.findOneAndUpdate(
+                    { _id: id },
+                    { $inc: { thumbsUp: 1 } },
+                    { new: true },
+                    (err: any, movie: unknown) => {
+                        if (err) reject(err);
+                        else resolve(movie);
+                    }
+                )
+            })
+        },
+        thumbsDownById: (root: any, { id }: any) => {
+            return new Promise((resolve, reject) => {
+                Movie.findOneAndUpdate(
+                    { _id: id },
+                    { $inc: { thumbsDown: 1 } },
+                    { new: true },
+                    (err: any, movie: unknown) => {
+                        if (err) reject(err);
+                        else resolve(movie);
+                    }
+                )
+            })
         }
     }
 }
@@ -156,7 +183,6 @@ const typeDefs = gql`
     }
 
 
-
     type Query {
         movies: [Movie!]!
         containsString(word: String!): [Movie!]!
@@ -170,12 +196,14 @@ const typeDefs = gql`
 
     type Mutation {
        createMovie(input: CreateMovieInput!): Movie!
+       thumbsUpById(id: ID!): Movie
+       thumbsDownById(id: ID!): Movie
     }
 `
 //export default{ resolvers };
 const schema = makeExecutableSchema({
     typeDefs,
     resolvers,
-  });
+});
 
-export default(schema);
+export default (schema);
