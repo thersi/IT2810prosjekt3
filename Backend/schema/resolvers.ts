@@ -7,6 +7,11 @@ import { makeExecutableSchema } from '@graphql-tools/schema';
 
 // DENNE KAN BYTTE NAVN TIL SCHEMA. INKLUDERER BÅDE RESOLVERS OG TYPEDEFS. 
 
+type paginationArgs = {
+    page: number;
+    limit: number;
+  };
+
 const resolvers = {
     Query: {
         /*          movies () { //prøv å endre denne til ny logikk
@@ -19,12 +24,16 @@ const resolvers = {
                     })
                 }
             },  */
-        movies: (root: any, {limit}:any, {offset}:any) => {
+        movies: (root: any, args: paginationArgs) => {
+            const page = args.page;
+            const limit = args.limit;
+            const skips: number = limit * (Number(page) - 1);
+            
             return new Promise((resolve, reject) => {
                 Movie.find((err: any, movies: unknown) => {
                     if (err) reject(err);
                     else resolve(movies);
-                }).limit(limit)
+                }).skip(skips).limit(limit);
             })
         },
         containsString: (root: any, { word }: any) => {
@@ -37,36 +46,52 @@ const resolvers = {
             })
         },
 
-        sortedByTitleAsc: (root: any, {limit}:any) => {
+        sortedByTitleAsc: (root: any, args: paginationArgs) => {
+            const page = args.page;
+            const limit = args.limit;
+            const skips: number = limit * (Number(page) - 1);
+
             return new Promise((resolve, reject) => {
                 Movie.find((err: any, movies: unknown) => {
                     if (err) reject(err);
                     else resolve(movies);
-                }).sort({ "title": 1 }).limit(limit)
+                }).sort({ "title": 1 }).skip(skips).limit(limit);
             })
         },
-        sortedByTitleDesc: (root: any, {limit}:any) => {
+        sortedByTitleDesc: (root: any, args: paginationArgs) => {
+            const page = args.page;
+            const limit = args.limit;
+            const skips: number = limit * (Number(page) - 1);
+
             return new Promise((resolve, reject) => {
                 Movie.find((err: any, movies: unknown) => {
                     if (err) reject(err);
                     else resolve(movies);
-                }).sort({ "title": -1 }).limit(limit)
+                }).sort({ "title": -1 }).skip(skips).limit(limit);
             })
         },
-        sortedByYearDesc: (root: any, {limit}:any) => {
+        sortedByYearDesc: (root: any, args: paginationArgs) => {
+            const page = args.page;
+            const limit = args.limit;
+            const skips: number = limit * (Number(page) - 1);
+
             return new Promise((resolve, reject) => {
                 Movie.find((err: any, movies: unknown) => {
                     if (err) reject(err);
                     else resolve(movies);
-                }).sort({ "year": -1 }).limit(limit)
+                }).sort({ "year": -1 }).skip(skips).limit(limit);
             })
         },
-        sortedByYearAsc: (root: any, {limit}:any) => {
+        sortedByYearAsc: (root: any, args: paginationArgs) => {
+            const page = args.page;
+            const limit = args.limit;
+            const skips: number = limit * (Number(page) - 1);
+
             return new Promise((resolve, reject) => {
                 Movie.find((err: any, movies: unknown) => {
                     if (err) reject(err);
                     else resolve(movies);
-                }).sort({ "year": 1 }).limit(limit)
+                }).sort({ "year": 1 }).skip(skips).limit(limit);
             })
         },
         movieById: (root: any, { id }: any) => {
@@ -185,14 +210,14 @@ const typeDefs = gql`
 
 
     type Query {
-        movies(limit: Int! offset: Int!): [Movie!]!
+        movies(limit: Int! page: Int!): [Movie!]!
         containsString(word: String!): [Movie!]!
         movieById(id: ID!): Movie
         movieByTitle(title: String!): Movie
-        sortedByTitleAsc(limit: Int!): [Movie!]!
-        sortedByTitleDesc(limit: Int!): [Movie!]!
-        sortedByYearAsc(limit: Int!): [Movie!]!
-        sortedByYearDesc(limit: Int!): [Movie!]!
+        sortedByTitleAsc(limit: Int! page: Int!): [Movie!]!
+        sortedByTitleDesc(limit: Int! page: Int!): [Movie!]!
+        sortedByYearAsc(limit: Int! page: Int!): [Movie!]!
+        sortedByYearDesc(limit: Int! page: Int!): [Movie!]!
     }
 
     type Mutation {
