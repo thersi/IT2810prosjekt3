@@ -1,11 +1,17 @@
 const { Movie, IMovie, MovieSchema } = require('../model')
-const { gql } = require("apollo-server");
+//const { gql } = require("apollo-server");
+import {gql} from 'apollo-server'
 import { makeExecutableSchema } from '@graphql-tools/schema';
 
 
 type paginationArgs = {
     page: number;
     limit: number;
+  };
+  type paginationWithFilterArgs = {
+    page: number;
+    limit: number;
+    word: string;
   };
 
 const resolvers = {
@@ -22,15 +28,33 @@ const resolvers = {
                 }).skip(skips).limit(limit);
             })
         },
-        containsString: (root: any, { word }: any) => {
+        containsString: (root: any, args: paginationWithFilterArgs) => {
+            const page = args.page;
+            const limit = args.limit;
+            const word = args.word
+            const skips: number = limit * (Number(page) - 1);
+
             return new Promise((resolve, reject) => {
                 Movie.find({ title: { $regex: word, $options: '$i' } },
                     (err: any, movies: unknown) => {
                         if (err) reject(err);
                         else resolve(movies);
-                    })
+                    }).skip(skips).limit(limit);
             })
         },
+
+        filterOnGenre: (root: any, {filterGenre, limit, page}:any) => {
+            const skips: number = limit * (Number(page) - 1);
+            return new Promise((resolve, reject) => {
+                Movie.find({ genre: { $regex: filterGenre, $options: '$i' } },
+                    (err: any, movies: unknown) => {
+                        if (err) reject(err);
+                        else resolve(movies);
+                    }).skip(skips).limit(limit);
+            })
+        },
+        
+        // BURDE VURDERE Å HA EN ASC/DESC FOR SØK/FILTER OGSÅ
 
         sortedByTitleAsc: (root: any, args: paginationArgs) => {
             const page = args.page;
@@ -149,13 +173,14 @@ const typeDefs = gql`
 
     type Query {
         movies(limit: Int! page: Int!): [Movie!]!
-        containsString(word: String!): [Movie!]!
+        containsString(limit: Int! page: Int! word: String!): [Movie!]
         movieById(id: ID!): Movie
         movieByTitle(title: String!): Movie
         sortedByTitleAsc(limit: Int! page: Int!): [Movie!]!
         sortedByTitleDesc(limit: Int! page: Int!): [Movie!]!
         sortedByYearAsc(limit: Int! page: Int!): [Movie!]!
         sortedByYearDesc(limit: Int! page: Int!): [Movie!]!
+        filterOnGenre(filterGenre: String! limit: Int! page: Int!): [Movie!]
     }
 
     type Mutation {
