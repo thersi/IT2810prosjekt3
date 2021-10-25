@@ -1,12 +1,6 @@
 const { ApolloServer } = require("apollo-server");
-//const { resolvers } = require("./schema/resolvers.ts");
-//const { typeDefs } = require("./schema/type-defs.ts");
-import typeDefs from './schema/type-defs';
-//import resolvers from './schema/resolvers';
-import schema from './schema/resolvers'
-//import defs from "./schema/type-defs";
+import schema from './schema/schema'
 import mongoose from 'mongoose'
-const { Movie } = require('./model')
 
 const server = new ApolloServer({ schema });
 
@@ -23,7 +17,6 @@ mongoose.connect(
 });
 
 let db = mongoose.connection;
-console.log(db.collections);
 
 db.on('error', () => {
     console.error("Error while connecting to DB");
