@@ -1,15 +1,10 @@
-import { Divider } from "@mui/material";
-import React from "react";
+import SingleDisplay from "../SingleDisplay";
 
 const MovieList = (props: any) => {
   return (
     <>
       {props.movies.map((movie: any, index: any) => (
-        <div className="movie">
-          <img src={movie.Poster} alt="movie"></img>
-          <Divider />
-          <h3>{movie.title}</h3>
-        </div>
+        <SingleDisplay movie={movie} />
       ))}
     </>
   );
