@@ -1,56 +1,19 @@
 .mk {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
   gap: 20px;
-  row-gap: 40px;
-  overflow: hidden;
+  row-gap: 20px;
 }
 .movieContainer {
   display: flex;
-  padding: 0 55px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-}
-
-.movieContainer:hover .movie {
-  transform: translateX(-25%);
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
+  row-gap: 20px;
 }
 
 .movie {
-  background: black;
   flex: 0 0 19.7%;
-  text-align: center;
-
-  transition: transform 300ms ease 100ms;
-}
-
-.movie:hover ~ .movie {
-  transform: translateX(25%);
-}
-
-.movie:hover {
-  transform: scale(1.2) !important;
-}
-
-.content-container {
-  color: white;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 30px;
-}
-
-.container {
-  width: 145px;
-  height: 100px;
-  border: 1px solid #ccc;
-  overflow-x: scroll;
-}
-
-.content {
-  width: 250px;
-  background-color: #ccc;
+  text-align: left;
 }
