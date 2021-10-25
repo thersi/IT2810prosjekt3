@@ -5,11 +5,7 @@ import MovieScroll from "./components/MovieScroll";
 import MovieSearch from "./components/MovieSearch";
 
 function App() {
-  return (
-    <div>
-      <MovieSearch />
-    </div>
-  );
+  return <MovieSearch />;
 }
 
 export default App;
