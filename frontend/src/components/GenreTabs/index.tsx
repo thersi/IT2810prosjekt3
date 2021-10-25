@@ -11,13 +11,14 @@ export default function GenreTabs() {
   };
 
   return (
-    <Box sx={{ maxWidth: 480, bgcolor: "background.paper" }}>
+    <Box sx={{ bgcolor: "background.paper" }}>
       <Tabs
         value={value}
         onChange={handleChange}
         variant="scrollable"
         scrollButtons="auto"
         aria-label="scrollable auto tabs example"
+        centered
       >
         <Tab label="Item One" />
         <Tab label="Item Two" />
