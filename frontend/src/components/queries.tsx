@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useQuery, gql } from "@apollo/client"
 
+//DETTE ER KUN SELVE QUERIENE. INGEN HÅNDTERING ELLER LOGIKK
+//FLYTT DEM DIT DE TRENGS OG BRUK USEQUERY
+
 interface Movie {
     _id: string;
     title: string;
@@ -80,42 +83,3 @@ const QUERY_MOVIE_BYTITLE = gql`
 }
 `
 
-
-const MovieList = (props: any) => {
-    const { data: movieData, loading: MovieLoading, error: movieError } = useQuery(QUERY_ALL_MOVIES);
-
-    if (movieError) {
-        console.log(movieError)
-    }
-
-    if (MovieLoading) {
-        return <h1>DATA IS LOADING...</h1>
-    }
-    if (movieData) {
-        console.log(movieData)
-    }
-
-    return (
-        <div className="image-container d-flex justify-content-start m-3">
-            {movieData && movieData.movies.map((movie: Movie) => {
-                return (
-                    <div>
-                        <h1>{movie.title}</h1>
-                        <p>{movie._id}</p>
-                    </div>
-                );
-            })}
-        </div>
-    );
-    // return (
-    //   <>
-    //     {props.movies.map((movie: any, index: any) => (
-    //       <div className="image-container d-flex justify-content-start m-3">
-    //         <img src={movie.Poster} alt="movie"></img>
-    //       </div>
-    //     ))}
-    //   </>
-    // );
-};
-
-export default MovieList;
