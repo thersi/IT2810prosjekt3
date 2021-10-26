@@ -8,9 +8,11 @@ import SearchBar from "../SearchBar";
 import MovieFilter from "../MovieFilter";
 import { createTheme } from "@mui/system";
 
-export default function MovieAppBar() {
-  let searchValue = (value: String) => {
-    console.log(value);
+export default function MovieAppBar(props: any) {
+  let searchValue = (value: String) => {};
+
+  const handleInput = (text: any) => {
+    props.sendSearch(text);
   };
   return (
     <Box sx={{ flexGrow: 1 }}>

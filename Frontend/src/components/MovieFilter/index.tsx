@@ -19,6 +19,7 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import { Checkbox, Divider } from "@mui/material";
 
 export default function MovieFilter() {
+  //MÅ få fikset slik at denne holder seg konstant størrelse på menyen ++
   const [auth, setAuth] = React.useState(true);
   const [isChosen, setIsChosen] = React.useState<string>();
   const [isAsc, setIsAsc] = React.useState<boolean>(false);
