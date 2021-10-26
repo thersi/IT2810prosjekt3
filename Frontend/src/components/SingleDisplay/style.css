@@ -20,6 +20,15 @@ img {
 
 .thumbButtons {
   display: block;
-  text-align: right;
-  padding-left: 20pt;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.thumbUp {
+  padding: 20pt;
+  color: green;
+}
+.thumbDown {
+  padding: 20pt;
+  color: red;
 }
