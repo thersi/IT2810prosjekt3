@@ -6,8 +6,14 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchBar from "../SearchBar";
 import MovieFilter from "../MovieFilter";
+import { createTheme } from "@mui/system";
 
 export default function MovieAppBar() {
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
