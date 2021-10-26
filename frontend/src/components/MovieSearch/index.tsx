@@ -4,6 +4,7 @@ import MovieFilter from "../MovieFilter";
 import SearchBar from "../SearchBar";
 import MovieAppBar from "../MovieAppBar";
 import GenreTabs from "../GenreTabs";
+import "./style.css";
 //APolloklient
 const MovieSearch = (props: any) => {
   return (

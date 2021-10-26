@@ -1,19 +1,6 @@
-.mk {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  gap: 20px;
-  row-gap: 20px;
-}
 .movieContainer {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   gap: 20px;
-  row-gap: 20px;
-}
-
-.movie {
-  flex: 0 0 19.7%;
-  text-align: left;
 }

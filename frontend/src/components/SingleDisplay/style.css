@@ -1,3 +1,18 @@
 .movie {
-  padding: 20pt;
+  display: flex;
+  align-items: left;
+  justify-content: left;
+}
+
+img {
+  text-align: center;
+  flex-basis: 40%;
+  display: block;
+  max-width: 90%;
+}
+
+.text {
+  font-size: 20px;
+  flex-direction: column;
+  display: block;
 }
