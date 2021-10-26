@@ -11,11 +11,18 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormGroup from "@mui/material/FormGroup";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import CheckIcon from "@mui/icons-material/Check";
 
 import FilterListIcon from "@mui/icons-material/FilterList";
+import { Checkbox, Divider } from "@mui/material";
 
 export default function MovieFilter() {
   const [auth, setAuth] = React.useState(true);
+  const [isChosen, setIsChosen] = React.useState<string>();
+  const [isAsc, setIsAsc] = React.useState<boolean>(false);
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAuth(event.target.checked);
@@ -56,9 +63,33 @@ export default function MovieFilter() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
+        <MenuItem disabled>Sort Order: </MenuItem>
+        <MenuItem onClick={() => setIsAsc(!isAsc)}>
+          {isAsc && <CheckIcon />}
+          <ArrowUpwardIcon /> Asc
+        </MenuItem>
+        <MenuItem onClick={() => setIsAsc(!isAsc)}>
+          {!isAsc && <CheckIcon />}
+          <ArrowDownwardIcon /> Desc
+        </MenuItem>
+        <Divider />
         <MenuItem disabled>Sort by: </MenuItem>
-        <MenuItem onClick={handleClose}>Rating</MenuItem>
-        <MenuItem onClick={handleClose}>Year</MenuItem>
+        <MenuItem
+          onClick={() =>
+            isChosen === "rating" ? setIsChosen("") : setIsChosen("rating")
+          }
+        >
+          {isChosen === "rating" && <CheckIcon />}
+          Rating
+        </MenuItem>
+        <MenuItem
+          onClick={() =>
+            isChosen === "year" ? setIsChosen("") : setIsChosen("year")
+          }
+        >
+          {isChosen === "year" && <CheckIcon />}
+          Year
+        </MenuItem>
       </Menu>
     </div>
   );
