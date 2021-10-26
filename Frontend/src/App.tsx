@@ -1,11 +1,20 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import MovieScroll from "./components/MovieScroll";
 import MovieSearch from "./components/MovieSearch";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 function App() {
-  return <MovieSearch />;
+  const client = new ApolloClient({
+    cache: new InMemoryCache(),
+    uri: "http://localhost:4000/graphql",
+  });
+
+  return (
+    <ApolloProvider client={client}>
+      <MovieSearch />
+    </ApolloProvider>
+  );
 }
 
 export default App;

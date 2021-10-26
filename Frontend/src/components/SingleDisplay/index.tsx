@@ -30,13 +30,13 @@ export default function SingleDisplay(props: any) {
   return (
     <>
       <div className="movie" onClick={handleClickMovie}>
-        <div>
-          <img className="image" src={props.movie.Poster} alt="movie"></img>
-        </div>
+        {/*    <div>
+          <img className="image" src={props.movie.} alt="movie"></img>
+        </div> */}
         <div className="text">
           {
             <label>
-              {props.movie.Title}
+              {props.movie.title}
             </label> /*  <label>{props.movie.Year}</label> */
           }
         </div>
