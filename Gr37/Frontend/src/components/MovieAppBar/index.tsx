@@ -14,6 +14,9 @@ export default function MovieAppBar() {
       mode: "dark",
     },
   });
+  let searchValue = (value: String) => {
+    console.log(value);
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -27,7 +30,7 @@ export default function MovieAppBar() {
             Movies
           </Typography>
           <MovieFilter />
-          <SearchBar />
+          <SearchBar handleSearch={searchValue} />
         </Toolbar>
       </AppBar>
     </Box>
