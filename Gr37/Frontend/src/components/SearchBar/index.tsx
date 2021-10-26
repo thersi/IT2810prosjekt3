@@ -1,6 +1,7 @@
 import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
+import { useState } from "react";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -43,7 +44,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-export default function SearchBar() {
+
+export default function SearchBar(props: any) {
+  const [text, setText] = useState<String>("");
+  const handleWrite = (e: any) => {
+    setText(e.target.value); // Sende en eller annen prop ned her slik at man kan sende til forelder
+    props.handleSearch(text);
+  };
+
   return (
     <Search>
       <SearchIconWrapper>
@@ -52,6 +60,7 @@ export default function SearchBar() {
       <StyledInputBase
         placeholder="Search…"
         inputProps={{ "aria-label": "search" }}
+        onChange={(e) => handleWrite(e)}
       />
     </Search>
   );
