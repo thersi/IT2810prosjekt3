@@ -56,9 +56,8 @@ export default function MovieFilter() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem disabled>Filter By </MenuItem>
+        <MenuItem disabled>Sort by: </MenuItem>
         <MenuItem onClick={handleClose}>Rating</MenuItem>
-        <MenuItem onClick={handleClose}>Title</MenuItem>
         <MenuItem onClick={handleClose}>Year</MenuItem>
       </Menu>
     </div>

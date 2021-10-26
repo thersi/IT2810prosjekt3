@@ -58,7 +58,7 @@ export default function SearchBar(props: any) {
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
-        placeholder="Search…"
+        placeholder="Search Movietitles..."
         inputProps={{ "aria-label": "search" }}
         onChange={(e) => handleWrite(e)}
       />

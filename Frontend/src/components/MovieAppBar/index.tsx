@@ -9,11 +9,6 @@ import MovieFilter from "../MovieFilter";
 import { createTheme } from "@mui/system";
 
 export default function MovieAppBar() {
-  const darkTheme = createTheme({
-    palette: {
-      mode: "dark",
-    },
-  });
   let searchValue = (value: String) => {
     console.log(value);
   };
