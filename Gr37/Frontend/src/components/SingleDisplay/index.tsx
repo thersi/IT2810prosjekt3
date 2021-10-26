@@ -1,7 +1,10 @@
-import { Divider } from "@mui/material";
+import { Button, Divider, IconButton } from "@mui/material";
 import React, { useState } from "react";
 import MovieDialog from "../MovieCard";
 import "./style.css";
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
+import ThumbDownIcon from "@material-ui/icons/ThumbDown";
+
 export default function SingleDisplay(props: any) {
   const [open, setOpen] = React.useState(false);
 
@@ -36,6 +39,15 @@ export default function SingleDisplay(props: any) {
               {props.movie.Title}
             </label> /*  <label>{props.movie.Year}</label> */
           }
+        </div>
+        <div className="thumbButtons">
+          {" "}
+          <IconButton>
+            <ThumbUpIcon />
+          </IconButton>
+          <IconButton>
+            <ThumbDownIcon />
+          </IconButton>
         </div>
       </div>
       <Divider flexItem />

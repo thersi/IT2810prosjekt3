@@ -16,3 +16,9 @@ img {
   flex-direction: column;
   display: block;
 }
+
+.thumbButtons {
+  display: block;
+  text-align: right;
+  padding-left: 20pt;
+}
