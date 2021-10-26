@@ -14,8 +14,6 @@ import Menu from "@mui/material/Menu";
 
 import FilterListIcon from "@mui/icons-material/FilterList";
 
-const genre = ["Action", "Comedy", "Romance", "Thriller", "Horror", "Children"];
-const rating = ["☆☆☆☆☆", "☆☆☆☆", "☆☆☆", "☆☆", "☆"];
 export default function MovieFilter() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -58,8 +56,10 @@ export default function MovieFilter() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem disabled>Filter By </MenuItem>
+        <MenuItem onClick={handleClose}>Rating</MenuItem>
+        <MenuItem onClick={handleClose}>Title</MenuItem>
+        <MenuItem onClick={handleClose}>Year</MenuItem>
       </Menu>
     </div>
   );
