@@ -9,7 +9,9 @@ import MovieFilter from "../MovieFilter";
 import { createTheme } from "@mui/system";
 
 export default function MovieAppBar(props: any) {
-  let searchValue = (value: String) => {};
+  let searchValue = (value: string) => {
+    props.handleSearch(value);
+  };
 
   const handleInput = (text: any) => {
     props.sendSearch(text);

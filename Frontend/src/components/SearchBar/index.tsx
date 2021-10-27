@@ -49,9 +49,8 @@ export default function SearchBar(props: any) {
   const [text, setText] = useState<String>("");
   const handleWrite = (e: any) => {
     setText(e.target.value); // Sende en eller annen prop ned her slik at man kan sende til forelder
-    props.handleSearch(text);
+    props.handleSearch(e.target.value);
   };
-
   return (
     <Search>
       <SearchIconWrapper>

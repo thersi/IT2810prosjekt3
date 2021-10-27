@@ -1,25 +1,8 @@
-import { useQuery, gql } from "@apollo/client";
 import { Movie } from "../../Interfaces";
 import SingleDisplay from "../SingleDisplay";
 import "./style.css";
 
-const MovieList = (search: any) => {
-  console.log(search);
-  const QUERY_ALL_MOVIES = gql`
-    query ($limit: Int!, $page: Int!, $order: Int!, $sortOn: String!) {
-      movies(limit: $limit, page: $page, order: $order, sortOn: $sortOn) {
-        _id
-        title
-        year
-        thumbsUp
-        thumbsDown
-      }
-    }
-  `;
-
-  const { loading, error, data } = useQuery(QUERY_ALL_MOVIES, {
-    variables: { limit: 10, page: 1, order: 1, sortOn: "year" },
-  });
+const MovieList = (props: any) => {
   /* const { loadingTitle, errorTitle, dataTitle } = useQuery(
     QUERY_MOVIE_BYTITLE,
     {
@@ -27,12 +10,15 @@ const MovieList = (search: any) => {
     }
   ); */
 
-  if (loading) return <p>Loading ...</p>;
+  console.log(props.data === undefined);
+  console.log(props.sorting === "search");
+  if (props.loading) return <p>Loading ...</p>;
   return (
     <div className="MovieContainer">
-      {data.movies.map((movie: Movie) => (
-        <SingleDisplay {...movie} />
-      ))}
+      {props.sorting === "search" &&
+        props.data.containsString.map((movie: Movie) => (
+          <SingleDisplay {...movie} />
+        ))}
     </div>
   );
 };
