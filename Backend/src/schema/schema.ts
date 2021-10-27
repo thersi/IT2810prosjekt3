@@ -107,6 +107,34 @@ const resolvers = {
                 })
             }
         },
+        searchAndFilter: (root: any, {filterGenre, limit, page, order, sortOn, word}: any) => {
+            const skips: number = limit * (Number(page) - 1);
+            let orderNum: number;
+            if (order!= 1 && order!=-1){
+                orderNum = 1 //default sort ASC if bad input
+            }
+            else {
+                orderNum = order;
+            }
+            if (sortOn==="year"){
+                return new Promise((resolve, reject) => {
+                    Movie.find({ title: { $regex: word, $options: '$i' }, genre: { $regex: filterGenre, $options: '$i' } }, 
+                        (err: any, movies: unknown) => {
+                            if (err) reject(err);
+                            else resolve(movies);
+                        }).sort({ "year": orderNum }).skip(skips).limit(limit);
+                })
+            }
+            else {
+                return new Promise((resolve, reject) => {
+                    Movie.find({ title: { $regex: word, $options: '$i' }, genre: { $regex: filterGenre, $options: '$i' } }, 
+                        (err: any, movies: unknown) => {
+                            if (err) reject(err);
+                            else resolve(movies);
+                        }).sort({ "title": orderNum }).skip(skips).limit(limit);
+                })
+            }
+        },
         
         movieById: (root: any, { id }: any) => {
             return new Promise((resolve, reject) => {
@@ -170,17 +198,13 @@ const typeDefs = gql`
         poster: String!
     }
 
-    input paginationInput{
-        limit: Int!
-        offset: Int!
-    }
-
     type Query {
         movies(limit: Int! page: Int! order: Int! sortOn: String!): [Movie!]!
         containsString(limit: Int! page: Int! word: String! order: Int! sortOn: String!): [Movie!]
         movieById(id: ID!): Movie
         movieByTitle(title: String!): Movie
         filterOnGenre(filterGenre: String! limit: Int! page: Int! order: Int!, sortOn: String!): [Movie!]
+        searchAndFilter(filterGenre: String! limit: Int! page: Int! order: Int!, sortOn: String! word: String!): [Movie!]
     }
 
     type Mutation {
