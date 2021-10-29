@@ -1,5 +1,5 @@
 const { ApolloServer } = require("apollo-server");
-import schema from './schema/schema'
+import schema from './src/schema/schema'
 import mongoose from 'mongoose'
 
 const server = new ApolloServer({ schema });
