@@ -1,142 +1,139 @@
-const { Movie, IMovie, MovieSchema } = require('../model')
-//const { gql } = require("apollo-server");
-import {gql} from 'apollo-server'
+const { Movie } = require('../model')
+import { gql } from 'apollo-server'
 import { makeExecutableSchema } from '@graphql-tools/schema';
 
 
-type paginationWithFilterArgs = {
+type searchAndFilterArgs = {
     page: number;
     limit: number;
     word: string;
     order: number;
     sortOn: string;
+    filterGenre: string;
 };
 
+type byIdArgs = {
+    id: string
+}
 
 const resolvers = {
     Query: {
-        movies: (root: any, {limit, page, order, sortOn}: any) => {
+        // movies: (root: any, { limit, page, order, sortOn }: any) => {
+        //     const skips: number = limit * (Number(page) - 1);
+        //     let orderNum: number;
+        //     if (order != 1 && order != -1) {
+        //         orderNum = 1 //default sort ASC if bad input
+        //     }
+        //     else {
+        //         orderNum = order;
+        //     }
+        //     if (sortOn === "year") {
+        //         return new Promise((resolve, reject) => {
+        //             Movie.find((err: any, movies: unknown) => {
+        //                 if (err) reject(err);
+        //                 else resolve(movies);
+        //             }).sort({ "year": orderNum }).skip(skips).limit(limit);
+        //         })
+        //     }
+        //     else {
+        //         return new Promise((resolve, reject) => { // Kind of default to sort on title
+        //             Movie.find((err: any, movies: unknown) => {
+        //                 if (err) reject(err);
+        //                 else resolve(movies);
+        //             }).sort({ "title": orderNum }).skip(skips).limit(limit);
+        //         })
+        //     }
+
+        // },
+
+        // containsString: (root: any, args: paginationWithFilterArgs) => {
+        //     const page = args.page;
+        //     const limit = args.limit;
+        //     const word = args.word
+        //     const skips: number = limit * (Number(page) - 1);
+        //     const order = args.order;
+        //     const sortOn = args.sortOn;
+
+        //     let orderNum: number;
+        //     if (order != 1 && order != -1) {
+        //         orderNum = 1 //default sort ASC if bad input
+        //     }
+        //     else {
+        //         orderNum = order;
+        //     }
+
+        //     if (sortOn === "year") {
+        //         return new Promise((resolve, reject) => {
+        //             Movie.find({ title: { $regex: word, $options: '$i' } },
+        //                 (err: any, movies: unknown) => {
+        //                     if (err) reject(err);
+        //                     else resolve(movies);
+        //                 }).sort({ "year": orderNum }).skip(skips).limit(limit);
+        //         })
+        //     }
+        //     else {
+        //         return new Promise((resolve, reject) => {
+        //             Movie.find({ title: { $regex: word, $options: '$i' } },
+        //                 (err: any, movies: unknown) => {
+        //                     if (err) reject(err);
+        //                     else resolve(movies);
+        //                 }).sort({ "title": orderNum }).skip(skips).limit(limit);
+        //         })
+        //     }
+        // },
+
+        // filterOnGenre: (root: any, { filterGenre, limit, page, order, sortOn }: any) => {
+        //     const skips: number = limit * (Number(page) - 1);
+        //     let orderNum: number;
+        //     if (order != 1 && order != -1) {
+        //         orderNum = 1 //default sort ASC if bad input
+        //     }
+        //     else {
+        //         orderNum = order;
+        //     }
+        //     if (sortOn === "year") {
+        //         return new Promise((resolve, reject) => {
+        //             Movie.find({ genre: { $regex: filterGenre, $options: '$i' } },
+        //                 (err: any, movies: unknown) => {
+        //                     if (err) reject(err);
+        //                     else resolve(movies);
+        //                 }).sort({ "year": orderNum }).skip(skips).limit(limit);
+        //         })
+        //     }
+        //     else {
+        //         return new Promise((resolve, reject) => {
+        //             Movie.find({ genre: { $regex: filterGenre, $options: '$i' } },
+        //                 (err: any, movies: unknown) => {
+        //                     if (err) reject(err);
+        //                     else resolve(movies);
+        //                 }).sort({ "title": orderNum }).skip(skips).limit(limit);
+        //         })
+        //     }
+        // },
+        searchAndFilter: (root: any, { filterGenre, limit, page, order, sortOn, word }: searchAndFilterArgs) => {
             const skips: number = limit * (Number(page) - 1);
             let orderNum: number;
-            if (order!= 1 && order!=-1){
+            if (order != 1 && order != -1) {
                 orderNum = 1 //default sort ASC if bad input
             }
             else {
                 orderNum = order;
             }
-            if (sortOn === "year") {
-                return new Promise((resolve, reject) => {
-                    Movie.find((err: any, movies: unknown) => {
+            return new Promise((resolve, reject) => {
+                let result = Movie.find({ title: { $regex: word, $options: '$i' }, genre: { $regex: filterGenre, $options: '$i' } },
+                    (err: any, movies: unknown) => {
                         if (err) reject(err);
                         else resolve(movies);
-                    }).sort({ "year": orderNum }).skip(skips).limit(limit);
-                })
-            }
-            else {
-                return new Promise((resolve, reject) => { // Kind of default to sort on title
-                    Movie.find((err: any, movies: unknown) => {
-                        if (err) reject(err);
-                        else resolve(movies);
-                    }).sort({ "title": orderNum }).skip(skips).limit(limit);
-                })
-            }
-            
+                    });
+                if (sortOn === 'year') {
+                    result.sort({ "year": orderNum }).skip(skips).limit(limit)
+                } else {
+                    result.sort({ "title": orderNum }).skip(skips).limit(limit)
+                }
+            })
         },
 
-        containsString: (root: any, args: paginationWithFilterArgs) => {
-            const page = args.page;
-            const limit = args.limit;
-            const word = args.word
-            const skips: number = limit * (Number(page) - 1);
-            const order = args.order;
-            const sortOn = args.sortOn;
-            
-            let orderNum: number;
-            if (order!= 1 && order!=-1){
-                orderNum = 1 //default sort ASC if bad input
-            }
-            else {
-                orderNum = order;
-            }
-
-            if (sortOn === "year"){
-                return new Promise((resolve, reject) => {
-                    Movie.find({ title: { $regex: word, $options: '$i' } },
-                        (err: any, movies: unknown) => {
-                            if (err) reject(err);
-                            else resolve(movies);
-                        }).sort({ "year": orderNum }).skip(skips).limit(limit);
-                })
-            }
-            else {
-                return new Promise((resolve, reject) => {
-                    Movie.find({ title: { $regex: word, $options: '$i' } },
-                        (err: any, movies: unknown) => {
-                            if (err) reject(err);
-                            else resolve(movies);
-                        }).sort({ "title": orderNum }).skip(skips).limit(limit);
-                })
-            }
-        },
-
-        filterOnGenre: (root: any, {filterGenre, limit, page, order, sortOn}:any) => {
-            const skips: number = limit * (Number(page) - 1);
-            let orderNum: number;
-            if (order!= 1 && order!=-1){
-                orderNum = 1 //default sort ASC if bad input
-            }
-            else {
-                orderNum = order;
-            }
-            if (sortOn==="year"){
-                return new Promise((resolve, reject) => {
-                    Movie.find({ genre: { $regex: filterGenre, $options: '$i' } },
-                        (err: any, movies: unknown) => {
-                            if (err) reject(err);
-                            else resolve(movies);
-                        }).sort({ "year": orderNum }).skip(skips).limit(limit);
-                })
-            }
-            else {
-                return new Promise((resolve, reject) => {
-                    Movie.find({ genre: { $regex: filterGenre, $options: '$i' } },
-                        (err: any, movies: unknown) => {
-                            if (err) reject(err);
-                            else resolve(movies);
-                        }).sort({ "title": orderNum }).skip(skips).limit(limit);
-                })
-            }
-        },
-        searchAndFilter: (root: any, {filterGenre, limit, page, order, sortOn, word}: any) => {
-            const skips: number = limit * (Number(page) - 1);
-            let orderNum: number;
-            if (order!= 1 && order!=-1){
-                orderNum = 1 //default sort ASC if bad input
-            }
-            else {
-                orderNum = order;
-            }
-            if (sortOn==="year"){
-                return new Promise((resolve, reject) => {
-                    Movie.find({ title: { $regex: word, $options: '$i' }, genre: { $regex: filterGenre, $options: '$i' } }, 
-                        (err: any, movies: unknown) => {
-                            if (err) reject(err);
-                            else resolve(movies);
-                        }).sort({ "year": orderNum }).skip(skips).limit(limit);
-                })
-            }
-            else {
-                return new Promise((resolve, reject) => {
-                    Movie.find({ title: { $regex: word, $options: '$i' }, genre: { $regex: filterGenre, $options: '$i' } }, 
-                        (err: any, movies: unknown) => {
-                            if (err) reject(err);
-                            else resolve(movies);
-                        }).sort({ "title": orderNum }).skip(skips).limit(limit);
-                })
-            }
-        },
-        
-        movieById: (root: any, { id }: any) => {
+        movieById: (root: any, { id }: byIdArgs) => {
             return new Promise((resolve, reject) => {
                 Movie.findOne({ _id: id }, (err: any, movie: unknown) => {
                     if (err) reject(err);
@@ -144,19 +141,19 @@ const resolvers = {
                 })
             })
         },
-        movieByTitle: (root: any, { title }: any) => {
-            return new Promise((resolve, reject) => {
-                Movie.findOne({ title: title }, (err: any, movie: unknown) => {
-                    if (err) reject(err);
-                    else resolve(movie);
-                })
-            })
-        },
+        // movieByTitle: (root: any, { title }: any) => {
+        //     return new Promise((resolve, reject) => {
+        //         Movie.findOne({ title: title }, (err: any, movie: unknown) => {
+        //             if (err) reject(err);
+        //             else resolve(movie);
+        //         })
+        //     })
+        // },
     },
 
 
-    Mutation: { 
-        thumbsUpById: (root: any, { id }: any) => {
+    Mutation: {
+        thumbsUpById: (root: any, { id }: byIdArgs) => {
             return new Promise((resolve, reject) => {
                 Movie.findOneAndUpdate(
                     { _id: id },
@@ -169,7 +166,7 @@ const resolvers = {
                 )
             })
         },
-        thumbsDownById: (root: any, { id }: any) => {
+        thumbsDownById: (root: any, { id }: byIdArgs) => {
             return new Promise((resolve, reject) => {
                 Movie.findOneAndUpdate(
                     { _id: id },
@@ -201,9 +198,10 @@ const typeDefs = gql`
     type Query {
         movies(limit: Int! page: Int! order: Int! sortOn: String!): [Movie!]!
         containsString(limit: Int! page: Int! word: String! order: Int! sortOn: String!): [Movie!]
-        movieById(id: ID!): Movie
         movieByTitle(title: String!): Movie
         filterOnGenre(filterGenre: String! limit: Int! page: Int! order: Int!, sortOn: String!): [Movie!]
+
+        movieById(id: ID!): Movie
         searchAndFilter(filterGenre: String! limit: Int! page: Int! order: Int!, sortOn: String! word: String!): [Movie!]
     }
 
