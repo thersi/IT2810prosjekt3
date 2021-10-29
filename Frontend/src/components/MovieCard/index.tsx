@@ -72,7 +72,7 @@ export default function MovieDialog(props: Attributes) {
           <Grid item xs={12}>
             <Button disabled={voted} className={classes.thumb}
               onClick={ () => {
-                setVoted(true)g
+                setVoted(true)
               }}>
               <ThumbUpIcon />
             </Button>
