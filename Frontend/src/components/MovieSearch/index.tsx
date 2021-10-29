@@ -9,10 +9,23 @@ import MovieList from "../MovieList";
 
 const MovieSearch = (props: any) => {
   const [searchValue, setSearch] = useState<any>("");
+  const [genreValue, setGenre] = useState<any>("");
+  const [sortValue, setSort] = useState<any>(1);
+  const [filterValue, setFilter] = useState<any>("");
   let handleSearch = (value: any) => {
     setSearch(value);
   };
+  let handleGenre = (value: any) => {
+    setGenre(value);
+  };
 
+  const handleSort = (value: any) => {
+    setSort(value ? 1 : -1);
+  };
+
+  const handleFilter = (value: any) => {
+    setFilter(value);
+  };
   const QUERY_ALL_MOVIES = gql`
     query (
       $filterGenre: String!
@@ -42,21 +55,28 @@ const MovieSearch = (props: any) => {
 
   const { loading, error, data } = useQuery(QUERY_ALL_MOVIES, {
     variables: {
-      filterGenre: "",
+      filterGenre: genreValue,
       limit: 10,
       page: 1,
-      order: 1,
-      sortOn: "year",
+      order: sortValue,
+      sortOn: filterValue,
       word: searchValue,
     },
   });
-  const sorting = "search";
-  console.log(data);
+
   return (
     <div>
-      <MovieAppBar handleSearch={handleSearch} />
-      <GenreTabs />
-      {<MovieList loading={loading} data={data} sorting={sorting} />}
+      <MovieAppBar
+        handleSearch={handleSearch}
+        handleSort={handleSort}
+        handleFilter={handleFilter}
+      />
+      <GenreTabs handleGenre={handleGenre} />
+      {data !== undefined && data.searchAndFilter.length > 0 ? (
+        <MovieList loading={loading} data={data} />
+      ) : (
+        <p>No movies to show</p>
+      )}
     </div>
   );
 };

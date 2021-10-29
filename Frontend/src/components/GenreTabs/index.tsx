@@ -28,10 +28,11 @@ const genres = [
   "WAR",
   "WESTERN",
 ];
-export default function GenreTabs() {
+export default function GenreTabs(props: any) {
   const [genre, setGenre] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
+    props.handleGenre(event.target.value);
     setGenre(event.target.value);
   };
 

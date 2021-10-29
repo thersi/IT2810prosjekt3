@@ -12,9 +12,11 @@ export default function MovieAppBar(props: any) {
   let searchValue = (value: string) => {
     props.handleSearch(value);
   };
-
-  const handleInput = (text: any) => {
-    props.sendSearch(text);
+  let filterValue = (value: string) => {
+    props.handleFilter(value);
+  };
+  let sortValue = (value: string) => {
+    props.handleSort(value);
   };
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -28,8 +30,8 @@ export default function MovieAppBar(props: any) {
           >
             Movies
           </Typography>
-          <MovieFilter />
-          <SearchBar handleSearch={searchValue} />
+          <MovieFilter handleFilter={filterValue} handleSort={sortValue} />
+          <SearchBar handleSearch={searchValue} handleSort={sortValue} />
         </Toolbar>
       </AppBar>
     </Box>

@@ -16,13 +16,14 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import CheckIcon from "@mui/icons-material/Check";
 
 import FilterListIcon from "@mui/icons-material/FilterList";
-import { Checkbox, Divider } from "@mui/material";
+import { Checkbox, Divider, Select } from "@mui/material";
 
-export default function MovieFilter() {
+export default function MovieFilter(props: any) {
   //MÅ få fikset slik at denne holder seg konstant størrelse på menyen ++
   const [auth, setAuth] = React.useState(true);
   const [isChosen, setIsChosen] = React.useState<string>();
   const [isAsc, setIsAsc] = React.useState<boolean>(false);
+  const [filter, setFilter] = React.useState<string>("");
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +36,15 @@ export default function MovieFilter() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleSort = (e: any) => {
+    setIsAsc(!isAsc);
+    props.handleSort(isAsc);
+  };
+  const handleFilter = (e: any, value: string) => {
+    setFilter(value); //sjekk hvorfor denne ikke oppdateres
+    props.handleSort(filter);
   };
 
   return (
@@ -65,30 +75,22 @@ export default function MovieFilter() {
         onClose={handleClose}
       >
         <MenuItem disabled>Sort Order: </MenuItem>
-        <MenuItem onClick={() => setIsAsc(!isAsc)}>
+        <MenuItem value="asc" onClick={handleSort}>
           {isAsc && <CheckIcon />}
           <ArrowUpwardIcon /> Asc
         </MenuItem>
-        <MenuItem onClick={() => setIsAsc(!isAsc)}>
+        <MenuItem value="desc" onClick={handleSort}>
           {!isAsc && <CheckIcon />}
           <ArrowDownwardIcon /> Desc
         </MenuItem>
         <Divider />
         <MenuItem disabled>Sort by: </MenuItem>
-        <MenuItem
-          onClick={() =>
-            isChosen === "rating" ? setIsChosen("") : setIsChosen("rating")
-          }
-        >
-          {isChosen === "rating" && <CheckIcon />}
-          Rating
+        <MenuItem onClick={(_) => handleFilter(_, "title")}>
+          {filter === "title" && <CheckIcon />}
+          Title
         </MenuItem>
-        <MenuItem
-          onClick={() =>
-            isChosen === "year" ? setIsChosen("") : setIsChosen("year")
-          }
-        >
-          {isChosen === "year" && <CheckIcon />}
+        <MenuItem onClick={(_) => handleFilter(_, "year")}>
+          {filter === "year" && <CheckIcon />}
           Year
         </MenuItem>
       </Menu>

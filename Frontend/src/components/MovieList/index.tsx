@@ -10,15 +10,12 @@ const MovieList = (props: any) => {
     }
   ); */
 
-  console.log(props.data === undefined);
-  console.log(props.sorting === "search");
   if (props.loading) return <p>Loading ...</p>;
   return (
     <div className="MovieContainer">
-      {props.sorting === "search" &&
-        props.data.searchAndFilter.map((movie: Movie) => (
-          <SingleDisplay {...movie} />
-        ))}
+      {props.data.searchAndFilter.map((movie: Movie) => (
+        <SingleDisplay {...movie} />
+      ))}
     </div>
   );
 };
