@@ -9,7 +9,8 @@ img {
   text-align: center;
   flex-basis: 40%;
   display: block;
-  max-width: 90%;
+  width: 150px;
+  height: 200px;
 }
 
 .text {

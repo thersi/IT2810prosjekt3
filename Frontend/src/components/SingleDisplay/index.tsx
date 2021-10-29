@@ -11,9 +11,9 @@ export default function SingleDisplay(props: Movie) {
   return (
     <>
       <div className="movie">
-        {/*    <div>
-          <img className="image" src={props.movie.} alt="movie"></img>
-        </div> */}
+        <div>
+          <img className="image" src={props.poster} alt="movie"></img>
+        </div>
         <div className="text">
           {<label>{props.title + " (" + props.year + ") "}</label>}
         </div>
