@@ -53,8 +53,26 @@ Det er to mutasjoner som endrer tilstanden på databasen. Disse tar inn en id og
 - thumbsUpById(id: ID!): Movie
 - thumbsDownById(id: ID!): Movie
 
+
 ### MongoDB:
-- skriv om MongoDB
+
+MongoDB-databasen er satt opp og kjører på en virtuell maskin. Framgangsmøten for å sette opp databasen på virtuell maskin er [her.](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+
+Som default kan kun maskinen som kjører databasen og api-scriptet redigere på databasen. I vårt tilfellet har dette vært tungvindt. Vi her derfor laget flere brukere i databasen med lese/skriverettigheter. På denne måten kan man redigere databaseinholdet lokalt fra flere maskiner. Framgangsmøten for å få til dett er [her](https://piazza.com/class/ksk8rtnewz56sh?cid=133).
+
+Databasen består av 26???? filmer som er skrevet manuelt inn i databasen igjennom MongoDB Compass.
+
+Hver film i databasen har følgende atributter:
+- _id
+- title
+- thumbsUp
+- year
+- genre
+- actors
+- thumbsDown
+- poster
+
+
 ### Komponenter og biblioteker:
 
 MUI Material-UI:
