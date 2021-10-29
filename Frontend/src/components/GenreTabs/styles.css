@@ -1,2 +1,5 @@
-.genreSelect {
+.genreTabs {
+    display: flex;
+    justify-content: center;
 }
+

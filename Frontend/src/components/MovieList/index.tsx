@@ -12,7 +12,7 @@ const MovieList = (props: any) => {
 
   if (props.loading) return <p>Loading ...</p>;
   return (
-    <div className="MovieContainer">
+    <div className="movieContainer">
       {props.data.searchAndFilter.map((movie: Movie) => (
         <SingleDisplay {...movie} />
       ))}

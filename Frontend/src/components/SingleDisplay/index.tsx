@@ -9,27 +9,19 @@ export default function SingleDisplay(props: Movie) {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <>
       <div className="movie">
         <div>
           <img className="image" src={props.poster} alt="movie"></img>
         </div>
-        <div className="text">
-          {<label>{props.title + " (" + props.year + ") "}</label>}
-        </div>
-        <div className="thumbButtons">
-          {" "}
-          <div className="thumbUp">
-            <ThumbUpIcon />
-            {props.thumbsUp}
+        <div className="movieInfo">
+          <div className="text">
+            <label>{props.title + " (" + props.year + ") "}</label>
           </div>
-          <div className="thumbDown">
-            <ThumbDownIcon />
-            {props.thumbsDown}
+          <div className="thumbButtons">
+            <div className="thumbUp"><ThumbUpIcon/>{props.thumbsUp}</div>
+            <div className="thumbDown"><ThumbDownIcon/>{props.thumbsDown}</div>
           </div>
         </div>
       </div>
-      <Divider flexItem />
-    </>
   );
 }

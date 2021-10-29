@@ -64,6 +64,7 @@ const MovieSearch = (props: any) => {
     },
   });
 
+
   return (
     <div>
       <MovieAppBar
