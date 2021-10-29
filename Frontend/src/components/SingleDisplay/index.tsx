@@ -1,16 +1,37 @@
 import { Button, Divider, IconButton } from "@mui/material";
 import React, { useState } from "react";
+import MovieDialog from "../MovieCard";
 import "./style.css";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
-import { Movie } from "../../Interfaces";
 
-export default function SingleDisplay(props: Movie) {
+export default function SingleDisplay(props: any) {
   const [open, setOpen] = React.useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleClickMovie = () => {
+    setOpen(true);
+  };
+
+  if (open) {
+    return (
+      <MovieDialog
+        id={props.id}
+        title={props.title}
+        poster={props.poster}
+        genres={["sience-fiction"]}
+        year={props.year}
+        handleClose={handleClose}
+        handleClickMovie={handleClickMovie}
+      />
+    );
+  }
 
   return (
     <>
-      <div className="movie">
+      <div className="movie" onClick={handleClickMovie}>
         <div>
           <img className="image" src={props.poster} alt="movie"></img>
         </div>

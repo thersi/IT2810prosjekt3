@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@apollo/client": "^3.4.16",
     "@material/icon-button": "^13.0.0",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.11.0",

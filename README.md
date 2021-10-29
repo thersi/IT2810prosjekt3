@@ -10,7 +10,7 @@ Det er også mulighet for å se mer detaljert informasjon om hver film. Dette gj
 Det er også mulig for en bruker å trykke enten ‘tommel opp’ eller ‘tommel ned’ på en film. Dette vil lagres persistent på databaseserveren ve hjelp av en GraphQl mutation i backend.
 
 ## Krav til bruk av teknologi:
-Backend av prosjeket er basert på node.js og NPM. Appen kan kjøres ved å skrive npm start fra mappen backend/src. Backend må kjøres på NTNUs nett eller med vpn.
+Backend av prosjeket er basert på node.js og NPM. Appen kan kjøres ved å skrive npm start fra mappen backend. Backend må kjøres på NTNUs nett eller med vpn.
 
 Frontend av prosjektet er basert på Node.js og NPM, og er bygget med react-createapp og med typescript som template. Appen kan kjøres ved å skrive npm start fra mappen frontend/src. Frontend må kjøres etter backend har startet. Testene kjøres fra samme mappe ved å kjøre kommandoen npm test.
 
@@ -20,7 +20,7 @@ Frontend av prosjektet er basert på Node.js og NPM, og er bygget med react-crea
 Les her ang. Redux vs. Apollo-client som vi bruker:
 https://piazza.com/class/ksk8rtnewz56sh?cid=139 
 
-### GraphQL:
+### GraphQL (en del endringer i queries):
 Fordelene med GraphQL er at man bare har et endpint og at det dermed blir enklere for teamsene som jobber for frontend og backend å samarbeide. Det er også en fordel at man kun henter den informasjonen fra databasen som man trenger. Samenlignet med et REST-api, der man her flere endepunkter og ofte henter ut mer data enn man trenger. 
 #### Types:
 Databasen innehlder bare en type, Movie, som har følgende atributter:
@@ -53,8 +53,26 @@ Det er to mutasjoner som endrer tilstanden på databasen. Disse tar inn en id og
 - thumbsUpById(id: ID!): Movie
 - thumbsDownById(id: ID!): Movie
 
+
 ### MongoDB:
-- skriv om MongoDB
+
+MongoDB-databasen er satt opp og kjører på en virtuell maskin. Framgangsmøten for å sette opp databasen på virtuell maskin er [her.](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+
+Som default kan kun maskinen som kjører databasen og api-scriptet redigere på databasen. I vårt tilfellet har dette vært tungvindt. Vi her derfor laget flere brukere i databasen med lese/skriverettigheter. På denne måten kan man redigere databaseinholdet lokalt fra flere maskiner. Framgangsmøten for å få til dett er [her](https://piazza.com/class/ksk8rtnewz56sh?cid=133).
+
+Databasen består av 26???? filmer som er skrevet manuelt inn i databasen igjennom MongoDB Compass.
+
+Hver film i databasen har følgende atributter:
+- _id
+- title
+- thumbsUp
+- year
+- genre
+- actors
+- thumbsDown
+- poster
+
+
 ### Komponenter og biblioteker:
 
 MUI Material-UI:
