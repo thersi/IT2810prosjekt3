@@ -6,7 +6,6 @@ import GenreTabs from "../GenreTabs";
 import "./style.css";
 import { useQuery, gql } from "@apollo/client";
 import MovieList from "../MovieList";
-import { LocalDiningTwoTone } from "@mui/icons-material";
 
 const MovieSearch = (props: any) => {
   const [searchValue, setSearch] = useState<any>("");
@@ -14,20 +13,22 @@ const MovieSearch = (props: any) => {
     setSearch(value);
   };
 
-  const QUERY_ALL_CONTAINS_SEARCH = gql`
+  const QUERY_ALL_MOVIES = gql`
     query (
+      $filterGenre: String!
       $limit: Int!
       $page: Int!
-      $word: String!
       $order: Int!
       $sortOn: String!
+      $word: String!
     ) {
-      containsString(
+      searchAndFilter(
+        filterGenre: $filterGenre
         limit: $limit
         page: $page
-        word: $word
         order: $order
         sortOn: $sortOn
+        word: $word
       ) {
         _id
         title
@@ -37,42 +38,19 @@ const MovieSearch = (props: any) => {
       }
     }
   `;
-  const QUERY_ALL_MOVIES = gql`
-    query ($limit: Int!, $page: Int!, $order: Int!, $sortOn: String!) {
-      movies(limit: $limit, page: $page, order: $order, sortOn: $sortOn) {
-        _id
-        title
-        year
-        thumbsUp
-        thumbsDown
-      }
-    }
-  `;
 
-  let query = useQuery(QUERY_ALL_MOVIES, {
-    skip: searchValue !== "",
+  const { loading, error, data } = useQuery(QUERY_ALL_MOVIES, {
     variables: {
+      filterGenre: "",
       limit: 10,
       page: 1,
       order: 1,
       sortOn: "year",
+      word: "",
     },
   });
-  let sorting = "all";
-  if (searchValue !== "") {
-    query = useQuery(QUERY_ALL_CONTAINS_SEARCH, {
-      variables: {
-        limit: 10,
-        page: 1,
-        word: searchValue,
-        order: 1,
-        sortOn: "year",
-      },
-    });
-    sorting = "search";
-  }
-  let data = query.data;
-  let loading = query.loading;
+  const sorting = "search";
+  console.log(data);
   return (
     <div>
       <MovieAppBar handleSearch={handleSearch} />
