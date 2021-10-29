@@ -35,6 +35,7 @@ const MovieSearch = (props: any) => {
         year
         thumbsUp
         thumbsDown
+        poster
       }
     }
   `;
@@ -46,7 +47,7 @@ const MovieSearch = (props: any) => {
       page: 1,
       order: 1,
       sortOn: "year",
-      word: "",
+      word: searchValue,
     },
   });
   const sorting = "search";

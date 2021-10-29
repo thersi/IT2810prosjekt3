@@ -16,7 +16,7 @@ const MovieList = (props: any) => {
   return (
     <div className="MovieContainer">
       {props.sorting === "search" &&
-        props.data.containsString.map((movie: Movie) => (
+        props.data.searchAndFilter.map((movie: Movie) => (
           <SingleDisplay {...movie} />
         ))}
     </div>
