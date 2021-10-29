@@ -12,7 +12,7 @@ const MovieSearch = (props: any) => {
   let handleSearch = (value: any) => {
     setSearch(value);
   };
-
+  
   const QUERY_ALL_MOVIES = gql`
     query (
       $filterGenre: String!
