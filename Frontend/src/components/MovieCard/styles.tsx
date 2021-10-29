@@ -59,7 +59,7 @@ const useStyles = makeStyles( () => ({
 
     button2: {
         color: 'white',
-        position: 'fixed',
+        position: 'absolute',
     },
 
     thumb: {

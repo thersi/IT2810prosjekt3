@@ -33,9 +33,9 @@ export default function MovieDialog(props: any) {
 
   const { id, title, poster, genres, year, ...other } = props;
 
-  const [thumbUp, setThumbUp] = React.useState(false);
+  const [thumbUp, setThumbUp] = useState(false);
 
-  const [thumbDown, setThumbDown] = React.useState(false);
+  const [thumbDown, setThumbDown] = useState(false);
 
   return (
     <>

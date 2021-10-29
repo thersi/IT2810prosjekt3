@@ -18,11 +18,11 @@ export default function SingleDisplay(props: any) {
   if (open) {
     return (
       <MovieDialog
-        id={props.movie.Id}
-        title={props.movie.Title}
-        poster={props.movie.Poster}
+        id={props.id}
+        title={props.title}
+        poster={props.poster}
         genres={["sience-fiction"]}
-        year={props.movie.Year}
+        year={props.year}
         handleClose={handleClose}
         handleClickMovie={handleClickMovie}
       />
@@ -31,7 +31,7 @@ export default function SingleDisplay(props: any) {
 
   return (
     <>
-      <div className="movie">
+      <div className="movie" onClick={handleClickMovie}>
         <div>
           <img className="image" src={props.poster} alt="movie"></img>
         </div>
