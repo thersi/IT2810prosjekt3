@@ -76,12 +76,18 @@ export default function MovieDialog(props: Attributes) {
               }}>
               <ThumbUpIcon />
             </Button>
+            <DialogContent className={classes.genres}>
+              {movie.thumbsUp}
+            </DialogContent>
             <Button disabled={voted} className={classes.thumb}
              onClick={ () => {
               setVoted(true)
             }}>
               <ThumbDownIcon />
             </Button>
+            <DialogContent className={classes.genres}>
+              {movie.thumbsDown}
+            </DialogContent>
           </Grid>
         </Grid>
       </Container>

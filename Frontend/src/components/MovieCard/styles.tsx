@@ -4,7 +4,7 @@ import { AutorenewTwoTone } from '@material-ui/icons';
 
 const useStyles = makeStyles( () => ({
     root: {
-        background: '#202020',
+        background: '#38B5F0',
         padding: 10,
     },
 
