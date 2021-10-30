@@ -4,9 +4,40 @@ import MovieDialog from "../MovieCard";
 import "./style.css";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
+import { Movie } from "../../Interfaces"
+import { useLazyQuery, gql } from "@apollo/client";
+
+
+interface MovieByIdInput {
+  movieByIdId: string;
+}
+
+interface QueryMovieByIdResult {
+  movieById: Movie
+}
+
+const QUERY_MOVIE_BY_ID = gql`
+    query ($movieByIdId: ID!) {
+      movieById(id: $movieByIdId) {
+        _id
+        title
+        year
+        thumbsUp
+        thumbsDown
+        genre
+        actors
+        poster
+      }
+    }
+`
 
 export default function SingleDisplay(props: any) {
   const [open, setOpen] = React.useState(false);
+
+  const [fetchMovie, { data: movieByIdData, loading: movieByIdLoading }] = useLazyQuery<QueryMovieByIdResult, 
+  MovieByIdInput>(QUERY_MOVIE_BY_ID)
+
+  
 
   const handleClose = () => {
     setOpen(false);
@@ -15,14 +46,17 @@ export default function SingleDisplay(props: any) {
     setOpen(true);
   };
 
-  if (open) {
+
+  if (movieByIdLoading) {
+    console.log('loading...')
+    return <p>Movie is loading</p>
+  }
+  console.log('data: ', movieByIdData)
+  if (open && typeof movieByIdData !== 'undefined') {
+    console.log('loaded')
     return (
       <MovieDialog
-        id={props.id}
-        title={props.title}
-        poster={props.poster}
-        genres={["sience-fiction"]}
-        year={props.year}
+        movie={movieByIdData.movieById}
         handleClose={handleClose}
         handleClickMovie={handleClickMovie}
       />
@@ -31,7 +65,11 @@ export default function SingleDisplay(props: any) {
 
   return (
     <>
-      <div className="movie" onClick={handleClickMovie}>
+      <div className="movie" onClick={() => {
+        setOpen(true);
+        fetchMovie({variables: {movieByIdId: props._id}})
+        console.log(props._id)
+      }}>
         <div>
           <img className="image" src={props.poster} alt="movie"></img>
         </div>

@@ -3,7 +3,7 @@ export interface Movie {
   title: string;
   thumbsUp: number;
   year: number;
-  genere: string[];
+  genre: string[];
   actors: string[];
   thumbsDown: number;
   poster: string;
