@@ -1,4 +1,4 @@
-import { Button, Divider, IconButton } from "@mui/material";
+import { Divider } from "@mui/material";
 import React, { useState } from "react";
 import MovieDialog from "../MovieCard";
 import "./style.css";
@@ -6,15 +6,6 @@ import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import { Movie } from "../../Interfaces"
 import { useLazyQuery, gql } from "@apollo/client";
-
-
-interface MovieByIdInput {
-  movieByIdId: string;
-}
-
-interface QueryMovieByIdResult {
-  movieById: Movie
-}
 
 const QUERY_MOVIE_BY_ID = gql`
     query ($movieByIdId: ID!) {
@@ -31,34 +22,40 @@ const QUERY_MOVIE_BY_ID = gql`
     }
 `
 
-export default function SingleDisplay(props: any) {
-  const [open, setOpen] = React.useState(false);
+interface MovieByIdInput {
+  movieByIdId: string;
+}
 
-  const [fetchMovie, { data: movieByIdData, loading: movieByIdLoading }] = useLazyQuery<QueryMovieByIdResult, 
-  MovieByIdInput>(QUERY_MOVIE_BY_ID)
+interface MovieByIdResult {
+  movieById: Movie
+}
 
-  
+export default function SingleDisplay(props: Movie) {
+  const [open, setOpen] = useState(false);
+  const [thumbsUp, setThumbsUp] = useState(props.thumbsUp)
+  const [thumbsDown, setThumbsDown] = useState(props.thumbsDown)
+  const [voted, setVoted] = useState(false)
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleClickMovie = () => {
-    setOpen(true);
-  };
-
+  const [fetchMovie, { data: movieByIdData, loading: movieByIdLoading }] = useLazyQuery<MovieByIdResult,
+    MovieByIdInput>(QUERY_MOVIE_BY_ID)
 
   if (movieByIdLoading) {
     console.log('loading...')
     return <p>Movie is loading</p>
   }
-  console.log('data: ', movieByIdData)
+
   if (open && typeof movieByIdData !== 'undefined') {
     console.log('loaded')
     return (
       <MovieDialog
         movie={movieByIdData.movieById}
-        handleClose={handleClose}
-        handleClickMovie={handleClickMovie}
+        setOpen={setOpen}
+        setThumbsUp={setThumbsUp}
+        thumbsUp={thumbsUp}
+        setThumbsDown={setThumbsDown}
+        thumbsDown={thumbsDown}
+        voted={voted}
+        setVoted={setVoted}
       />
     );
   }
@@ -67,7 +64,7 @@ export default function SingleDisplay(props: any) {
     <>
       <div className="movie" onClick={() => {
         setOpen(true);
-        fetchMovie({variables: {movieByIdId: props._id}})
+        fetchMovie({ variables: { movieByIdId: props._id } })
         console.log(props._id)
       }}>
         <div>
@@ -80,11 +77,11 @@ export default function SingleDisplay(props: any) {
           {" "}
           <div className="thumbUp">
             <ThumbUpIcon />
-            {props.thumbsUp}
+            {thumbsUp}
           </div>
           <div className="thumbDown">
             <ThumbDownIcon />
-            {props.thumbsDown}
+            {thumbsDown}
           </div>
         </div>
       </div>
