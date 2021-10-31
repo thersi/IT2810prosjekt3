@@ -2,8 +2,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   root: {
-    background: "#38B5F0",
+    background: "rgb(46, 140, 240)",
     padding: 10,
+    maxWidth: "80%"
   },
 
   id: {
@@ -18,15 +19,9 @@ const useStyles = makeStyles(() => ({
     padding: 10,
     topMargin: 0,
     height: 0,
-    textAlign: "left",
+    textAlign: "center",
   },
 
-  description: {
-    fontSize: 14,
-    color: "white",
-    textAlign: "justify",
-    padding: 10,
-  },
 
   img: {
     flex: 1,
@@ -40,14 +35,14 @@ const useStyles = makeStyles(() => ({
     fontSize: 14,
     color: "white",
     padding: 10,
-    textAlign: "left",
+    textAlign: "center",
   },
 
   year: {
     fontSize: 14,
     color: "white",
     padding: 10,
-    textAlign: "left",
+    textAlign: "center",
   },
 
   button1: {
