@@ -11,9 +11,9 @@ import {
 import { QUERY_ALL_MOVIES } from "../../Queries/queries";
 
 const MovieSearch = () => {
-  const [genreValue, setGenre] = useState<any>("");
-  const [sortValue, setSort] = useState<any>(1);
-  const [filterValue, setFilter] = useState<any>("");
+  const [genreValue, setGenre] = useState<string>("");
+  const [sortValue, setSort] = useState<number>(1);
+  const [filterValue, setFilter] = useState<string>("");
   const [searchValue, setSearch] = useState<string>("");
   let handleGenre = (value: string) => {
     setGenre(value);
@@ -53,7 +53,7 @@ const MovieSearch = () => {
       />
       <GenreTabs handleGenre={handleGenre} />
       {loading || typeof data === "undefined" ? (
-        <p>Loading...</p>
+        <p>loading...</p>
       ) : (
         <MovieList data={data} />
       )}
