@@ -4,7 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import SearchBar from "../SearchBar";
 import MovieFilter from "../MovieFilter";
-import { MovieAppBarProps } from "../../Interfaces";
+import { MovieAppBarProps } from "../../Interfaces/Interfaces";
 
 export default function MovieAppBar(props: MovieAppBarProps) {
   let searchValue = (value: string) => {
