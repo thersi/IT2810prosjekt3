@@ -1,37 +1,72 @@
-import { Button, Divider, IconButton } from "@mui/material";
+import { Divider } from "@mui/material";
 import React, { useState } from "react";
 import MovieDialog from "../MovieCard";
 import "./style.css";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
+import { Movie } from "../../Interfaces"
+import { useLazyQuery, gql } from "@apollo/client";
 
-export default function SingleDisplay(props: any) {
-  const [open, setOpen] = React.useState(false);
+const QUERY_MOVIE_BY_ID = gql`
+    query ($movieByIdId: ID!) {
+      movieById(id: $movieByIdId) {
+        _id
+        title
+        year
+        thumbsUp
+        thumbsDown
+        genre
+        actors
+        poster
+      }
+    }
+`
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleClickMovie = () => {
-    setOpen(true);
-  };
+interface MovieByIdInput {
+  movieByIdId: string;
+}
 
-  if (open) {
+interface MovieByIdResult {
+  movieById: Movie
+}
+
+export default function SingleDisplay(props: Movie) {
+  const [open, setOpen] = useState(false);
+  const [thumbsUp, setThumbsUp] = useState(props.thumbsUp)
+  const [thumbsDown, setThumbsDown] = useState(props.thumbsDown)
+  const [voted, setVoted] = useState(false)
+
+  const [fetchMovie, { data: movieByIdData, loading: movieByIdLoading }] = useLazyQuery<MovieByIdResult,
+    MovieByIdInput>(QUERY_MOVIE_BY_ID)
+
+  if (movieByIdLoading) {
+    console.log('loading...')
+    return <p>Movie is loading</p>
+  }
+
+  if (open && typeof movieByIdData !== 'undefined') {
+    console.log('loaded')
     return (
       <MovieDialog
-        id={props.id}
-        title={props.title}
-        poster={props.poster}
-        genres={["sience-fiction"]}
-        year={props.year}
-        handleClose={handleClose}
-        handleClickMovie={handleClickMovie}
+        movie={movieByIdData.movieById}
+        setOpen={setOpen}
+        setThumbsUp={setThumbsUp}
+        thumbsUp={thumbsUp}
+        setThumbsDown={setThumbsDown}
+        thumbsDown={thumbsDown}
+        voted={voted}
+        setVoted={setVoted}
       />
     );
   }
 
   return (
     <>
-      <div className="movie" onClick={handleClickMovie}>
+      <div className="movie" onClick={() => {
+        setOpen(true);
+        fetchMovie({ variables: { movieByIdId: props._id } })
+        console.log(props._id)
+      }}>
         <div>
           <img className="image" src={props.poster} alt="movie"></img>
         </div>
@@ -42,11 +77,11 @@ export default function SingleDisplay(props: any) {
           {" "}
           <div className="thumbUp">
             <ThumbUpIcon />
-            {props.thumbsUp}
+            {thumbsUp}
           </div>
           <div className="thumbDown">
             <ThumbDownIcon />
-            {props.thumbsDown}
+            {thumbsDown}
           </div>
         </div>
       </div>

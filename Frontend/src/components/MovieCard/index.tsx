@@ -1,81 +1,125 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import React, { Dispatch, SetStateAction } from "react";
 import {
-  Typography,
   Container,
   Grid,
   Button,
-  Dialog,
   DialogTitle,
   DialogContent,
-  DialogActions,
 } from "@material-ui/core";
-import { isClassExpression } from "typescript";
-import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
 import useStyles from "./styles";
 import CancelIcon from "@material-ui/icons/Cancel";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
+import { Movie } from "../../Interfaces";
+import { useMutation, gql } from "@apollo/client";
 
-export interface Attributes {
-  id: string;
-  title: string;
-  poster: string;
-  genres: string[];
-  year: string;
-  handleClose: any; //fiks disse
-  handleClickMovie: any;
+const THUMBS_UP_MUTATION = gql`
+  mutation($thumbsUpByIdId: ID!) {
+    thumbsUpById(id: $thumbsUpByIdId) {
+      thumbsUp
+    }
+  }
+`
+const THUMBS_DOWN_MUTATION = gql`
+  mutation($thumbsDownByIdId: ID!) {
+    thumbsDownById(id: $thumbsDownByIdId) {
+      thumbsDown
+    }
+  }
+`
+
+interface ThumbsByIdInput {
+  thumbsUpByIdId: string;
 }
 
-export default function MovieDialog(props: any) {
+interface ThumbsDownByIdInput {
+  thumbsDownByIdId: string;
+}
+
+interface ThumbsUpByIdResult {
+  thumbsUpById: Movie;
+}
+
+interface ThumbsDownByIdResult {
+  thumbsDownById: Movie;
+}
+
+interface MovieDialogProps {
+  movie: Movie;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  setThumbsUp: Dispatch<SetStateAction<number>>;
+  thumbsUp: number;
+  setThumbsDown: Dispatch<SetStateAction<number>>;
+  thumbsDown: number;
+  voted: boolean;
+  setVoted: Dispatch<SetStateAction<boolean>>;
+}
+
+export default function MovieDialog(props: MovieDialogProps) {
   const classes = useStyles();
-
-  const { id, title, poster, genres, year, ...other } = props;
-
-  const [thumbUp, setThumbUp] = useState(false);
-
-  const [thumbDown, setThumbDown] = useState(false);
+  const { movie, setOpen, setThumbsUp, thumbsUp, setThumbsDown, thumbsDown, voted, setVoted } = props;
+  // const for Mutations 
+  const [incThumbsUp] = useMutation<ThumbsUpByIdResult, ThumbsByIdInput>(THUMBS_UP_MUTATION)
+  const [incThumbsDown] = useMutation<ThumbsDownByIdResult, ThumbsDownByIdInput>(THUMBS_DOWN_MUTATION)
 
   return (
     <>
       <Container className={classes.root}>
         <Grid container justify="flex-end">
-          <Button onClick={props.handleClose} className={classes.button2}>
+          <Button onClick={() => { setOpen(false) }} className={classes.button2}>
             <CancelIcon />
           </Button>
         </Grid>
         <Grid container spacing={1} justify="center">
           <Grid item>
-            <img className={classes.img} src={poster} alt="new" />
+            <img className={classes.img} src={movie.poster} alt="new" />
           </Grid>
           <Grid item xs={12}>
             <DialogTitle className={classes.title}>
-              Movie title: {title}
+              Movie title: {movie.title}
             </DialogTitle>
           </Grid>
           <Grid item xs={4}>
             <DialogTitle className={classes.id}>
-              Movie id: {id}
+              Movie id: {movie._id}
             </DialogTitle>
           </Grid>
           <Grid item xs={4}>
             <DialogContent className={classes.year}>
-              Year: {year}
+              Year: {movie.year}
             </DialogContent>
           </Grid>
           <Grid item xs={4}>
             <DialogContent className={classes.genres}>
-              Genres: {genres}
+              Genres: {movie.genre.toString()}
+            </DialogContent>
+            <DialogContent className={classes.genres}>
+              Actors: {movie.actors.toString()}
             </DialogContent>
           </Grid>
           <Grid item xs={12}>
-            <Button className={classes.thumb}>
+            <Button disabled={voted} className={classes.thumb}
+              onClick={() => {
+                setVoted(true)
+                incThumbsUp({ variables: { thumbsUpByIdId: movie._id } })
+                setThumbsUp(movie.thumbsUp + 1)
+              }}>
               <ThumbUpIcon />
             </Button>
-            <Button className={classes.thumb}>
+            <DialogContent className={classes.genres}>
+              {thumbsUp}
+            </DialogContent>
+            <Button disabled={voted} className={classes.thumb}
+              onClick={() => {
+                setVoted(true)
+                incThumbsDown({ variables: { thumbsDownByIdId: movie._id } })
+                setThumbsDown(movie.thumbsDown + 1)
+              }}>
               <ThumbDownIcon />
             </Button>
+            <DialogContent className={classes.genres}>
+              {thumbsDown}
+            </DialogContent>
           </Grid>
         </Grid>
       </Container>

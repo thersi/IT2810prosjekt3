@@ -1,19 +1,20 @@
-import { Movie } from "../../Interfaces";
+import { Movie, MovieListProps } from "../../Interfaces";
 import SingleDisplay from "../SingleDisplay";
+import QueryMoviesResult from "../MovieSearch";
 import "./style.css";
 
-const MovieList = (props: any) => {
+const MovieList = (props: MovieListProps) => {
   /* const { loadingTitle, errorTitle, dataTitle } = useQuery(
     QUERY_MOVIE_BYTITLE,
     {
       variables: { title: search },
     }
   ); */
+  const { data } = props;
 
-  if (props.loading) return <p>Loading ...</p>;
   return (
     <div className="MovieContainer">
-      {props.data.searchAndFilter.map((movie: Movie) => (
+      {data.searchAndFilter.map((movie: Movie) => (
         <SingleDisplay {...movie} />
       ))}
     </div>
