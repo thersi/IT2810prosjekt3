@@ -14,31 +14,31 @@ Backend av prosjeket er basert på node.js og NPM. Appen kan kjøres ved å skri
 
 Frontend av prosjektet er basert på Node.js og NPM, og er bygget med react-createapp og med typescript som template. Appen kan kjøres ved å skrive npm start fra mappen frontend/src. Frontend må kjøres etter backend har startet. Testene kjøres fra samme mappe ved å kjøre kommandoen npm test.
 
-### Redux / Mobux:
-•	Bruk av state managment enten basert på Redux eller MobX (- eller komponenter som gir samme funksjonalitet)
+### State Managment:
 
-Les her ang. Redux vs. Apollo-client som vi bruker:
-https://piazza.com/class/ksk8rtnewz56sh?cid=139 
+Vi har valg å bruke Apollo Client for håndtering av State Managment. Apollo Client lagrer allerede states på dataen som hentes ut fra databasen i en egen cache. Å kopiere den dataen og å lagre denne i et state Managment-system som Redux eller Mobux vil derfor være overflødig. Det er dårlig praksis da man også må sørge for at Apollo Client og Redux/Mobux må være synkronisert til enhver tid. I tillegg er Apollo Client enklere å bruke, da det ikke krever videre oppsett enn å oprette en ApolloClient med en InMemoryCache. Dette er gjort i App.tsx.
+
 
 ### GraphQL (en del endringer i queries):
 Fordelene med GraphQL er at man bare har et endpint og at det dermed blir enklere for teamsene som jobber for frontend og backend å samarbeide. Det er også en fordel at man kun henter den informasjonen fra databasen som man trenger. Samenlignet med et REST-api, der man her flere endepunkter og ofte henter ut mer data enn man trenger. 
 #### Types:
-Databasen innehlder bare en type, Movie, som har følgende atributter:
-- _id: ID!
-- title: String!
-- thumbsUp: Int!
-- year: Int!
-- genre: [String!]!
-- actors: [String!]
-- thumbsDown: Int!
-- poster: String!
+Databasen inneholder to typer med følgende atributter:
+- movie:
+    - _id: ID!
+    - title: String!
+    - thumbsUp: Int!
+    - year: Int!
+    - genre: [String!]!
+    - actors: [String!]
+    - thumbsDown: Int!
+    - poster: String!
+- SearchResult:
+    - movies: [Movie!]
+    - pages: Int!
 #### Queries:
 Under er en liste med queries som er tilgjenglige med GraphQL:
-- movies(limit: Int! page: Int! order: Int! sortOn: String!): [Movie!]!
-- containsString(limit: Int! page: Int! word: String! order: Int! sortOn: String!): [Movie!]
 - movieById(id: ID!): Movie
-- movieByTitle(title: String!): Movie
-- filterOnGenre(filterGenre: String! limit: Int! page: Int! order: Int!, sortOn: String!): [Movie!]
+- filterOnGenre(filterGenre: String! limit: Int! page: Int! order: Int!, sortOn: String!): SearchResult!
 
 De ulike argumentene betyr: 
 - limit - antall elementer pr. side
