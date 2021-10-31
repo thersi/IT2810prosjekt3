@@ -1,18 +1,11 @@
 import { useState } from "react";
-import MovieFilter from "../MovieFilter";
-import SearchBar from "../SearchBar";
 import MovieAppBar from "../MovieAppBar";
 import GenreTabs from "../GenreTabs";
 import "./style.css";
 import { useQuery, gql } from "@apollo/client";
 import MovieList from "../MovieList";
+import { Movie } from "../../Interfaces"
 
-const MovieSearch = (props: any) => {
-  const [searchValue, setSearch] = useState<any>("");
-  let handleSearch = (value: any) => {
-    setSearch(value);
-  };
-  
   const QUERY_ALL_MOVIES = gql`
     query (
       $filterGenre: String!
@@ -38,9 +31,28 @@ const MovieSearch = (props: any) => {
         poster
       }
     }
-  `;
+  `
+  export interface QueryMoviesResult {
+    searchAndFilter: Movie[];
+  }
 
-  const { loading, error, data } = useQuery(QUERY_ALL_MOVIES, {
+  interface QueryMoviesInput {
+    filterGenre: string;
+    limit: number;
+    page: number;
+    order: number;
+    sortOn: string;
+    word: string;
+  }
+
+const MovieSearch = () => {
+  const [searchValue, setSearch] = useState<string>("");
+
+  const handleSearch = (value: string) => {
+    setSearch(value);
+  };
+
+  const { data, loading } = useQuery<QueryMoviesResult, QueryMoviesInput>(QUERY_ALL_MOVIES, {
     variables: {
       filterGenre: "",
       limit: 10,
@@ -50,13 +62,16 @@ const MovieSearch = (props: any) => {
       word: searchValue,
     },
   });
-  const sorting = "search";
-  console.log(data);
+
+  if (loading || typeof data === 'undefined') {
+    return <p>Loading...</p>
+  }
+
   return (
     <div>
       <MovieAppBar handleSearch={handleSearch} />
       <GenreTabs />
-      {<MovieList loading={loading} data={data} sorting={sorting} />}
+      {<MovieList data={data} />}
     </div>
   );
 };
