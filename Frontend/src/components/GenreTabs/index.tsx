@@ -4,8 +4,11 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import "./styles.css";
+import BackspaceIcon from "@mui/icons-material/Backspace";
+import { IconButton } from "@mui/material";
 
 const genres = [
+  "ALL GENRES",
   "ACTION",
   "ADVENTURE",
   "ANIMATION",
@@ -35,8 +38,13 @@ export default function GenreTabs(props: any) {
   const [genre, setGenre] = useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
-    props.handleGenre(event.target.value);
-    setGenre(event.target.value);
+    if (event.target.value === "ALL GENRES") {
+      props.handleGenre("");
+      setGenre("");
+    } else {
+      props.handleGenre(event.target.value);
+      setGenre(event.target.value);
+    }
   };
 
   return (
@@ -54,7 +62,9 @@ export default function GenreTabs(props: any) {
           autoWidth
         >
           {genres.map((movieGenre) => (
-            <MenuItem key={movieGenre}>{movieGenre}</MenuItem>
+            <MenuItem key={movieGenre} value={movieGenre}>
+              {movieGenre}
+            </MenuItem>
           ))}
         </Select>
       </FormControl>
