@@ -32,6 +32,7 @@ export default function MovieFilter(props: any) {
   return (
     <div>
       <IconButton
+        id ="sortButton"
         size="large"
         edge="start"
         color="inherit"
@@ -57,21 +58,21 @@ export default function MovieFilter(props: any) {
         onClose={handleClose}
       >
         <MenuItem disabled>Sort by order: </MenuItem>
-        <MenuItem value="asc" onClick={(_) => handleSort(_, true)}>
+        <MenuItem id="checkAsc" value="asc" onClick={(_) => handleSort(_, true)}>
           {isAsc && <CheckIcon />}
           <ArrowUpwardIcon /> Asc
         </MenuItem>
-        <MenuItem value="desc" onClick={(_) => handleSort(_, false)}>
+        <MenuItem id = "checkDesc" value="desc" onClick={(_) => handleSort(_, false)}>
           {!isAsc && <CheckIcon />}
           <ArrowDownwardIcon /> Desc
         </MenuItem>
         <Divider />
         <MenuItem disabled>Sort by type: </MenuItem>
-        <MenuItem onClick={(_) => handleFilter(_, "title")}>
+        <MenuItem id = "checkTitle" onClick={(_) => handleFilter(_, "title")}>
           {filter === "title" && <CheckIcon />}
           Title
         </MenuItem>
-        <MenuItem onClick={(_) => handleFilter(_, "year")}>
+        <MenuItem id ="checkYear" onClick={(_) => handleFilter(_, "year")}>
           {filter === "year" && <CheckIcon />}
           Year
         </MenuItem>

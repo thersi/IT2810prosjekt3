@@ -56,4 +56,27 @@ describe("Test the movie web applicatoin", () => {
     expect(afterVoted).to.not.equal(initVotes)
   });
 
+  it("Test sort year", () => {
+    cy.get("#sortButton").click();
+    cy.contains("Year");
+    cy.contains("Title");
+    cy.contains("Asc");
+    cy.contains("Desc");
+    cy.get("#checkYear").click();
+    cy.get("#checkAsc").click();
+    cy.contains("Citizen Kane")
+    cy.get("#checkDesc").click();
+    cy.contains("No Time to Die");
+  });
+
+  it("Test sort title", () => {
+    cy.get("#sortButton").click();
+    cy.get("#checkTitle").click();
+    cy.get("#checkDesc").click();
+    cy.contains("There's Someone Inside Your House");
+    cy.get("#checkAsc").click();
+    cy.contains("Avengers: Endgame");
+  });
+
+
 });
