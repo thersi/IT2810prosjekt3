@@ -65,25 +65,20 @@ export default function MovieDialog(props: MovieDialogProps) {
               Movie title: {movie.title}
             </DialogTitle>
           </Grid>
-          <Grid item xs={4}>
-            <DialogTitle className={classes.id}>
-              Movie id: {movie._id}
-            </DialogTitle>
-          </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12}>
             <DialogContent className={classes.year}>
-              Year: {movie.year}
-            </DialogContent>
-          </Grid>
-          <Grid item xs={4}>
-            <DialogContent className={classes.genres}>
-              Genres: {movie.genre.toString()}
-            </DialogContent>
-            <DialogContent className={classes.genres}>
-              Actors: {movie.actors.toString()}
+              <b>Year:</b> {movie.year}
             </DialogContent>
           </Grid>
           <Grid item xs={12}>
+            <DialogContent className={classes.genres}>
+              <b>Genres: </b> {movie.genre.toString()}
+            </DialogContent>
+            <DialogContent className={classes.genres}>
+              <b>Actors: </b> {movie.actors.toString()}
+            </DialogContent>
+          </Grid>
+          <Grid item xs={1}>
             <Button
               id = "thUp"
               disabled={voted}
@@ -98,6 +93,8 @@ export default function MovieDialog(props: MovieDialogProps) {
             </Button>
             <DialogContent id="sumUp" className={classes.genres}>{thumbsUp}
             </DialogContent>
+          </Grid>
+          <Grid item xs={1}>
             <Button
               id = "thDown"
               disabled={voted}
