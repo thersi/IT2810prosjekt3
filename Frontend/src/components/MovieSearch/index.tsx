@@ -24,12 +24,15 @@ const QUERY_ALL_MOVIES = gql`
       sortOn: $sortOn
       word: $word
     ) {
-      _id
-      title
-      year
-      thumbsUp
-      thumbsDown
-      poster
+      movies {
+        _id
+        title
+        year
+        thumbsUp
+        thumbsDown
+        poster
+      }
+      pages
     }
   }
 `;
@@ -39,9 +42,12 @@ const MovieSearch = () => {
   const [sortValue, setSort] = useState<any>(1);
   const [filterValue, setFilter] = useState<any>("");
   const [searchValue, setSearch] = useState<string>("");
-  const [page, setPage] = useState<number>(1)
+  const [page, setPage] = useState<number>(1);
+  const limit: number = 10;
+
   let handleGenre = (value: string) => {
     setGenre(value);
+    setPage(1)
   };
 
   const handleSort = (value: boolean) => {
@@ -50,9 +56,11 @@ const MovieSearch = () => {
 
   const handleFilter = (value: string) => {
     setFilter(value);
+    setPage(1)
   };
   const handleSearch = (value: string) => {
     setSearch(value);
+    setPage(1)
   };
 
   const { data, loading } = useQuery<QueryMoviesResult, QueryMoviesInput>(
@@ -60,7 +68,7 @@ const MovieSearch = () => {
     {
       variables: {
         filterGenre: genreValue,
-        limit: 10,
+        limit: limit,
         page: page,
         order: sortValue,
         sortOn: filterValue,
@@ -68,7 +76,6 @@ const MovieSearch = () => {
       },
     }
   );
-
 
   return (
     <div>
@@ -80,13 +87,16 @@ const MovieSearch = () => {
       <GenreTabs handleGenre={handleGenre} />
       {(loading || typeof data === 'undefined') ?
         <p>Loading...</p> :
-        <MovieList data={data} />}
-      <Pagination count={10} showFirstButton showLastButton
-        onChange={(event, value) => {
-          console.log(value)
-          setPage(value)
-          console.log(page)
-        }} />
+        <div>
+          <MovieList data={data.searchAndFilter.movies} />
+          <Pagination className='pagination' count={ Math.ceil(data.searchAndFilter.pages / limit) } defaultPage={page} showFirstButton showLastButton
+            onChange={(event, value) => {
+              console.log(value)
+              setPage(value)
+              console.log(page)
+            }} />
+        </div>}
+
 
     </div>
   );

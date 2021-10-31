@@ -48,7 +48,11 @@ export interface MovieDialogProps {
 }
 
 export interface QueryMoviesResult {
-  searchAndFilter: Movie[];
+  searchAndFilter: {
+    movies: Movie[];
+    pages: number;
+  }
+  
 }
 
 export interface QueryMoviesInput {
@@ -69,5 +73,5 @@ export interface MovieByIdResult {
 }
 
 export interface MovieListProps {
-  data: QueryMoviesResult;
+  data: Movie[];
 }
