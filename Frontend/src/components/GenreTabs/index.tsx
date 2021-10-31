@@ -3,6 +3,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import "./styles.css";
 
 const genres = [
   "ACTION",
@@ -29,6 +30,7 @@ const genres = [
   "WAR",
   "WESTERN",
 ];
+
 export default function GenreTabs(props: any) {
   const [genre, setGenre] = React.useState("");
 
@@ -38,23 +40,24 @@ export default function GenreTabs(props: any) {
   };
 
   return (
-    <FormControl variant="filled" sx={{ m: 1 }}>
-      <InputLabel id="demo-simple-select-standard-label">
-        Select Genre
+    <div className='genreTabs'>
+      <FormControl variant="filled" sx={{ m: 1, minWidth: 300 }}>
+        <InputLabel id="demo-simple-select-standard-label">
+          Select Genre
       </InputLabel>
-      <Select
-        labelId="demo-simple-select-standard-label"
-        id="demo-simple-select-standard"
-        value={genre}
-        onChange={handleChange}
-        label="genre"
-        autoWidth
-      >
-        {" "}
-        {genres.map((movieGenre) => (
-          <MenuItem value={movieGenre}>{movieGenre}</MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+        <Select
+          labelId="demo-simple-select-standard-label"
+          id="demo-simple-select-standard"
+          value={genre}
+          onChange={handleChange}
+          label="genre"
+          autoWidth
+        >
+          {genres.map((movieGenre) => (
+            <MenuItem value={movieGenre}>{movieGenre}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </div>
   );
 }

@@ -67,9 +67,6 @@ const MovieSearch = () => {
     }
   );
 
-  if (loading || typeof data === "undefined") {
-    return <p>Loading...</p>;
-  }
 
   return (
     <div>
@@ -79,11 +76,10 @@ const MovieSearch = () => {
         handleFilter={handleFilter}
       />
       <GenreTabs handleGenre={handleGenre} />
-      {data !== undefined && data.searchAndFilter.length > 0 ? (
-        <MovieList data={data} />
-      ) : (
-        <p>No movies to show</p>
-      )}
+      {(loading || typeof data === 'undefined') ? 
+      <p>Loading...</p> : 
+      <MovieList data={data} />}
+
     </div>
   );
 };

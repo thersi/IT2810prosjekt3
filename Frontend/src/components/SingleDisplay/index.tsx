@@ -39,18 +39,31 @@ export default function SingleDisplay(props: Movie) {
   }
 
   return (
-    <>
-      <div
-        className="movie"
-        onClick={() => {
-          setOpen(true);
-          fetchMovie({ variables: { movieByIdId: props._id } });
-          console.log(props._id);
-        }}
-      >
-        <div>
-          <img className="image" src={props.poster} alt="movie"></img>
-        </div>
+    // <<<<<<< HEAD
+    //       <div className="movie">
+    //         <div>
+    //           <img className="image" src={props.poster} alt="movie"></img>
+    //         </div>
+    //         <div className="movieInfo">
+    //           <div className="text">
+    //             <label>{props.title + " (" + props.year + ") "}</label>
+    //           </div>
+    //           <div className="thumbButtons">
+    //             <div className="thumbUp"><ThumbUpIcon/>{props.thumbsUp}</div>
+    //             <div className="thumbDown"><ThumbDownIcon/>{props.thumbsDown}</div>
+    // =======
+    <div
+      className="movie"
+      onClick={() => {
+        setOpen(true);
+        fetchMovie({ variables: { movieByIdId: props._id } });
+        console.log(props._id);
+      }}
+    >
+      <div>
+        <img className="image" src={props.poster} alt="movie"></img>
+      </div>
+      <div className="movieInfo">
         <div className="text">
           {<label>{props.title + " (" + props.year + ") "}</label>}
         </div>
@@ -66,7 +79,6 @@ export default function SingleDisplay(props: Movie) {
           </div>
         </div>
       </div>
-      <Divider flexItem />
-    </>
+    </div>
   );
 }

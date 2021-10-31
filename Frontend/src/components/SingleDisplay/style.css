@@ -1,16 +1,31 @@
+
 .movie {
   display: flex;
-  align-items: left;
-  justify-content: flex-start;
-  position: relative;
+  padding: 3px;
+  border: 2px solid;
+  border-color: lightskyblue;
+  background-color: lightcyan;
+  width: 80%;
+}
+@media screen and (max-width: 600px) {
+  .movie {
+    width: 95%;
+  }
+}
+
+.movieInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 3px;
 }
 
 img {
   text-align: center;
   flex-basis: 40%;
   display: block;
-  width: 150px;
-  height: 200px;
+  width: 120px;
+  height: 160px;
 }
 
 .text {
