@@ -16,22 +16,23 @@ export const QUERY_MOVIE_BY_ID = gql`
 `;
 
 export const QUERY_ALL_MOVIES = gql`
-  query (
-    $filterGenre: String!
-    $limit: Int!
-    $page: Int!
-    $order: Int!
-    $sortOn: String!
-    $word: String!
+query (
+  $filterGenre: String!
+  $limit: Int!
+  $page: Int!
+  $order: Int!
+  $sortOn: String!
+  $word: String!
+) {
+  searchAndFilter(
+    filterGenre: $filterGenre
+    limit: $limit
+    page: $page
+    order: $order
+    sortOn: $sortOn
+    word: $word
   ) {
-    searchAndFilter(
-      filterGenre: $filterGenre
-      limit: $limit
-      page: $page
-      order: $order
-      sortOn: $sortOn
-      word: $word
-    ) {
+    movies {
       _id
       title
       year
@@ -39,7 +40,9 @@ export const QUERY_ALL_MOVIES = gql`
       thumbsDown
       poster
     }
+    pages
   }
+}
 `;
 
 export const THUMBS_UP_MUTATION = gql`

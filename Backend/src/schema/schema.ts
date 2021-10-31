@@ -27,7 +27,7 @@ const resolvers = {
             else {
                 orderNum = order;
             }
-            return new Promise((resolve, reject) => {
+            const movies = new Promise((resolve, reject) => {
                 let result = Movie.find({ title: { $regex: word, $options: '$i' }, genre: { $regex: filterGenre, $options: '$i' } },
                     (err: any, movies: unknown) => {
                         if (err) reject(err);
@@ -39,6 +39,16 @@ const resolvers = {
                     result.sort({ "title": orderNum }).skip(skips).limit(limit)
                 }
             })
+            const count = new Promise((resolve, reject) => {
+                Movie.count({ title: { $regex: word, $options: '$i' }, genre: { $regex: filterGenre, $options: '$i' } }, (err: any, movie: unknown) => {
+                    if (err) reject(err);
+                    else resolve(movie);
+                })
+            })
+            return {
+                movies: movies,
+                pages: count
+            }
         },
 
         movieById: (root: any, { id }: byIdArgs) => {
@@ -48,18 +58,6 @@ const resolvers = {
                     else resolve(movie);
                 })
             })
-        },
-
-        countDocuments: (root: any) => {
-            const count = new Promise((resolve, reject) => {
-                Movie.count((err: any, movie: unknown) => {
-                    if (err) reject(err);
-                    else resolve(movie);
-                })
-            })
-            return {
-                total: count
-            };
         },
     },
 
@@ -106,14 +104,14 @@ const typeDefs = gql`
         poster: String!
     }
 
-    type NumberOfMovies {
-        total: Int!
+    type SearchResult {
+        movies: [Movie!]
+        pages: Int!
     }
 
     type Query {
         movieById(id: ID!): Movie
-        countDocuments: NumberOfMovies!
-        searchAndFilter(filterGenre: String! limit: Int! page: Int! order: Int!, sortOn: String! word: String!): [Movie!]
+        searchAndFilter(filterGenre: String! limit: Int! page: Int! order: Int!, sortOn: String! word: String!): SearchResult!
     }
 
     type Mutation {

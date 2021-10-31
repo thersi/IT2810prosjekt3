@@ -4,6 +4,7 @@ import GenreTabs from "../GenreTabs";
 import "./style.css";
 import { useQuery } from "@apollo/client";
 import MovieList from "../MovieList";
+import Pagination from '@mui/material/Pagination';
 import {
   QueryMoviesInput,
   QueryMoviesResult,
@@ -15,8 +16,12 @@ const MovieSearch = () => {
   const [sortValue, setSort] = useState<any>(1);
   const [filterValue, setFilter] = useState<any>("");
   const [searchValue, setSearch] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const limit: number = 10;
+
   let handleGenre = (value: string) => {
     setGenre(value);
+    setPage(1)
   };
 
   const handleSort = (value: boolean) => {
@@ -25,9 +30,11 @@ const MovieSearch = () => {
 
   const handleFilter = (value: string) => {
     setFilter(value);
+    setPage(1)
   };
   const handleSearch = (value: string) => {
     setSearch(value);
+    setPage(1)
   };
 
   const { data, loading } = useQuery<QueryMoviesResult, QueryMoviesInput>(
@@ -35,8 +42,8 @@ const MovieSearch = () => {
     {
       variables: {
         filterGenre: genreValue,
-        limit: 10,
-        page: 1,
+        limit: limit,
+        page: page,
         order: sortValue,
         sortOn: filterValue,
         word: searchValue,
@@ -52,11 +59,17 @@ const MovieSearch = () => {
         handleFilter={handleFilter}
       />
       <GenreTabs handleGenre={handleGenre} />
-      {loading || typeof data === "undefined" ? (
-        <p>Loading...</p>
-      ) : (
-        <MovieList data={data} />
-      )}
+      {(loading || typeof data === 'undefined') ?
+        <p>Loading...</p> :
+        <div>
+          <MovieList data={data.searchAndFilter.movies} />
+          <Pagination className='pagination' count={ Math.ceil(data.searchAndFilter.pages / limit) } defaultPage={page} showFirstButton showLastButton
+            onChange={(event, value) => {
+              console.log(value)
+              setPage(value)
+              console.log(page)
+            }} />
+        </div>}
     </div>
   );
 };

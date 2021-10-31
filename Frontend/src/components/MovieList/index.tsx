@@ -6,7 +6,7 @@ const MovieList = (props: MovieListProps) => {
   const { data } = props;
   return (
     <div className="movieContainer">
-      {data.searchAndFilter.map((movie: Movie) => (
+      {data.map((movie: Movie) => (
         <SingleDisplay key={movie._id} {...movie} />
       ))}
     </div>
