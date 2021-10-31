@@ -1,4 +1,4 @@
-import * as React from "react";
+import { MouseEvent, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
@@ -9,18 +9,11 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import { Divider } from "@mui/material";
 
 export default function MovieFilter(props: any) {
-  //MÅ få fikset slik at denne holder seg konstant størrelse på menyen ++
-  const [auth, setAuth] = React.useState(true);
-  const [isChosen, setIsChosen] = React.useState<string>();
-  const [isAsc, setIsAsc] = React.useState<boolean>(false);
-  const [filter, setFilter] = React.useState<string>("");
+  const [isAsc, setIsAsc] = useState<boolean>(false);
+  const [filter, setFilter] = useState<string>("");
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAuth(event.target.checked);
-  };
-
-  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -28,15 +21,14 @@ export default function MovieFilter(props: any) {
     setAnchorEl(null);
   };
 
-  const handleSort = (e: any) => {
-    setIsAsc(!isAsc);
-    props.handleSort(isAsc);
+  const handleSort = (e: MouseEvent<HTMLElement>, value: boolean) => {
+    setIsAsc(value);
+    props.handleSort(value);
   };
-  const handleFilter = (e: any, value: string) => {
-    setFilter(value); //sjekk hvorfor denne ikke oppdateres
-    props.handleSort(filter);
+  const handleFilter = (e: MouseEvent<HTMLElement>, value: string) => {
+    setFilter(value);
+    props.handleFilter(value);
   };
-
   return (
     <div>
       <IconButton
@@ -64,17 +56,17 @@ export default function MovieFilter(props: any) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem disabled>Sort Order: </MenuItem>
-        <MenuItem value="asc" onClick={handleSort}>
+        <MenuItem disabled>Sort by order: </MenuItem>
+        <MenuItem value="asc" onClick={(_) => handleSort(_, true)}>
           {isAsc && <CheckIcon />}
           <ArrowUpwardIcon /> Asc
         </MenuItem>
-        <MenuItem value="desc" onClick={handleSort}>
+        <MenuItem value="desc" onClick={(_) => handleSort(_, false)}>
           {!isAsc && <CheckIcon />}
           <ArrowDownwardIcon /> Desc
         </MenuItem>
         <Divider />
-        <MenuItem disabled>Sort by: </MenuItem>
+        <MenuItem disabled>Sort by type: </MenuItem>
         <MenuItem onClick={(_) => handleFilter(_, "title")}>
           {filter === "title" && <CheckIcon />}
           Title
