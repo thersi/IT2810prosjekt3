@@ -6,6 +6,7 @@ const MovieList = (props: MovieListProps) => {
   const { data } = props;
   return (
     <div className="movieContainer">
+      {data.length < 1 && <p>No movies to show </p>}
       {data.map((movie: Movie) => (
         <SingleDisplay key={movie._id} {...movie} />
       ))}

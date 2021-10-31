@@ -4,7 +4,7 @@ import GenreTabs from "../GenreTabs";
 import "./style.css";
 import { useQuery } from "@apollo/client";
 import MovieList from "../MovieList";
-import Pagination from '@mui/material/Pagination';
+import Pagination from "@mui/material/Pagination";
 import {
   QueryMoviesInput,
   QueryMoviesResult,
@@ -12,16 +12,16 @@ import {
 import { QUERY_ALL_MOVIES } from "../../Queries/queries";
 
 const MovieSearch = () => {
-  const [genreValue, setGenre] = useState<any>("");
-  const [sortValue, setSort] = useState<any>(1);
-  const [filterValue, setFilter] = useState<any>("");
+  const [genreValue, setGenre] = useState<string>("");
+  const [sortValue, setSort] = useState<number>(1);
+  const [filterValue, setFilter] = useState<string>("");
   const [searchValue, setSearch] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const limit: number = 10;
 
   let handleGenre = (value: string) => {
     setGenre(value);
-    setPage(1)
+    setPage(1);
   };
 
   const handleSort = (value: boolean) => {
@@ -30,11 +30,11 @@ const MovieSearch = () => {
 
   const handleFilter = (value: string) => {
     setFilter(value);
-    setPage(1)
+    setPage(1);
   };
   const handleSearch = (value: string) => {
     setSearch(value);
-    setPage(1)
+    setPage(1);
   };
 
   const { data, loading } = useQuery<QueryMoviesResult, QueryMoviesInput>(
@@ -59,17 +59,25 @@ const MovieSearch = () => {
         handleFilter={handleFilter}
       />
       <GenreTabs handleGenre={handleGenre} />
-      {(loading || typeof data === 'undefined') ?
-        <p>Loading...</p> :
+      {loading || typeof data === "undefined" ? (
+        <p>Loading...</p>
+      ) : (
         <div>
           <MovieList data={data.searchAndFilter.movies} />
-          <Pagination className='pagination' count={ Math.ceil(data.searchAndFilter.pages / limit) } defaultPage={page} showFirstButton showLastButton
+          <Pagination
+            className="pagination"
+            count={Math.ceil(data.searchAndFilter.pages / limit)}
+            defaultPage={page}
+            showFirstButton
+            showLastButton
             onChange={(event, value) => {
-              console.log(value)
-              setPage(value)
-              console.log(page)
-            }} />
-        </div>}
+              console.log(value);
+              setPage(value);
+              console.log(page);
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };
