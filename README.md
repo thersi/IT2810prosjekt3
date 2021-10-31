@@ -1,5 +1,5 @@
 ## Innhold og Funksjonalitet:
-Grppen har laget en SPA som er en prototype på en søkbar katalog av filmer. Databasen består av 20?? filmer, og er satt opp med MongoDB. Søk i databasen er lagt opp til å håndtere store resultater med at den har støtte for å bla mellom sider i søkeresultatet. Dataen som hentes ut av databasen skjer dynamisk, der det bare hentes ut data om filmene som vises på siden. Dette er gjort for å unngå kostbare databasekall som henter ut mer informasjon fra databasen enn hva som er nødvendig. Det er gjort ved hjelp av spørringer i GraphQL i backend. 
+Grppen har laget en SPA som er en prototype på en søkbar katalog av filmer. Databasen består av 26 filmer, og er satt opp med MongoDB. Søk i databasen er lagt opp til å håndtere store resultater med at den har støtte for å bla mellom sider i søkeresultatet. Dataen som hentes ut av databasen skjer dynamisk, der det bare hentes ut data om filmene som vises på siden. Dette er gjort for å unngå kostbare databasekall som henter ut mer informasjon fra databasen enn hva som er nødvendig. Det er gjort ved hjelp av spørringer i GraphQL i backend. 
 
 Frontend i websiden gir støtte for å søke etter en tittel gjennom søkefeltet øverst på siden. Søkeresultetet vil gi søkeresultat med alle filmer som inneholder ordet/ordene det er blitt søkt etter. Dersom det ikke er søkt etter noe i søkefeltet vil alle filmer returneres (dynamisk).
 
@@ -18,9 +18,9 @@ Frontend av prosjektet er basert på Node.js og NPM, og er bygget med react-crea
 
 Vi har valg å bruke Apollo Client for håndtering av State Managment. Apollo Client lagrer allerede states på dataen som hentes ut fra databasen i en egen cache. Å kopiere den dataen og å lagre denne i et state Managment-system som Redux eller Mobux vil derfor være overflødig. Det er dårlig praksis da man også må sørge for at Apollo Client og Redux/Mobux må være synkronisert til enhver tid. I tillegg er Apollo Client enklere å bruke, da det ikke krever videre oppsett enn å oprette en ApolloClient med en InMemoryCache. Dette er gjort i App.tsx.
 
-
 ### GraphQL (en del endringer i queries):
 Fordelene med GraphQL er at man bare har et endpint og at det dermed blir enklere for teamsene som jobber for frontend og backend å samarbeide. Det er også en fordel at man kun henter den informasjonen fra databasen som man trenger. Samenlignet med et REST-api, der man her flere endepunkter og ofte henter ut mer data enn man trenger. 
+
 #### Types:
 Databasen inneholder to typer med følgende atributter:
 - movie:
@@ -53,14 +53,13 @@ Det er to mutasjoner som endrer tilstanden på databasen. Disse tar inn en id og
 - thumbsUpById(id: ID!): Movie
 - thumbsDownById(id: ID!): Movie
 
-
 ### MongoDB:
 
 MongoDB-databasen er satt opp og kjører på en virtuell maskin. Framgangsmøten for å sette opp databasen på virtuell maskin er [her.](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
 
 Som default kan kun maskinen som kjører databasen og api-scriptet redigere på databasen. I vårt tilfellet har dette vært tungvindt. Vi her derfor laget flere brukere i databasen med lese/skriverettigheter. På denne måten kan man redigere databaseinholdet lokalt fra flere maskiner. Framgangsmøten for å få til dett er [her](https://piazza.com/class/ksk8rtnewz56sh?cid=133).
 
-Databasen består av 26???? filmer som er skrevet manuelt inn i databasen igjennom MongoDB Compass.
+Databasen består av 26 filmer som er skrevet manuelt inn i databasen igjennom MongoDB Compass.
 
 Hver film i databasen har følgende atributter:
 - _id
