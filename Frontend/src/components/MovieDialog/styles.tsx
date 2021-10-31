@@ -1,10 +1,14 @@
-import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { AutorenewTwoTone } from '@material-ui/icons';
 
 const useStyles = makeStyles( () => ({
     root: {
-        background: '#202020',
+        background: '#38B5F0',
+        padding: 10,
+    },
+
+    id: {
+        fontSize: 14,
+        color: 'white',
         padding: 10,
     },
 
@@ -53,7 +57,7 @@ const useStyles = makeStyles( () => ({
 
     button2: {
         color: 'white',
-        position: 'fixed',
+        position: 'absolute',
     },
 
     thumb: {

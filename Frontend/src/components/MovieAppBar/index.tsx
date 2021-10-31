@@ -1,21 +1,19 @@
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchBar from "../SearchBar";
 import MovieFilter from "../MovieFilter";
-import { createTheme } from "@mui/system";
+import { MovieAppBarProps } from "../../Interfaces";
 
-export default function MovieAppBar(props: any) {
+export default function MovieAppBar(props: MovieAppBarProps) {
   let searchValue = (value: string) => {
     props.handleSearch(value);
   };
   let filterValue = (value: string) => {
     props.handleFilter(value);
   };
-  let sortValue = (value: string) => {
+  let sortValue = (value: boolean) => {
     props.handleSort(value);
   };
   return (

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -30,6 +30,7 @@ const genres = [
   "WAR",
   "WESTERN",
 ];
+
 export default function GenreTabs(props: any) {
   const [genre, setGenre] = React.useState("");
 
@@ -40,7 +41,7 @@ export default function GenreTabs(props: any) {
 
   return (
     <div className='genreTabs'>
-      <FormControl variant="filled" sx={{ m: 1, minWidth: 300,  }}>
+      <FormControl variant="filled" sx={{ m: 1, minWidth: 300 }}>
         <InputLabel id="demo-simple-select-standard-label">
           Select Genre
       </InputLabel>
