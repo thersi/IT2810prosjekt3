@@ -7,12 +7,6 @@ const useStyles = makeStyles(() => ({
     maxWidth: "80%"
   },
 
-  id: {
-    fontSize: 14,
-    color: "white",
-    padding: 10,
-  },
-
   title: {
     fontSize: 22,
     color: "white",
@@ -29,6 +23,7 @@ const useStyles = makeStyles(() => ({
     maxHeight: "100%",
     height: "auto",
     margin: "auto",
+    padding: "15%",
   },
 
   genres: {
@@ -45,26 +40,28 @@ const useStyles = makeStyles(() => ({
     textAlign: "center",
   },
 
-  button1: {
-    variant: "outlined",
-    color: "primary",
-  },
-
   button2: {
     color: "white",
+    background: "rgb(46, 140, 240)",
     position: "absolute",
+    border: "0",
   },
 
   thumb: {
     color: "white",
     fontSize: "medium",
     padding: 10,
+    background: "rgb(46, 140, 240)",
+    border: "0",
+    
   },
 
+
   clickedThumb: {
-    color: "white",
+    color: "gray",
     fontSize: "large",
     padding: 10,
+
   },
 }));
 
