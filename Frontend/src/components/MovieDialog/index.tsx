@@ -10,63 +10,62 @@ import useStyles from "./styles";
 import CancelIcon from "@material-ui/icons/Cancel";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
-import { Movie } from "../../Interfaces";
+import {
+  Movie,
+  MovieDialogProps,
+  ThumbsByIdInput,
+  ThumbsDownByIdInput,
+  ThumbsDownByIdResult,
+  ThumbsUpByIdResult,
+} from "../../Interfaces";
 import { useMutation, gql } from "@apollo/client";
 
 const THUMBS_UP_MUTATION = gql`
-  mutation($thumbsUpByIdId: ID!) {
+  mutation ($thumbsUpByIdId: ID!) {
     thumbsUpById(id: $thumbsUpByIdId) {
       thumbsUp
     }
   }
-`
+`;
 const THUMBS_DOWN_MUTATION = gql`
-  mutation($thumbsDownByIdId: ID!) {
+  mutation ($thumbsDownByIdId: ID!) {
     thumbsDownById(id: $thumbsDownByIdId) {
       thumbsDown
     }
   }
-`
-
-interface ThumbsByIdInput {
-  thumbsUpByIdId: string;
-}
-
-interface ThumbsDownByIdInput {
-  thumbsDownByIdId: string;
-}
-
-interface ThumbsUpByIdResult {
-  thumbsUpById: Movie;
-}
-
-interface ThumbsDownByIdResult {
-  thumbsDownById: Movie;
-}
-
-interface MovieDialogProps {
-  movie: Movie;
-  setOpen: Dispatch<SetStateAction<boolean>>;
-  setThumbsUp: Dispatch<SetStateAction<number>>;
-  thumbsUp: number;
-  setThumbsDown: Dispatch<SetStateAction<number>>;
-  thumbsDown: number;
-  voted: boolean;
-  setVoted: Dispatch<SetStateAction<boolean>>;
-}
+`;
 
 export default function MovieDialog(props: MovieDialogProps) {
   const classes = useStyles();
-  const { movie, setOpen, setThumbsUp, thumbsUp, setThumbsDown, thumbsDown, voted, setVoted } = props;
-  // const for Mutations 
-  const [incThumbsUp] = useMutation<ThumbsUpByIdResult, ThumbsByIdInput>(THUMBS_UP_MUTATION)
-  const [incThumbsDown] = useMutation<ThumbsDownByIdResult, ThumbsDownByIdInput>(THUMBS_DOWN_MUTATION)
+  const {
+    movie,
+    setOpen,
+    setThumbsUp,
+    thumbsUp,
+    setThumbsDown,
+    thumbsDown,
+    voted,
+    setVoted,
+  } = props;
+  // const for Mutations
+  const [incThumbsUp] = useMutation<ThumbsUpByIdResult, ThumbsByIdInput>(
+    THUMBS_UP_MUTATION
+  );
+  const [incThumbsDown] = useMutation<
+    ThumbsDownByIdResult,
+    ThumbsDownByIdInput
+  >(THUMBS_DOWN_MUTATION);
 
   return (
     <>
       <Container className={classes.root}>
         <Grid container justify="flex-end">
-          <Button onClick={() => { setOpen(false) }} className={classes.button2}>
+          <Button
+            onClick={() => {
+              setOpen(false);
+            }}
+            className={classes.button2}
+          >
             <CancelIcon />
           </Button>
         </Grid>
@@ -98,23 +97,27 @@ export default function MovieDialog(props: MovieDialogProps) {
             </DialogContent>
           </Grid>
           <Grid item xs={12}>
-            <Button disabled={voted} className={classes.thumb}
+            <Button
+              disabled={voted}
+              className={classes.thumb}
               onClick={() => {
-                setVoted(true)
-                incThumbsUp({ variables: { thumbsUpByIdId: movie._id } })
-                setThumbsUp(movie.thumbsUp + 1)
-              }}>
+                setVoted(true);
+                incThumbsUp({ variables: { thumbsUpByIdId: movie._id } });
+                setThumbsUp(movie.thumbsUp + 1);
+              }}
+            >
               <ThumbUpIcon />
             </Button>
-            <DialogContent className={classes.genres}>
-              {thumbsUp}
-            </DialogContent>
-            <Button disabled={voted} className={classes.thumb}
+            <DialogContent className={classes.genres}>{thumbsUp}</DialogContent>
+            <Button
+              disabled={voted}
+              className={classes.thumb}
               onClick={() => {
-                setVoted(true)
-                incThumbsDown({ variables: { thumbsDownByIdId: movie._id } })
-                setThumbsDown(movie.thumbsDown + 1)
-              }}>
+                setVoted(true);
+                incThumbsDown({ variables: { thumbsDownByIdId: movie._id } });
+                setThumbsDown(movie.thumbsDown + 1);
+              }}
+            >
               <ThumbDownIcon />
             </Button>
             <DialogContent className={classes.genres}>
