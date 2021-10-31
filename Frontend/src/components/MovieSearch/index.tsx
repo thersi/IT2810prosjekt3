@@ -5,6 +5,7 @@ import "./style.css";
 import { useQuery, gql } from "@apollo/client";
 import MovieList from "../MovieList";
 import { Movie, QueryMoviesInput, QueryMoviesResult } from "../../Interfaces";
+import Pagination from '@mui/material/Pagination';
 
 const QUERY_ALL_MOVIES = gql`
   query (
@@ -38,6 +39,7 @@ const MovieSearch = () => {
   const [sortValue, setSort] = useState<any>(1);
   const [filterValue, setFilter] = useState<any>("");
   const [searchValue, setSearch] = useState<string>("");
+  const [page, setPage] = useState<number>(1)
   let handleGenre = (value: string) => {
     setGenre(value);
   };
@@ -59,7 +61,7 @@ const MovieSearch = () => {
       variables: {
         filterGenre: genreValue,
         limit: 10,
-        page: 1,
+        page: page,
         order: sortValue,
         sortOn: filterValue,
         word: searchValue,
@@ -76,9 +78,15 @@ const MovieSearch = () => {
         handleFilter={handleFilter}
       />
       <GenreTabs handleGenre={handleGenre} />
-      {(loading || typeof data === 'undefined') ? 
-      <p>Loading...</p> : 
-      <MovieList data={data} />}
+      {(loading || typeof data === 'undefined') ?
+        <p>Loading...</p> :
+        <MovieList data={data} />}
+      <Pagination count={10} showFirstButton showLastButton
+        onChange={(event, value) => {
+          console.log(value)
+          setPage(value)
+          console.log(page)
+        }} />
 
     </div>
   );
