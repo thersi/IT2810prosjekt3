@@ -1,12 +1,15 @@
-import { Divider } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import MovieDialog from "../MovieDialog";
 import "./style.css";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
-import { Movie, MovieByIdInput, MovieByIdResult } from "../../Interfaces";
+import {
+  Movie,
+  MovieByIdInput,
+  MovieByIdResult,
+} from "../../Interfaces/Interfaces";
 import { useLazyQuery } from "@apollo/client";
-import { QUERY_MOVIE_BY_ID } from "../queries";
+import { QUERY_MOVIE_BY_ID } from "../../Queries/queries";
 
 export default function SingleDisplay(props: Movie) {
   const [open, setOpen] = useState(false);
@@ -39,19 +42,6 @@ export default function SingleDisplay(props: Movie) {
   }
 
   return (
-    // <<<<<<< HEAD
-    //       <div className="movie">
-    //         <div>
-    //           <img className="image" src={props.poster} alt="movie"></img>
-    //         </div>
-    //         <div className="movieInfo">
-    //           <div className="text">
-    //             <label>{props.title + " (" + props.year + ") "}</label>
-    //           </div>
-    //           <div className="thumbButtons">
-    //             <div className="thumbUp"><ThumbUpIcon/>{props.thumbsUp}</div>
-    //             <div className="thumbDown"><ThumbDownIcon/>{props.thumbsDown}</div>
-    // =======
     <div
       className="movie"
       onClick={() => {

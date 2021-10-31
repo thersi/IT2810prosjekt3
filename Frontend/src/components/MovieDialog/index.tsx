@@ -1,4 +1,3 @@
-import React, { Dispatch, SetStateAction } from "react";
 import {
   Container,
   Grid,
@@ -6,34 +5,22 @@ import {
   DialogTitle,
   DialogContent,
 } from "@material-ui/core";
-import useStyles from "./styles";
+import useStyles from "./style";
 import CancelIcon from "@material-ui/icons/Cancel";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import {
-  Movie,
   MovieDialogProps,
   ThumbsByIdInput,
   ThumbsDownByIdInput,
   ThumbsDownByIdResult,
   ThumbsUpByIdResult,
-} from "../../Interfaces";
-import { useMutation, gql } from "@apollo/client";
-
-const THUMBS_UP_MUTATION = gql`
-  mutation ($thumbsUpByIdId: ID!) {
-    thumbsUpById(id: $thumbsUpByIdId) {
-      thumbsUp
-    }
-  }
-`;
-const THUMBS_DOWN_MUTATION = gql`
-  mutation ($thumbsDownByIdId: ID!) {
-    thumbsDownById(id: $thumbsDownByIdId) {
-      thumbsDown
-    }
-  }
-`;
+} from "../../Interfaces/Interfaces";
+import { useMutation } from "@apollo/client";
+import {
+  THUMBS_UP_MUTATION,
+  THUMBS_DOWN_MUTATION,
+} from "../../Queries/queries";
 
 export default function MovieDialog(props: MovieDialogProps) {
   const classes = useStyles();

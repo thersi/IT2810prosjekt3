@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -32,7 +32,7 @@ const genres = [
 ];
 
 export default function GenreTabs(props: any) {
-  const [genre, setGenre] = React.useState("");
+  const [genre, setGenre] = useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
     props.handleGenre(event.target.value);
@@ -40,11 +40,11 @@ export default function GenreTabs(props: any) {
   };
 
   return (
-    <div className='genreTabs'>
+    <div className="genreTabs">
       <FormControl id = "filterForm" variant="filled" sx={{ m: 1, minWidth: 300 }}>
         <InputLabel id="demo-simple-select-standard-label">
           Select Genre
-      </InputLabel>
+        </InputLabel>
         <Select
           labelId="demo-simple-select-standard-label"
           id="demo-simple-select-standard"
@@ -54,7 +54,7 @@ export default function GenreTabs(props: any) {
           autoWidth
         >
           {genres.map((movieGenre) => (
-            <MenuItem id = "genreItem" value={movieGenre}>{movieGenre}</MenuItem>
+            <MenuItem id = "genreItem" key={movieGenre}>{movieGenre}</MenuItem>
           ))}
         </Select>
       </FormControl>

@@ -1,5 +1,3 @@
-import React from "react";
-import "./App.css";
 import MovieSearch from "./components/MovieSearch";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
