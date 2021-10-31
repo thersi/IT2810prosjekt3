@@ -37,7 +37,7 @@ export default function GenreTabs(props: any) {
   };
 
   return (
-    <FormControl variant="filled" sx={{ m: 1, minWidth: 300 }}>
+    <FormControl variant="filled" sx={{ m: 1 }}>
       <InputLabel id="demo-simple-select-standard-label">
         Select Genre
       </InputLabel>
