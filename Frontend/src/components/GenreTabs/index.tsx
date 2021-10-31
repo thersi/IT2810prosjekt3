@@ -41,7 +41,7 @@ export default function GenreTabs(props: any) {
 
   return (
     <div className="genreTabs">
-      <FormControl variant="filled" sx={{ m: 1, minWidth: 300 }}>
+      <FormControl id = "filterForm" variant="filled" sx={{ m: 1, minWidth: 300 }}>
         <InputLabel id="demo-simple-select-standard-label">
           Select Genre
         </InputLabel>
@@ -54,7 +54,7 @@ export default function GenreTabs(props: any) {
           autoWidth
         >
           {genres.map((movieGenre) => (
-            <MenuItem key={movieGenre}>{movieGenre}</MenuItem>
+            <MenuItem id = "genreItem" key={movieGenre}>{movieGenre}</MenuItem>
           ))}
         </Select>
       </FormControl>

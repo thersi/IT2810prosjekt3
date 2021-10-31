@@ -85,6 +85,7 @@ export default function MovieDialog(props: MovieDialogProps) {
           </Grid>
           <Grid item xs={12}>
             <Button
+              id = "thUp"
               disabled={voted}
               className={classes.thumb}
               onClick={() => {
@@ -95,8 +96,10 @@ export default function MovieDialog(props: MovieDialogProps) {
             >
               <ThumbUpIcon />
             </Button>
-            <DialogContent className={classes.genres}>{thumbsUp}</DialogContent>
+            <DialogContent id="sumUp" className={classes.genres}>{thumbsUp}
+            </DialogContent>
             <Button
+              id = "thDown"
               disabled={voted}
               className={classes.thumb}
               onClick={() => {
@@ -107,7 +110,7 @@ export default function MovieDialog(props: MovieDialogProps) {
             >
               <ThumbDownIcon />
             </Button>
-            <DialogContent className={classes.genres}>
+            <DialogContent id= "sumDown" className={classes.genres}>
               {thumbsDown}
             </DialogContent>
           </Grid>
