@@ -150,6 +150,32 @@ const resolvers = {
         //     })
         // },
     },
+    countDocuments: (root: any) => {
+        const d = new Promise((resolve, reject) => {
+            Movie.count((err: any, movie: unknown) => {
+                if (err) reject(err);
+                else resolve(movie);
+            })
+        })
+        return {
+            total: d
+        };
+    }, 
+/*             countDocuments:(root: any) =>{
+                const data = Promise.all([
+                    Movie.count(Movie._id)
+                ]);
+                return ({
+                    total: data
+            });
+        },  */
+/*     countDocuments(root: any) {
+        return Movie.findAndCountAll().then((result: { count: Number; }) => {
+          return {
+            total: result.count
+          }
+        })
+    }, */
 
 
     Mutation: {
@@ -195,12 +221,16 @@ const typeDefs = gql`
         poster: String!
     }
 
+    type NumberOfMovies {
+        total: Int!
+    }
+
     type Query {
         movies(limit: Int! page: Int! order: Int! sortOn: String!): [Movie!]!
         containsString(limit: Int! page: Int! word: String! order: Int! sortOn: String!): [Movie!]
         movieByTitle(title: String!): Movie
         filterOnGenre(filterGenre: String! limit: Int! page: Int! order: Int!, sortOn: String!): [Movie!]
-
+        countDocuments: Int!
         movieById(id: ID!): Movie
         searchAndFilter(filterGenre: String! limit: Int! page: Int! order: Int!, sortOn: String! word: String!): [Movie!]
     }
