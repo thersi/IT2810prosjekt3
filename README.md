@@ -97,24 +97,24 @@ SKRIVE OM RESPONSIVT DESIGN
 Vi har lagt fokus på universell utforming og basert appen på Erb Content Accessibility Guidelines(WCAG).
 Dette kan bli delt inn i 4 delseksjoner: Perceivable, Operable, Understandable og Robust.
 
-Perceivable
+#Perceivable
 
 Informasjon og UI må være presentert på en måte alle kan forstå. For hver singledisplay komponent, har vi både forklarende tekst i tillegg til bilde av filmen.
 Her kan brukeren da se ha tilgang til tekst som et alternativ.
 
-Operable
+#Operable
 UI komponenter og navigasjon må være mulig. Her har vi tatt i bruk WAI ARIA i AppBar og GenreTabs, dette gjør det mulig å vite hvor komponenter er ved bruk av tastatur.
 Vi har også et lett design på siden vår, uten elementer som blinker eller lignende som kan skape en reakson.
 Vi bruker også sidenummer slik at bare noen få filmer vises samtidig, noe som gjør det lettere for brukeren å ha oversikt og kontroll på elementene.
 
-Understandable
+#Understandable
 Informasjon og operasjon av UI må være forståelig.
 
 Alt av tekst er lett å lese og står i kontrast med bakgrunnsfarger slik at bruker lett kan se hva som står.
 Siden vår er også veldig forutsigbar og følger et likt design som sider som IMDB og Netflix, noe som gjør den lettere å navigere.
 Vi tar i bruk ikoner som tommel opp/ned og søkeikon for å tydeliggjør viktige funksjoner på siden.
 
-Robust
+#Robust
 Innhold må være tilgjengelig for en større gruppe brukere.
 Siden vår forholder seg til forskjellige skjerm størrelser, noe som gjør at brukere med spesialskjerm fortsatt kan ta i bruk appen.
 
