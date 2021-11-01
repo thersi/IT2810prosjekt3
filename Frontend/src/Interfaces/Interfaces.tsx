@@ -53,8 +53,7 @@ export interface QueryMoviesResult {
   searchAndFilter: {
     movies: Movie[];
     pages: number;
-  }
-  
+  };
 }
 
 export interface QueryMoviesInput {
@@ -82,4 +81,14 @@ export interface MovieListProps {
 export interface SingleDisplayProps {
   movie: Movie;
   refetch: (variables?: Partial<QueryMoviesInput> | undefined) => Promise<ApolloQueryResult<QueryMoviesResult>>
+}
+export interface searchProps {
+  handleSearch: (value: string) => void;
+}
+export interface MovieFilterProps {
+  handleFilter: (value: string) => void;
+  handleSort: (value: boolean) => void;
+}
+export interface genreProps {
+  handleGenre: (value: string) => void;
 }

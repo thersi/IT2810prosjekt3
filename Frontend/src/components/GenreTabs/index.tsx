@@ -4,6 +4,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import "./styles.css";
+import { genreProps } from "../../Interfaces/Interfaces";
 
 const genres = [
   "ALL GENRES",
@@ -32,7 +33,7 @@ const genres = [
   "WESTERN",
 ];
 
-export default function GenreTabs(props: any) {
+export default function GenreTabs(props: genreProps) {
   const [genre, setGenre] = useState("");
 
   const handleChange = (event: SelectChangeEvent) => {

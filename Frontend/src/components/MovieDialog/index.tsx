@@ -1,9 +1,4 @@
-import {
-  Container,
-  Grid,
-  DialogTitle,
-  DialogContent,
-} from "@material-ui/core";
+import { Container, Grid, DialogTitle, DialogContent } from "@material-ui/core";
 import useStyles from "./style";
 import CancelIcon from "@material-ui/icons/Cancel";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
@@ -80,12 +75,12 @@ export default function MovieDialog(props: MovieDialogProps) {
           </Grid>
           <Grid item xs={1}>
             <button
-              id = "thUp"
+              id="thUp"
               disabled={voted}
               className={classes.thumb}
               onClick={() => {
                 setVoted(true);
-                localStorage.setItem(movie._id, JSON.stringify(true))
+                sessionStorage.setItem(movie._id, JSON.stringify(true));
                 incThumbsUp({ variables: { thumbsUpByIdId: movie._id } });
                 setThumbsUp(movie.thumbsUp + 1);
                 refetch()
@@ -93,16 +88,18 @@ export default function MovieDialog(props: MovieDialogProps) {
             >
               <ThumbUpIcon />
             </button>
-            <DialogContent id="sumUp" className={classes.thumb}>{thumbsUp}
+            <DialogContent id="sumUp" className={classes.thumb}>
+              {thumbsUp}
             </DialogContent>
           </Grid>
           <Grid item xs={1}>
             <button
-              id = "thDown"
+              id="thDown"
               disabled={voted}
               className={classes.thumb}
               onClick={() => {
                 setVoted(true);
+                sessionStorage.setItem(movie._id, JSON.stringify(true));
                 incThumbsDown({ variables: { thumbsDownByIdId: movie._id } });
                 setThumbsDown(movie.thumbsDown + 1);
                 refetch()
@@ -110,7 +107,7 @@ export default function MovieDialog(props: MovieDialogProps) {
             >
               <ThumbDownIcon />
             </button>
-            <DialogContent id= "sumDown" className={classes.thumb}>
+            <DialogContent id="sumDown" className={classes.thumb}>
               {thumbsDown}
             </DialogContent>
           </Grid>

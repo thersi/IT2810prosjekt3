@@ -17,21 +17,18 @@ export default function SingleDisplay(props: SingleDisplayProps) {
   const [thumbsUp, setThumbsUp] = useState(movie.thumbsUp);
   const [thumbsDown, setThumbsDown] = useState(movie.thumbsDown);
 
-  const vote = localStorage.getItem(movie._id);
+  const vote = sessionStorage.getItem(movie._id);
   const dflt_vote = vote !== null ? JSON.parse(vote) : false;
-
   const [voted, setVoted] = useState(dflt_vote);
 
   const [fetchMovie, { data: movieByIdData, loading: movieByIdLoading }] =
     useLazyQuery<MovieByIdResult, MovieByIdInput>(QUERY_MOVIE_BY_ID);
 
   if (movieByIdLoading) {
-    console.log("loading...");
     return <p>Movie is loading</p>;
   }
 
   if (open && typeof movieByIdData !== "undefined") {
-    console.log("loaded");
     return (
       <MovieDialog
         movie={movieByIdData.movieById}
@@ -53,7 +50,6 @@ export default function SingleDisplay(props: SingleDisplayProps) {
       onClick={() => {
         setOpen(true);
         fetchMovie({ variables: { movieByIdId: movie._id } });
-        console.log(movie._id);
       }}
     >
       <div>
