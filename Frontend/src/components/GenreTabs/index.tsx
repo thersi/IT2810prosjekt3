@@ -4,8 +4,6 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import "./styles.css";
-import BackspaceIcon from "@mui/icons-material/Backspace";
-import { IconButton } from "@mui/material";
 
 const genres = [
   "ALL GENRES",

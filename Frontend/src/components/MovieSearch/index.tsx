@@ -37,7 +37,7 @@ const MovieSearch = () => {
     setPage(1);
   };
 
-  const { data, loading } = useQuery<QueryMoviesResult, QueryMoviesInput>(
+  const { data, loading, refetch } = useQuery<QueryMoviesResult, QueryMoviesInput>(
     QUERY_ALL_MOVIES,
     {
       variables: {
@@ -63,7 +63,7 @@ const MovieSearch = () => {
         <p>Loading...</p>
       ) : (
         <div>
-          <MovieList data={data.searchAndFilter.movies} />
+          <MovieList data={data.searchAndFilter.movies} refetch={refetch} />
           <Pagination
             className="pagination"
             count={Math.ceil(data.searchAndFilter.pages / limit)}
@@ -71,9 +71,7 @@ const MovieSearch = () => {
             showFirstButton
             showLastButton
             onChange={(event, value) => {
-              console.log(value);
               setPage(value);
-              console.log(page);
             }}
           />
         </div>
