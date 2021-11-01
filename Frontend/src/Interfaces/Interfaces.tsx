@@ -4,6 +4,10 @@ import {
   SetStateAction,
 } from "react-transition-group/node_modules/@types/react";
 
+/**
+ * File for interfaces used in the components.
+ */
+
 export interface Movie {
   _id: string;
   title: string;

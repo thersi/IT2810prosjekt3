@@ -11,6 +11,9 @@ import {
 import { useLazyQuery } from "@apollo/client";
 import { QUERY_MOVIE_BY_ID } from "../../Queries/queries";
 
+/**
+ * component for displaying a single movie.
+ */
 export default function SingleDisplay(props: SingleDisplayProps) {
   const { movie, refetch } = props
   const [open, setOpen] = useState(false);
