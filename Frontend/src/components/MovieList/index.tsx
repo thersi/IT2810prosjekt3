@@ -1,4 +1,3 @@
-import { Fragment } from "react-transition-group/node_modules/@types/react";
 import { Movie, MovieListProps } from "../../Interfaces/Interfaces";
 import SingleDisplay from "../SingleDisplay";
 import "./style.css";

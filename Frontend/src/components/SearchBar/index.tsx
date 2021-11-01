@@ -1,6 +1,5 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { Search, SearchIconWrapper, StyledInputBase } from "./style";
-import { SelectChangeEvent } from "@mui/material";
 import { ChangeEvent } from "react-transition-group/node_modules/@types/react";
 import { searchProps } from "../../Interfaces/Interfaces";
 
