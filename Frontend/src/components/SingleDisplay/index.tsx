@@ -12,7 +12,7 @@ import { useLazyQuery } from "@apollo/client";
 import { QUERY_MOVIE_BY_ID } from "../../Queries/queries";
 
 export default function SingleDisplay(props: SingleDisplayProps) {
-  const { movie, refetch } = props
+  const { movie, refetch } = props;
   const [open, setOpen] = useState(false);
   const [thumbsUp, setThumbsUp] = useState(movie.thumbsUp);
   const [thumbsDown, setThumbsDown] = useState(movie.thumbsDown);

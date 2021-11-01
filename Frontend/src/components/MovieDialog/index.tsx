@@ -27,7 +27,7 @@ export default function MovieDialog(props: MovieDialogProps) {
     thumbsDown,
     voted,
     setVoted,
-    refetch
+    refetch,
   } = props;
   // const for Mutations
   const [incThumbsUp] = useMutation<ThumbsUpByIdResult, ThumbsByIdInput>(
@@ -83,7 +83,7 @@ export default function MovieDialog(props: MovieDialogProps) {
                 sessionStorage.setItem(movie._id, JSON.stringify(true));
                 incThumbsUp({ variables: { thumbsUpByIdId: movie._id } });
                 setThumbsUp(movie.thumbsUp + 1);
-                refetch()
+                refetch !== undefined && refetch();
               }}
             >
               <ThumbUpIcon />
@@ -102,7 +102,7 @@ export default function MovieDialog(props: MovieDialogProps) {
                 sessionStorage.setItem(movie._id, JSON.stringify(true));
                 incThumbsDown({ variables: { thumbsDownByIdId: movie._id } });
                 setThumbsDown(movie.thumbsDown + 1);
-                refetch()
+                refetch !== undefined && refetch();
               }}
             >
               <ThumbDownIcon />

@@ -64,7 +64,7 @@ export default function MovieFilter(props: MovieFilterProps) {
           value="asc"
           onClick={(_) => handleSort(_, true)}
         >
-          {isAsc && <CheckIcon />}
+          {isAsc && <CheckIcon id="ascCheck" />}
           <ArrowUpwardIcon /> Asc
         </MenuItem>
         <MenuItem
