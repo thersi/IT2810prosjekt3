@@ -43,6 +43,7 @@ export default function MovieDialog(props: MovieDialogProps) {
       <Container className={classes.root}>
         <Grid container justifyContent="flex-end">
           <button
+            id='cancel'
             onClick={() => {
               setOpen(false);
             }}
