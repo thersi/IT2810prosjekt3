@@ -1,4 +1,4 @@
-import {Schema, model, Model, Document} from 'mongoose'
+import { Schema, model, Model, Document } from 'mongoose'
 
 export interface IMovie extends Document {
     title: String;
@@ -17,26 +17,29 @@ export const MovieSchema: Schema = new Schema({
     },
     thumbsUp: {
         type: Number,
-        required: true},
+        required: true
+    },
     year: {
         type: Number,
-        required: true},
+        required: true
+    },
     genre: {
         type: [String],
-        required: true},
+        required: true
+    },
     actors: {
-        type: [String], 
+        type: [String],
     },
     thumbsDown: {
         type: Number,
-        required: true                                             
+        required: true
     },
     poster: {
         type: String,
         required: true
-    } 
+    }
 });
 
 export const Movie: Model<IMovie> = model('movies', MovieSchema);
 
-export default{Movie, MovieSchema};
+export default { Movie, MovieSchema };
