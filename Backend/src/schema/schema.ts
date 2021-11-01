@@ -15,9 +15,20 @@ type searchAndFilterArgs = {
 type byIdArgs = {
     id: string
 }
-
+// The GraphQl resolvers
 const resolvers = {
+    // Resolvers for the queries
     Query: {
+        /**
+         * Finds and returns the search result based on the inputs. Also returning number of elements found
+         * 
+         * @param filterGenre a string with a genre-name, empty string if return all genres
+         * @param limit number - Number of movies per page. Must be 1 or larger
+         * @param page number - The page number. Must be 1 or larger.
+         * @param order number - If -1 descending order, else increasing order.
+         * @param sortOn string - if 'year' sort on year, else sort on title.
+         * @param word string - The word to filter on, returns all movies if empty.
+         */
         searchAndFilter: (_: any, { filterGenre, limit, page, order, sortOn, word }: searchAndFilterArgs) => {
             const skips: number = limit * (Number(page) - 1);
             let orderNum: number;
@@ -50,7 +61,11 @@ const resolvers = {
                 pages: count
             }
         },
-
+        /**
+         * Finds a single movie by id.
+         * 
+         * @param id string - the movieId
+         */
         movieById: (_: any, { id }: byIdArgs) => {
             return new Promise((resolve, reject) => {
                 Movie.findOne({ _id: id }, (err: Error, movie: unknown) => {
@@ -61,7 +76,13 @@ const resolvers = {
         },
     },
 
+    // Resolvers for the mutations
     Mutation: {
+        /**
+         * Increases the thumbsUp count of a movie.
+         * 
+         * @param id string - the movieId
+         */
         thumbsUpById: (_: any, { id }: byIdArgs) => {
             return new Promise((resolve, reject) => {
                 Movie.findOneAndUpdate(
@@ -75,6 +96,11 @@ const resolvers = {
                 )
             })
         },
+        /**
+         * Increases the thumbsDown count of a movie.
+         * 
+         * @param id string - the movieId
+         */
         thumbsDownById: (_: any, { id }: byIdArgs) => {
             return new Promise((resolve, reject) => {
                 Movie.findOneAndUpdate(
@@ -90,9 +116,9 @@ const resolvers = {
         }
     }
 }
-
+// The GraphQL Type-definition
 const typeDefs = gql`
-
+    # Movie Type
     type Movie {
         _id: ID!
         title: String!
@@ -103,7 +129,7 @@ const typeDefs = gql`
         thumbsDown: Int!
         poster: String!
     }
-
+    # type for the result of the searchAndFilter-query
     type SearchResult {
         movies: [Movie!]
         pages: Int!
