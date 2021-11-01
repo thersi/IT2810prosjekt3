@@ -51,11 +51,12 @@ const useStyles = makeStyles(() => ({
     color: "white",
     fontSize: "medium",
     padding: 10,
-    background: "rgb(46, 140, 240)",
     border: "0",
-    
+    background: 'rgba(46, 140, 240, 1)',
+    '&:disabled': {
+      color: 'rgba(255, 255, 255, 0.5)' 
+    }
   },
-
 
   clickedThumb: {
     color: "gray",
