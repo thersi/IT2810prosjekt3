@@ -54,11 +54,19 @@ const MovieSearch = () => {
   return (
     <div>
       <MovieAppBar
+        aria-label={"App Bar"}
+        aria-required="true"
         handleSearch={handleSearch}
         handleSort={handleSort}
         handleFilter={handleFilter}
       />
-      <GenreTabs handleGenre={handleGenre} />
+      <GenreTabs
+        aria-label={
+          "A markdown menu with all movie genres, used for filtering movies by genre."
+        }
+        aria-required="true"
+        handleGenre={handleGenre}
+      />
       {loading || typeof data === "undefined" ? (
         <p>Loading...</p>
       ) : (
@@ -71,7 +79,6 @@ const MovieSearch = () => {
             showFirstButton
             showLastButton
             onChange={(event, value) => {
-              console.log(value);
               setPage(value);
               console.log(page);
             }}

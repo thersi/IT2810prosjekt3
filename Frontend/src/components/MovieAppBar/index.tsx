@@ -28,8 +28,20 @@ export default function MovieAppBar(props: MovieAppBarProps) {
           >
             Movies
           </Typography>
-          <MovieFilter handleFilter={filterValue} handleSort={sortValue} />
-          <SearchBar handleSearch={searchValue} handleSort={sortValue} />
+          <MovieFilter
+            aria-label={
+              "Movie filter to filter movies by ascending or descending order. Also filters by title og year. "
+            }
+            aria-required="true"
+            handleFilter={filterValue}
+            handleSort={sortValue}
+          />
+          <SearchBar
+            aria-label={"Search bar to search through movie titles"}
+            aria-required="true"
+            handleSearch={searchValue}
+            handleSort={sortValue}
+          />
         </Toolbar>
       </AppBar>
     </Box>
