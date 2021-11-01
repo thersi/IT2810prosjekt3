@@ -1,5 +1,10 @@
 import { Schema, model, Model, Document } from 'mongoose'
+/* 
+Mongoose model for documents in the movies collection 
+in MongoDB 
+*/
 
+// Interface for the Model
 export interface IMovie extends Document {
     title: String;
     thumbsUp: Number;
@@ -10,6 +15,7 @@ export interface IMovie extends Document {
     poster: String;
 }
 
+// Define the chema of the model for a movie 
 export const MovieSchema: Schema = new Schema({
     title: {
         type: String,
@@ -40,6 +46,7 @@ export const MovieSchema: Schema = new Schema({
     }
 });
 
+// create and export the Model
 export const Movie: Model<IMovie> = model('movies', MovieSchema);
 
 export default { Movie, MovieSchema };

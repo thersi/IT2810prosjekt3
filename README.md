@@ -1,4 +1,4 @@
-## Innhold og Funksjonalitet:
+# Innhold og Funksjonalitet:
 Grppen har laget en SPA som er en prototype på en søkbar katalog av filmer. Databasen består av 26 filmer, og er satt opp med MongoDB. Søk i databasen er lagt opp til å håndtere store resultater med at den har støtte for å bla mellom sider i søkeresultatet. Dataen som hentes ut av databasen skjer dynamisk, der det bare hentes ut data om filmene som vises på siden. Dette er gjort for å unngå kostbare databasekall som henter ut mer informasjon fra databasen enn hva som er nødvendig. Det er gjort ved hjelp av spørringer i GraphQL i backend. 
 
 Frontend i websiden gir støtte for å søke etter en tittel gjennom søkefeltet øverst på siden. Søkeresultetet vil gi søkeresultat med alle filmer som inneholder ordet/ordene det er blitt søkt etter. Dersom det ikke er søkt etter noe i søkefeltet vil alle filmer returneres (dynamisk).
@@ -9,7 +9,7 @@ Det er også mulighet for å se mer detaljert informasjon om hver film. Dette gj
 
 Det er også mulig for en bruker å trykke enten ‘tommel opp’ eller ‘tommel ned’ på en film. Dette vil lagres persistent på databaseserveren ve hjelp av en GraphQl mutation i backend.
 
-## Krav til bruk av teknologi:
+# Krav til bruk av teknologi:
 Backend av prosjeket er basert på node.js og NPM. Appen kan kjøres ved å skrive npm start fra mappen backend. Backend må kjøres på NTNUs nett eller med vpn.
 
 Frontend av prosjektet er basert på Node.js og NPM, og er bygget med react-createapp og med typescript som template. Appen kan kjøres ved å skrive npm start fra mappen frontend/src. Frontend må kjøres etter backend har startet. Testene kjøres fra samme mappe ved å kjøre kommandoen npm test.
@@ -21,7 +21,7 @@ Vi har valg å bruke Apollo Client for håndtering av State Managment. Apollo Cl
 ### GraphQL (en del endringer i queries):
 Fordelene med GraphQL er at man bare har et endpint og at det dermed blir enklere for teamsene som jobber for frontend og backend å samarbeide. Det er også en fordel at man kun henter den informasjonen fra databasen som man trenger. Samenlignet med et REST-api, der man her flere endepunkter og ofte henter ut mer data enn man trenger. 
 
-#### Types:
+##### Types:
 Databasen inneholder to typer med følgende atributter:
 - movie:
     - _id: ID!
@@ -35,7 +35,8 @@ Databasen inneholder to typer med følgende atributter:
 - SearchResult:
     - movies: [Movie!]
     - pages: Int!
-#### Queries:
+
+##### Queries:
 Under er en liste med queries som er tilgjenglige med GraphQL:
 - movieById(id: ID!): Movie
 - filterOnGenre(filterGenre: String! limit: Int! page: Int! order: Int!, sortOn: String!): SearchResult!
@@ -44,11 +45,11 @@ De ulike argumentene betyr:
 - limit - antall elementer pr. side
 - page - nr. på siden (starter på 1)
 - order - 1 for stigende, -1 for synkende rekkefølge på sorteringen (default = 1)
-- sortOn - 'year' for å sortere på årstall, 'title' for å sortere på tittel (default = 'year')
+- sortOn - 'year' for å sortere på årstall, 'title' for å sortere på tittel (default = 'title')
 - word - ordet som søkes etter i tittelen
 - id - id-en til filmen
 
-#### Mutations:
+##### Mutations:
 Det er to mutasjoner som endrer tilstanden på databasen. Disse tar inn en id og øker thumbsUp/thumbsDown med en på "movien" med den gitte id-en
 - thumbsUpById(id: ID!): Movie
 - thumbsDownById(id: ID!): Movie
@@ -71,45 +72,23 @@ Hver film i databasen har følgende atributter:
 - thumbsDown
 - poster
 
-
 ### Komponenter og biblioteker:
-
 MUI Material-UI:
 gruppen har brukt flere ferdiglagde komponenter fra MUI og Material-UI. Dette er det samme biblioteket, bare at MUI er den nyeste versjonen. Gruppen har likevel valgt å bruke noen komponenter fra den gamle versjonen, siden vi er mest vandt med disse. Komponenter fra MUI/Material-UI er blant annet brukt i ???. Grunnen for at vi har valgt å bruke komponenter fra disse bibliotekene er fordi de ser pene ut, har god funksjonalitet og det ville vært svært tidkrevende å lage disse selv.
 
 ### Responsivt webdesign:
-## Testing:
+SKRIVE OM RESPONSIVT DESIGN 
 
+### Universell utforming:
+SKRIVE LITT OM DETTE 
 
-#### Bruk av Gitlab verktøy (forslag)
+# Testing:
 
-## Oppsummering funksjonalitet: 
-- Liste med filmer 
-- Klikke inn på hver film for å se detaljer 
-- Søke på tittel
-- Sortere søk alfabetisk og etter utgivelsesår 
-- Filtrere søk på sjanger 
-- Lagre tommel opp/tommel ned (anonymt)
+#### Ende-til-ende:
+Vi har skrevet e2e tester ved hjelp av Cypress. Cypress er et testrammeverk som har god støtte for å enkelt kunne skrive ende-til-ende testing. Det er enkelt å sette opp, er godt dokumentert og koden er svært lesbar og forståelig. Dette er årsaken til at vi valgte å bruke Cypress for e2e. 
 
-ISSUES: 
-- Kort navn, beskrivelse (med tasks) inni 
-- Alle issues skal ha en label open/doing/closed
-- Alle issus skal ha minst en label relatert til hva det handler om (backend/frontent/bug etc.)
-- Alle commits skal tagges med (#X) der X er issuenummer
-- Greiner skal navngis issueX-issuenavn 
-    - (resulterer i noen "små" greiner, men er oversiktlig og sørger for at greiner ofte blir merget, og sjeldent ligger mange commits bak master. Unngår mergeconflicts, samt at "viktige deler" ikke ligger lokalt på noens maskin lenge slik at andre må vente med å gjøre sitt fordi de trenger noe fra et visst issue) 
+Testene kan kjøres gjennom Cypress-GUIet og i nettleser ved å kjøre kommandoen `npm run cypress:open` fra terminalen i mappen `E2E`, eller de kan kjøres i terminalen ved å kjøre kommandoen `npm run cypres:run`.
 
-ISSUEBORD:
-- "Alle issues"/backlog ligger under `Open`
-- Issues som prioriteres å gjøres i "nærmeste framtid" ligger under `TODO`
-- Issues der arbeid er påbegynt ligger under `Doing`
-- Issues der arbeid er ferdig og avventer merge ligger under `For review`
-- Issues der arbeid er merget ligger under `Closed`
-
-
-MERGE: 
-- All merging skjer via Gitlab GUI
-- Opprett en mergerequest 
-- Vent på at noen andre "reagerer" (f.eks. tommel opp, kommentar, approve)
-- Merge (og evt resolve conflicts) i Gitlab 
+#### Frontend:
+SKRIV OM FRONTEND TESTER HER
 
