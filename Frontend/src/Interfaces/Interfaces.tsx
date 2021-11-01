@@ -77,7 +77,7 @@ export interface MovieByIdResult {
 
 export interface MovieListProps {
   data: Movie[];
-  refetch: (
+  refetch?: (
     variables?: Partial<QueryMoviesInput> | undefined
   ) => Promise<ApolloQueryResult<QueryMoviesResult>>;
 }
