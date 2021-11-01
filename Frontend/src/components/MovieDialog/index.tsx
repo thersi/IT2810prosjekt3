@@ -27,6 +27,7 @@ export default function MovieDialog(props: MovieDialogProps) {
     thumbsDown,
     voted,
     setVoted,
+    refetch
   } = props;
   // const for Mutations
   const [incThumbsUp] = useMutation<ThumbsUpByIdResult, ThumbsByIdInput>(
@@ -79,8 +80,10 @@ export default function MovieDialog(props: MovieDialogProps) {
               className={classes.thumb}
               onClick={() => {
                 setVoted(true);
+                sessionStorage.setItem(movie._id, JSON.stringify(true));
                 incThumbsUp({ variables: { thumbsUpByIdId: movie._id } });
                 setThumbsUp(movie.thumbsUp + 1);
+                refetch()
               }}
             >
               <ThumbUpIcon />
@@ -96,8 +99,10 @@ export default function MovieDialog(props: MovieDialogProps) {
               className={classes.thumb}
               onClick={() => {
                 setVoted(true);
+                sessionStorage.setItem(movie._id, JSON.stringify(true));
                 incThumbsDown({ variables: { thumbsDownByIdId: movie._id } });
                 setThumbsDown(movie.thumbsDown + 1);
+                refetch()
               }}
             >
               <ThumbDownIcon />

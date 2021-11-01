@@ -3,12 +3,12 @@ import SingleDisplay from "../SingleDisplay";
 import "./style.css";
 
 const MovieList = (props: MovieListProps) => {
-  const { data } = props;
+  const { data, refetch } = props;
   return (
     <div className="movieContainer">
       {data.length < 1 && <p>No movies to show </p>}
       {data.map((movie: Movie) => (
-        <SingleDisplay key={movie._id} {...movie} />
+        <SingleDisplay key={movie._id} refetch={refetch} movie={movie} />
       ))}
     </div>
   );
