@@ -2,14 +2,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   root: {
-    background: "#38B5F0",
+    background: "rgb(46, 140, 240)",
     padding: 10,
-  },
-
-  id: {
-    fontSize: 14,
-    color: "white",
-    padding: 10,
+    maxWidth: "80%"
   },
 
   title: {
@@ -18,15 +13,9 @@ const useStyles = makeStyles(() => ({
     padding: 10,
     topMargin: 0,
     height: 0,
-    textAlign: "left",
+    textAlign: "center",
   },
 
-  description: {
-    fontSize: 14,
-    color: "white",
-    textAlign: "justify",
-    padding: 10,
-  },
 
   img: {
     flex: 1,
@@ -34,42 +23,46 @@ const useStyles = makeStyles(() => ({
     maxHeight: "100%",
     height: "auto",
     margin: "auto",
+    padding: "15%",
   },
 
   genres: {
     fontSize: 14,
     color: "white",
     padding: 10,
-    textAlign: "left",
+    textAlign: "center",
   },
 
   year: {
     fontSize: 14,
     color: "white",
     padding: 10,
-    textAlign: "left",
-  },
-
-  button1: {
-    variant: "outlined",
-    color: "primary",
+    textAlign: "center",
   },
 
   button2: {
     color: "white",
+    background: "rgb(46, 140, 240)",
     position: "absolute",
+    border: "0",
   },
 
   thumb: {
     color: "white",
     fontSize: "medium",
     padding: 10,
+    border: "0",
+    background: 'rgba(46, 140, 240, 1)',
+    '&:disabled': {
+      color: 'rgba(255, 255, 255, 0.5)' 
+    }
   },
 
   clickedThumb: {
-    color: "white",
+    color: "gray",
     fontSize: "large",
     padding: 10,
+
   },
 }));
 

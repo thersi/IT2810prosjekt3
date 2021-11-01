@@ -1,10 +1,4 @@
-import {
-  Container,
-  Grid,
-  Button,
-  DialogTitle,
-  DialogContent,
-} from "@material-ui/core";
+import { Container, Grid, DialogTitle, DialogContent } from "@material-ui/core";
 import useStyles from "./style";
 import CancelIcon from "@material-ui/icons/Cancel";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
@@ -46,17 +40,17 @@ export default function MovieDialog(props: MovieDialogProps) {
   return (
     <>
       <Container className={classes.root}>
-        <Grid container justify="flex-end">
-          <Button
+        <Grid container justifyContent="flex-end">
+          <button
             onClick={() => {
               setOpen(false);
             }}
             className={classes.button2}
           >
             <CancelIcon />
-          </Button>
+          </button>
         </Grid>
-        <Grid container spacing={1} justify="center">
+        <Grid container spacing={1} justifyContent="center">
           <Grid item>
             <img className={classes.img} src={movie.poster} alt="new" />
           </Grid>
@@ -65,26 +59,21 @@ export default function MovieDialog(props: MovieDialogProps) {
               Movie title: {movie.title}
             </DialogTitle>
           </Grid>
-          <Grid item xs={4}>
-            <DialogTitle className={classes.id}>
-              Movie id: {movie._id}
-            </DialogTitle>
-          </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12}>
             <DialogContent className={classes.year}>
-              Year: {movie.year}
-            </DialogContent>
-          </Grid>
-          <Grid item xs={4}>
-            <DialogContent className={classes.genres}>
-              Genres: {movie.genre.toString()}
-            </DialogContent>
-            <DialogContent className={classes.genres}>
-              Actors: {movie.actors.toString()}
+              <b>Year:</b> {movie.year}
             </DialogContent>
           </Grid>
           <Grid item xs={12}>
-            <Button
+            <DialogContent className={classes.genres}>
+              <b>Genres: </b> {movie.genre.toString()}
+            </DialogContent>
+            <DialogContent className={classes.genres}>
+              <b>Actors: </b> {movie.actors.toString()}
+            </DialogContent>
+          </Grid>
+          <Grid item xs={1}>
+            <button
               id="thUp"
               disabled={voted}
               className={classes.thumb}
@@ -95,11 +84,13 @@ export default function MovieDialog(props: MovieDialogProps) {
               }}
             >
               <ThumbUpIcon />
-            </Button>
-            <DialogContent id="sumUp" className={classes.genres}>
+            </button>
+            <DialogContent id="sumUp" className={classes.thumb}>
               {thumbsUp}
             </DialogContent>
-            <Button
+          </Grid>
+          <Grid item xs={1}>
+            <button
               id="thDown"
               disabled={voted}
               className={classes.thumb}
@@ -110,8 +101,8 @@ export default function MovieDialog(props: MovieDialogProps) {
               }}
             >
               <ThumbDownIcon />
-            </Button>
-            <DialogContent id="sumDown" className={classes.genres}>
+            </button>
+            <DialogContent id="sumDown" className={classes.thumb}>
               {thumbsDown}
             </DialogContent>
           </Grid>
