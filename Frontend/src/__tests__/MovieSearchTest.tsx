@@ -1,12 +1,20 @@
 import EnzymeToJson from "enzyme-to-json";
 import { configure, render, shallow } from "enzyme";
-import MovieAppBar from "../components/MovieAppBar";
 import Adapter from "enzyme-adapter-react-16";
 import MovieSearch from "../components/MovieSearch";
-import MovieList from "../components/MovieList";
-import GenreTabs from "../components/GenreTabs";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { Pagination } from "@mui/material";
 
-const component = <MovieSearch />;
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  uri: "http://localhost:4000/graphql",
+});
+const component = (
+  <ApolloProvider client={client}>
+    <MovieSearch />
+  </ApolloProvider>
+);
+
 configure({ adapter: new Adapter() });
 describe("Movie Search", () => {
   it("renders correctly", () => {
@@ -19,8 +27,10 @@ describe("Movie Search", () => {
 
   it("Should contain components", () => {
     const shallowComp = shallow(component);
-    expect(shallowComp.find(MovieList).exists()).toBeTruthy();
-    expect(shallowComp.find(MovieAppBar).exists()).toBeTruthy();
-    expect(shallowComp.find(GenreTabs).exists()).toBeTruthy();
+    expect(shallowComp.containsMatchingElement(<Pagination />)).toBe(true);
+    expect(shallowComp.contains("MovieAppBar"));
+    expect(shallowComp.contains("GenreTabs"));
+    expect(shallowComp.contains("MovieList"));
   });
+  // Usikker på hvoradan man skal sjekke pagination her?
 });
