@@ -1,7 +1,6 @@
 import {
   Container,
   Grid,
-  Button,
   DialogTitle,
   DialogContent,
 } from "@material-ui/core";
@@ -46,17 +45,17 @@ export default function MovieDialog(props: MovieDialogProps) {
   return (
     <>
       <Container className={classes.root}>
-        <Grid container justify="flex-end">
-          <Button
+        <Grid container justifyContent="flex-end">
+          <button
             onClick={() => {
               setOpen(false);
             }}
             className={classes.button2}
           >
             <CancelIcon />
-          </Button>
+          </button>
         </Grid>
-        <Grid container spacing={1} justify="center">
+        <Grid container spacing={1} justifyContent="center">
           <Grid item>
             <img className={classes.img} src={movie.poster} alt="new" />
           </Grid>
@@ -79,7 +78,7 @@ export default function MovieDialog(props: MovieDialogProps) {
             </DialogContent>
           </Grid>
           <Grid item xs={1}>
-            <Button
+            <button
               id = "thUp"
               disabled={voted}
               className={classes.thumb}
@@ -90,12 +89,12 @@ export default function MovieDialog(props: MovieDialogProps) {
               }}
             >
               <ThumbUpIcon />
-            </Button>
-            <DialogContent id="sumUp" className={classes.genres}>{thumbsUp}
+            </button>
+            <DialogContent id="sumUp" className={classes.thumb}>{thumbsUp}
             </DialogContent>
           </Grid>
           <Grid item xs={1}>
-            <Button
+            <button
               id = "thDown"
               disabled={voted}
               className={classes.thumb}
@@ -106,8 +105,8 @@ export default function MovieDialog(props: MovieDialogProps) {
               }}
             >
               <ThumbDownIcon />
-            </Button>
-            <DialogContent id= "sumDown" className={classes.genres}>
+            </button>
+            <DialogContent id= "sumDown" className={classes.thumb}>
               {thumbsDown}
             </DialogContent>
           </Grid>
