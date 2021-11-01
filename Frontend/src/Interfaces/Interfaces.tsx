@@ -51,8 +51,7 @@ export interface QueryMoviesResult {
   searchAndFilter: {
     movies: Movie[];
     pages: number;
-  }
-  
+  };
 }
 
 export interface QueryMoviesInput {
@@ -74,4 +73,14 @@ export interface MovieByIdResult {
 
 export interface MovieListProps {
   data: Movie[];
+}
+export interface searchProps {
+  handleSearch: (value: string) => void;
+}
+export interface MovieFilterProps {
+  handleFilter: (value: string) => void;
+  handleSort: (value: boolean) => void;
+}
+export interface genreProps {
+  handleGenre: (value: string) => void;
 }
