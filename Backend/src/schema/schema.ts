@@ -18,7 +18,7 @@ type byIdArgs = {
 
 const resolvers = {
     Query: {
-        searchAndFilter: (root: any, { filterGenre, limit, page, order, sortOn, word }: searchAndFilterArgs) => {
+        searchAndFilter: (_: any, { filterGenre, limit, page, order, sortOn, word }: searchAndFilterArgs) => {
             const skips: number = limit * (Number(page) - 1);
             let orderNum: number;
             if (order != 1 && order != -1) {
@@ -29,7 +29,7 @@ const resolvers = {
             }
             const movies = new Promise((resolve, reject) => {
                 let result = Movie.find({ title: { $regex: word, $options: '$i' }, genre: { $regex: filterGenre, $options: '$i' } },
-                    (err: any, movies: unknown) => {
+                    (err: Error, movies: unknown) => {
                         if (err) reject(err);
                         else resolve(movies);
                     });
@@ -40,7 +40,7 @@ const resolvers = {
                 }
             })
             const count = new Promise((resolve, reject) => {
-                Movie.count({ title: { $regex: word, $options: '$i' }, genre: { $regex: filterGenre, $options: '$i' } }, (err: any, movie: unknown) => {
+                Movie.count({ title: { $regex: word, $options: '$i' }, genre: { $regex: filterGenre, $options: '$i' } }, (err: Error, movie: unknown) => {
                     if (err) reject(err);
                     else resolve(movie);
                 })
@@ -51,9 +51,9 @@ const resolvers = {
             }
         },
 
-        movieById: (root: any, { id }: byIdArgs) => {
+        movieById: (_: any, { id }: byIdArgs) => {
             return new Promise((resolve, reject) => {
-                Movie.findOne({ _id: id }, (err: any, movie: unknown) => {
+                Movie.findOne({ _id: id }, (err: Error, movie: unknown) => {
                     if (err) reject(err);
                     else resolve(movie);
                 })
@@ -62,26 +62,26 @@ const resolvers = {
     },
 
     Mutation: {
-        thumbsUpById: (root: any, { id }: byIdArgs) => {
+        thumbsUpById: (_: any, { id }: byIdArgs) => {
             return new Promise((resolve, reject) => {
                 Movie.findOneAndUpdate(
                     { _id: id },
                     { $inc: { thumbsUp: 1 } },
                     { new: true },
-                    (err: any, movie: unknown) => {
+                    (err: Error, movie: unknown) => {
                         if (err) reject(err);
                         else resolve(movie);
                     }
                 )
             })
         },
-        thumbsDownById: (root: any, { id }: byIdArgs) => {
+        thumbsDownById: (_: any, { id }: byIdArgs) => {
             return new Promise((resolve, reject) => {
                 Movie.findOneAndUpdate(
                     { _id: id },
                     { $inc: { thumbsDown: 1 } },
                     { new: true },
-                    (err: any, movie: unknown) => {
+                    (err: Error, movie: unknown) => {
                         if (err) reject(err);
                         else resolve(movie);
                     }
