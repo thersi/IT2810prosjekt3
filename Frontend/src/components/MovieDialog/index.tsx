@@ -45,7 +45,7 @@ export default function MovieDialog(props: MovieDialogProps) {
   return (
     <>
       <Container className={classes.root}>
-        <Grid container justify="flex-end">
+        <Grid container justifyContent="flex-end">
           <button
             onClick={() => {
               setOpen(false);
@@ -55,7 +55,7 @@ export default function MovieDialog(props: MovieDialogProps) {
             <CancelIcon />
           </button>
         </Grid>
-        <Grid container spacing={1} justify="center">
+        <Grid container spacing={1} justifyContent="center">
           <Grid item>
             <img className={classes.img} src={movie.poster} alt="new" />
           </Grid>
