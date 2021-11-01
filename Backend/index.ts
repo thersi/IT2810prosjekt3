@@ -2,9 +2,10 @@ import { ApolloServer, ServerInfo } from "apollo-server";
 import schema from './src/schema/schema'
 import mongoose from 'mongoose'
 
-
+// Creating a server with apollo-server
 const server: ApolloServer = new ApolloServer({ schema });
 
+// Conecting the server to the MongoDB-database
 mongoose.connect(
     "mongodb://admin:passord@it2810-37.idi.ntnu.no:27017/it2810?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
 ).then(() => {

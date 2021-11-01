@@ -1,4 +1,4 @@
-import { Container, Grid, DialogTitle, DialogContent } from "@material-ui/core";
+import { Container, Grid, DialogTitle, DialogContent, Box } from "@material-ui/core";
 import useStyles from "./style";
 import CancelIcon from "@material-ui/icons/Cancel";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
@@ -51,7 +51,7 @@ export default function MovieDialog(props: MovieDialogProps) {
             <CancelIcon />
           </button>
         </Grid>
-        <Grid container spacing={1} justifyContent="center">
+        <Grid container justifyContent="center">
           <Grid item>
             <img className={classes.img} src={movie.poster} alt="new" />
           </Grid>
@@ -73,43 +73,47 @@ export default function MovieDialog(props: MovieDialogProps) {
               <b>Actors: </b> {movie.actors.toString()}
             </DialogContent>
           </Grid>
-          <Grid item xs={1}>
-            <button
-              id="thUp"
-              disabled={voted}
-              className={classes.thumb}
-              onClick={() => {
-                setVoted(true);
-                sessionStorage.setItem(movie._id, JSON.stringify(true));
-                incThumbsUp({ variables: { thumbsUpByIdId: movie._id } });
-                setThumbsUp(movie.thumbsUp + 1);
-                refetch()
-              }}
-            >
-              <ThumbUpIcon />
-            </button>
-            <DialogContent id="sumUp" className={classes.thumb}>
-              {thumbsUp}
-            </DialogContent>
+          <Grid item xs={3}>
+            <Box className={classes.box}>
+              <button
+                id="thUp"
+                disabled={voted}
+                className={classes.thumb}
+                onClick={() => {
+                  setVoted(true);
+                  sessionStorage.setItem(movie._id, JSON.stringify(true));
+                  incThumbsUp({ variables: { thumbsUpByIdId: movie._id } });
+                  setThumbsUp(movie.thumbsUp + 1);
+                  refetch()
+                }}
+              >
+                <ThumbUpIcon />
+                <DialogContent id="sumUp" className={classes.thumb}>
+                  {thumbsUp}
+                </DialogContent>
+              </button>
+            </Box>
           </Grid>
-          <Grid item xs={1}>
-            <button
-              id="thDown"
-              disabled={voted}
-              className={classes.thumb}
-              onClick={() => {
-                setVoted(true);
-                sessionStorage.setItem(movie._id, JSON.stringify(true));
-                incThumbsDown({ variables: { thumbsDownByIdId: movie._id } });
-                setThumbsDown(movie.thumbsDown + 1);
-                refetch()
-              }}
-            >
-              <ThumbDownIcon />
-            </button>
-            <DialogContent id="sumDown" className={classes.thumb}>
-              {thumbsDown}
-            </DialogContent>
+          <Grid item xs={3}>
+            <Box className={classes.box}>
+              <button
+                id="thDown"
+                disabled={voted}
+                className={classes.thumb}
+                onClick={() => {
+                  setVoted(true);
+                  sessionStorage.setItem(movie._id, JSON.stringify(true));
+                  incThumbsDown({ variables: { thumbsDownByIdId: movie._id } });
+                  setThumbsDown(movie.thumbsDown + 1);
+                  refetch()
+                }}
+              >
+                <ThumbDownIcon />
+                <DialogContent id="sumDown" className={classes.thumb}>
+                  {thumbsDown}
+                </DialogContent>
+              </button>
+            </Box>
           </Grid>
         </Grid>
       </Container>
