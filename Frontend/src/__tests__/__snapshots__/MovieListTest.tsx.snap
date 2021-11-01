@@ -1,0 +1,218 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Movie App Bar Should match snapshot 1`] = `
+<div
+  className="movieContainer"
+>
+  <SingleDisplay
+    key="0"
+    movie={
+      Object {
+        "_id": "0",
+        "actors": Array [
+          "Robert Downey Jr.",
+          "Chris Evans",
+        ],
+        "genre": Array [
+          "action",
+          "comedy",
+        ],
+        "poster": "url",
+        "thumbsDown": 37,
+        "thumbsUp": 196,
+        "title": "Avengers: Endgame",
+        "year": 2019,
+      }
+    }
+  />
+  <SingleDisplay
+    key="1"
+    movie={
+      Object {
+        "_id": "1",
+        "actors": Array [
+          "Robert Downey Jr.",
+          "Chris Evans",
+        ],
+        "genre": Array [
+          "action",
+          "comedy",
+        ],
+        "poster": "url",
+        "thumbsDown": 37,
+        "thumbsUp": 196,
+        "title": "Avengers: Endgame",
+        "year": 2019,
+      }
+    }
+  />
+  <SingleDisplay
+    key="2"
+    movie={
+      Object {
+        "_id": "2",
+        "actors": Array [
+          "Robert Downey Jr.",
+          "Chris Evans",
+        ],
+        "genre": Array [
+          "action",
+          "comedy",
+        ],
+        "poster": "url",
+        "thumbsDown": 37,
+        "thumbsUp": 196,
+        "title": "Avengers: Endgame",
+        "year": 2019,
+      }
+    }
+  />
+  <SingleDisplay
+    key="3"
+    movie={
+      Object {
+        "_id": "3",
+        "actors": Array [
+          "Robert Downey Jr.",
+          "Chris Evans",
+        ],
+        "genre": Array [
+          "action",
+          "comedy",
+        ],
+        "poster": "url",
+        "thumbsDown": 37,
+        "thumbsUp": 196,
+        "title": "Avengers: Endgame",
+        "year": 2019,
+      }
+    }
+  />
+  <SingleDisplay
+    key="4"
+    movie={
+      Object {
+        "_id": "4",
+        "actors": Array [
+          "Robert Downey Jr.",
+          "Chris Evans",
+        ],
+        "genre": Array [
+          "action",
+          "comedy",
+        ],
+        "poster": "url",
+        "thumbsDown": 37,
+        "thumbsUp": 196,
+        "title": "Avengers: Endgame",
+        "year": 2019,
+      }
+    }
+  />
+  <SingleDisplay
+    key="5"
+    movie={
+      Object {
+        "_id": "5",
+        "actors": Array [
+          "Robert Downey Jr.",
+          "Chris Evans",
+        ],
+        "genre": Array [
+          "action",
+          "comedy",
+        ],
+        "poster": "url",
+        "thumbsDown": 37,
+        "thumbsUp": 196,
+        "title": "Avengers: Endgame",
+        "year": 2019,
+      }
+    }
+  />
+  <SingleDisplay
+    key="6"
+    movie={
+      Object {
+        "_id": "6",
+        "actors": Array [
+          "Robert Downey Jr.",
+          "Chris Evans",
+        ],
+        "genre": Array [
+          "action",
+          "comedy",
+        ],
+        "poster": "url",
+        "thumbsDown": 37,
+        "thumbsUp": 196,
+        "title": "Avengers: Endgame",
+        "year": 2019,
+      }
+    }
+  />
+  <SingleDisplay
+    key="7"
+    movie={
+      Object {
+        "_id": "7",
+        "actors": Array [
+          "Robert Downey Jr.",
+          "Chris Evans",
+        ],
+        "genre": Array [
+          "action",
+          "comedy",
+        ],
+        "poster": "url",
+        "thumbsDown": 37,
+        "thumbsUp": 196,
+        "title": "Avengers: Endgame",
+        "year": 2019,
+      }
+    }
+  />
+  <SingleDisplay
+    key="8"
+    movie={
+      Object {
+        "_id": "8",
+        "actors": Array [
+          "Robert Downey Jr.",
+          "Chris Evans",
+        ],
+        "genre": Array [
+          "action",
+          "comedy",
+        ],
+        "poster": "url",
+        "thumbsDown": 37,
+        "thumbsUp": 196,
+        "title": "Avengers: Endgame",
+        "year": 2019,
+      }
+    }
+  />
+  <SingleDisplay
+    key="9"
+    movie={
+      Object {
+        "_id": "9",
+        "actors": Array [
+          "Robert Downey Jr.",
+          "Chris Evans",
+        ],
+        "genre": Array [
+          "action",
+          "comedy",
+        ],
+        "poster": "url",
+        "thumbsDown": 37,
+        "thumbsUp": 196,
+        "title": "Avengers: Endgame",
+        "year": 2019,
+      }
+    }
+  />
+</div>
+`;
