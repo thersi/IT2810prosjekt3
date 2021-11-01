@@ -30,7 +30,12 @@ describe("Movie Filter", () => {
     expect(shallowComp.find(MenuItem)).toHaveLength(6);
   });
 
-  it("Should show correct menuItems"), () => {};
-
-  it("Should show correct menuItem checked"), () => {};
+  it("Should show correct menuItems", () => {
+    const shallowComp = shallow(component);
+    const menuItems = shallowComp.find(MenuItem);
+    expect(menuItems.get(1).props.value).toBe("asc");
+    expect(menuItems.get(2).props.value).toBe("desc");
+    expect(menuItems.get(4).props.value).toBe("Title");
+    expect(menuItems.get(5).props.value).toBe("Year");
+  });
 });

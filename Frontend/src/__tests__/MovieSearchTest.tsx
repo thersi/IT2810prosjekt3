@@ -27,7 +27,7 @@ describe("Movie Search", () => {
 
   it("Should contain components", () => {
     const shallowComp = shallow(component);
-    expect(shallowComp.containsMatchingElement(<Pagination />)).toBe(true);
+    expect(shallowComp.contains("Pagination"));
     expect(shallowComp.contains("MovieAppBar"));
     expect(shallowComp.contains("GenreTabs"));
     expect(shallowComp.contains("MovieList"));

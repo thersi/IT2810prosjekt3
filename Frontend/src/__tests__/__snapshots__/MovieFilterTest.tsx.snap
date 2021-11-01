@@ -41,6 +41,7 @@ exports[`Movie Filter Should match snapshot 1`] = `
     >
       Sort by order: 
     </ForwardRef(MenuItem)>
+     //Disabled for visuals
     <ForwardRef(MenuItem)
       id="checkAsc"
       onClick={[Function]}
@@ -49,6 +50,7 @@ exports[`Movie Filter Should match snapshot 1`] = `
       <Memo(ForwardRef(CheckIcon))
         id="ascCheck"
       />
+       //if ascending, checkIcon is shown
       <Memo(ForwardRef(ArrowUpwardIcon)) />
        Asc
     </ForwardRef(MenuItem)>
@@ -57,6 +59,7 @@ exports[`Movie Filter Should match snapshot 1`] = `
       onClick={[Function]}
       value="desc"
     >
+       //If descending, checkIcon is shown
       <Memo(ForwardRef(ArrowDownwardIcon)) />
        Desc
     </ForwardRef(MenuItem)>
@@ -69,12 +72,14 @@ exports[`Movie Filter Should match snapshot 1`] = `
     <ForwardRef(MenuItem)
       id="checkTitle"
       onClick={[Function]}
+      value="Title"
     >
       Title
     </ForwardRef(MenuItem)>
     <ForwardRef(MenuItem)
       id="checkYear"
       onClick={[Function]}
+      value="Year"
     >
       Year
     </ForwardRef(MenuItem)>

@@ -1,6 +1,5 @@
 import EnzymeToJson from "enzyme-to-json";
 import { configure, mount, render, shallow } from "enzyme";
-import MovieAppBar from "../components/MovieAppBar";
 import Adapter from "enzyme-adapter-react-16";
 import SingleDisplay from "../components/SingleDisplay";
 import { Movie } from "../Interfaces/Interfaces";
@@ -29,10 +28,10 @@ describe("Single Movie Display", () => {
 
   it("Should display correct movie information", () => {
     const shallowComp = mount(component);
-    expect(shallowComp.find(".thumbUp").contains(196)).toBe(true);
-    expect(shallowComp.find(".thumbDown").contains(37)).toBe(true);
-    expect(shallowComp.find(".thumbDown").contains(89)).toBe(false);
-    expect(shallowComp.find(".thumbDown").contains(89)).toBe(false);
+    expect(shallowComp.find(".thumbUp").contains(196)).toBeTruthy;
+    expect(shallowComp.find(".thumbDown").contains(37)).toBeTruthy;
+    expect(shallowComp.find(".thumbDown").contains(89)).toBeFalsy;
+    expect(shallowComp.find(".thumbDown").contains(89)).toBeFalsy;
     expect(
       shallowComp.find(".text").contains("Avengers: Endgame (2019) ")
     ).toBe(true);

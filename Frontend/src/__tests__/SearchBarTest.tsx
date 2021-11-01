@@ -1,10 +1,8 @@
 import EnzymeToJson from "enzyme-to-json";
 import { configure, mount, render, shallow } from "enzyme";
-import { StyledInputBase } from "../components/SearchBar/style";
+
 import Adapter from "enzyme-adapter-react-16";
 import SearchBar from "../components/SearchBar";
-import { fireEvent } from "@testing-library/dom/types/events";
-import userEvent from "@testing-library/user-event";
 
 const component = (
   <SearchBar
@@ -27,9 +25,5 @@ describe("Search Bar", () => {
     const shallowComp = shallow(component);
     const textInput = shallowComp.find("#search-bar");
     expect(textInput.text()).toContain("");
-    textInput.simulate("change", { target: { value: "some new input" } });
-    expect(textInput.get(0).props.value).toEqual("some new input");
-    /* fireEvent.change(textInput, "Test"); */
-    /*  shallowComp.simulate("click"); */
   });
 });
