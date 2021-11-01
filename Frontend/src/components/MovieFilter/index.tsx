@@ -7,8 +7,9 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import CheckIcon from "@mui/icons-material/Check";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { Divider } from "@mui/material";
+import { MovieFilterProps } from "../../Interfaces/Interfaces";
 
-export default function MovieFilter(props: any) {
+export default function MovieFilter(props: MovieFilterProps) {
   const [isAsc, setIsAsc] = useState<boolean>(true);
   const [filter, setFilter] = useState<string>("");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

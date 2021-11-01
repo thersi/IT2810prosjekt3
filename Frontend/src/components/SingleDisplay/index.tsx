@@ -25,7 +25,6 @@ export default function SingleDisplay(props: Movie) {
   }
 
   if (open && typeof movieByIdData !== "undefined") {
-    console.log("loaded");
     return (
       <MovieDialog
         movie={movieByIdData.movieById}

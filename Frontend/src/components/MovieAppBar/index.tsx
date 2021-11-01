@@ -40,7 +40,6 @@ export default function MovieAppBar(props: MovieAppBarProps) {
             aria-label={"Search bar to search through movie titles"}
             aria-required="true"
             handleSearch={searchValue}
-            handleSort={sortValue}
           />
         </Toolbar>
       </AppBar>

@@ -80,7 +80,6 @@ const MovieSearch = () => {
             showLastButton
             onChange={(event, value) => {
               setPage(value);
-              console.log(page);
             }}
           />
         </div>
