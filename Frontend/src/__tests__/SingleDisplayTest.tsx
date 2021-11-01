@@ -1,5 +1,5 @@
 import EnzymeToJson from "enzyme-to-json";
-import { configure, render, shallow } from "enzyme";
+import { configure, mount, render, shallow } from "enzyme";
 import MovieAppBar from "../components/MovieAppBar";
 import Adapter from "enzyme-adapter-react-16";
 import SingleDisplay from "../components/SingleDisplay";
@@ -28,7 +28,7 @@ describe("Single Movie Display", () => {
   });
 
   it("Should display correct movie information", () => {
-    const shallowComp = shallow(component);
+    const shallowComp = mount(component);
     expect(shallowComp.find(".thumbUp").contains(196)).toBe(true);
     expect(shallowComp.find(".thumbDown").contains(37)).toBe(true);
     expect(shallowComp.find(".thumbDown").contains(89)).toBe(false);
