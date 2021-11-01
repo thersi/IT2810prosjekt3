@@ -6,6 +6,7 @@
 describe("Test the movie web applicatoin", () => {
   beforeEach(() => {
     cy.visit("localhost:3000");
+    cy.clearLocalStorage();
   });
 
   it("test visit the page", () => {
@@ -46,12 +47,13 @@ describe("Test the movie web applicatoin", () => {
     cy.get("#thUp").click();
     const afterVoted = cy.get("#sumUp")
     expect(afterVoted).to.not.equal(initVotes)
+    cy.get('#thUp').should('be.disabled')
   });
 
   it("Test give thumbs down", () => {
-    cy.contains("Avengers: Endgame").click()
+    cy.contains("Avengers: Infinity War").click()
     const initVotes = cy.get("#sumDown")
-    cy.get("#thUp").click();
+    cy.get("#thDown").click();
     const afterVoted = cy.get("#sumDown")
     expect(afterVoted).to.not.equal(initVotes)
   });

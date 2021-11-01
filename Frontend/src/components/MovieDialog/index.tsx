@@ -76,12 +76,12 @@ export default function MovieDialog(props: MovieDialogProps) {
           <Grid item xs={3}>
             <Box className={classes.box}>
               <button
-                id="thUp"
+                id="thDown"
                 disabled={voted}
                 className={classes.thumb}
                 onClick={() => {
                   setVoted(true);
-                  sessionStorage.setItem(movie._id, JSON.stringify(true));
+                  localStorage.setItem(movie._id, JSON.stringify(true));
                   incThumbsUp({ variables: { thumbsUpByIdId: movie._id } });
                   setThumbsUp(movie.thumbsUp + 1);
                   refetch()
@@ -97,12 +97,12 @@ export default function MovieDialog(props: MovieDialogProps) {
           <Grid item xs={3}>
             <Box className={classes.box}>
               <button
-                id="thDown"
+                id="thUp"
                 disabled={voted}
                 className={classes.thumb}
                 onClick={() => {
                   setVoted(true);
-                  sessionStorage.setItem(movie._id, JSON.stringify(true));
+                  localStorage.setItem(movie._id, JSON.stringify(true));
                   incThumbsDown({ variables: { thumbsDownByIdId: movie._id } });
                   setThumbsDown(movie.thumbsDown + 1);
                   refetch()

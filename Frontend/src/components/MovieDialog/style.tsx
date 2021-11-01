@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     background: "rgb(46, 140, 240)",
-    maxWidth: "80%",
+    maxWidth: "70%",
     [theme.breakpoints.down("xs")]: {
       maxWidth: "95%",
     }
@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: 22,
     color: "white",
-    topMargin: 0,
+    marginTop: "1%",
     textAlign: "center",
   },
 
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: "100%",
     height: "auto",
     margin: "auto",
-    paddingTop: "15%",
+    marginTop: "30%",
   },
 
   genres: {
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   year: {
     fontSize: 14,
     color: "white",
-    padding: 10,
+    padding: 7,
     textAlign: "center",
   },
 
@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     background: "rgb(46, 140, 240)",
     position: "absolute",
     border: "0",
+    marginTop: "2%",
   },
 
   box: {
@@ -57,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
   thumb: {
     color: "white",
     fontSize: "medium",
+    marginTop: "10%",
     padding: 10,
     border: "0",
     background: 'rgba(46, 140, 240, 1)',
