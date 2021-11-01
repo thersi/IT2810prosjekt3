@@ -21,7 +21,6 @@ export default function SingleDisplay(props: Movie) {
     useLazyQuery<MovieByIdResult, MovieByIdInput>(QUERY_MOVIE_BY_ID);
 
   if (movieByIdLoading) {
-    console.log("loading...");
     return <p>Movie is loading</p>;
   }
 
@@ -47,7 +46,6 @@ export default function SingleDisplay(props: Movie) {
       onClick={() => {
         setOpen(true);
         fetchMovie({ variables: { movieByIdId: props._id } });
-        console.log(props._id);
       }}
     >
       <div>
