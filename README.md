@@ -79,6 +79,8 @@ gruppen har brukt flere ferdiglagde komponenter fra MUI og Material-UI. Dette er
 ### Responsivt webdesign:
 SKRIVE OM RESPONSIVT DESIGN 
 
+### Universell utforming:
+SKRIVE LITT OM DETTE 
 
 # Testing:
 
