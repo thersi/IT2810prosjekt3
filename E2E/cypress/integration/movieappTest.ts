@@ -1,7 +1,6 @@
-  //NEED TO ADD TEST FOR SORTING ON YEAR (ASC+DESC)
-  //AND TITLE (ASC+DESC)
-  //MABY FIND BETTER SOLUTION FOR BEFORE EACH INSTEAD
-  //OF REVISITING PAGE BEFORE EACH
+/**
+ * Performes end-2-end testing using Cypress. 
+ */
 
 describe("Test the movie web applicatoin", () => {
   beforeEach(() => {
@@ -79,6 +78,5 @@ describe("Test the movie web applicatoin", () => {
     cy.get("#checkAsc").click();
     cy.contains("Avengers: Endgame");
   });
-
 
 });
