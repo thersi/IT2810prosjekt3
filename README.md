@@ -89,6 +89,11 @@ Vi har skrevet e2e tester ved hjelp av Cypress. Cypress er et testrammeverk som 
 
 Testene kan kjøres gjennom Cypress-GUIet og i nettleser ved å kjøre kommandoen `npm run cypress:open` fra terminalen i mappen `E2E`, eller de kan kjøres i terminalen ved å kjøre kommandoen `npm run cypres:run`.
 
+Bildet under viser testene som kjøres (her ved `npm run cypress:open`)
+
+<img src="https://gitlab.stud.idi.ntnu.no/it2810-h21/team-37/prosjekt3/-/wikis/uploads/ee70f3558bc61fd3097410316c61175d/Skjermbilde_2021-11-01_kl._22.43.14.png" width="300" />
+
+
 #### Frontend:
 SKRIV OM FRONTEND TESTER HER
 
