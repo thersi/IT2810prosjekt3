@@ -9,7 +9,7 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import { Divider } from "@mui/material";
 
 export default function MovieFilter(props: any) {
-  const [isAsc, setIsAsc] = useState<boolean>(false);
+  const [isAsc, setIsAsc] = useState<boolean>(true);
   const [filter, setFilter] = useState<string>("");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -32,7 +32,7 @@ export default function MovieFilter(props: any) {
   return (
     <div>
       <IconButton
-        id ="sortButton"
+        id="sortButton"
         size="large"
         edge="start"
         color="inherit"
@@ -58,21 +58,29 @@ export default function MovieFilter(props: any) {
         onClose={handleClose}
       >
         <MenuItem disabled>Sort by order: </MenuItem>
-        <MenuItem id="checkAsc" value="asc" onClick={(_) => handleSort(_, true)}>
+        <MenuItem
+          id="checkAsc"
+          value="asc"
+          onClick={(_) => handleSort(_, true)}
+        >
           {isAsc && <CheckIcon />}
           <ArrowUpwardIcon /> Asc
         </MenuItem>
-        <MenuItem id = "checkDesc" value="desc" onClick={(_) => handleSort(_, false)}>
+        <MenuItem
+          id="checkDesc"
+          value="desc"
+          onClick={(_) => handleSort(_, false)}
+        >
           {!isAsc && <CheckIcon />}
           <ArrowDownwardIcon /> Desc
         </MenuItem>
         <Divider />
         <MenuItem disabled>Sort by type: </MenuItem>
-        <MenuItem id = "checkTitle" onClick={(_) => handleFilter(_, "title")}>
+        <MenuItem id="checkTitle" onClick={(_) => handleFilter(_, "title")}>
           {filter === "title" && <CheckIcon />}
           Title
         </MenuItem>
-        <MenuItem id ="checkYear" onClick={(_) => handleFilter(_, "year")}>
+        <MenuItem id="checkYear" onClick={(_) => handleFilter(_, "year")}>
           {filter === "year" && <CheckIcon />}
           Year
         </MenuItem>
