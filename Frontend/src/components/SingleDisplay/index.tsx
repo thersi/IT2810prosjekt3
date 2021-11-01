@@ -30,7 +30,6 @@ export default function SingleDisplay(props: SingleDisplayProps) {
   if (movieByIdLoading) {
     return <p>Movie is loading</p>;
   }
-
   if (open && typeof movieByIdData !== "undefined") {
     return (
       <MovieDialog
