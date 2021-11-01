@@ -1,18 +1,18 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     background: "rgb(46, 140, 240)",
-    padding: 10,
-    maxWidth: "80%"
+    maxWidth: "80%",
+    [theme.breakpoints.down("xs")]: {
+      maxWidth: "95%",
+    }
   },
 
   title: {
     fontSize: 22,
     color: "white",
-    padding: 10,
     topMargin: 0,
-    height: 0,
     textAlign: "center",
   },
 
@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
     maxHeight: "100%",
     height: "auto",
     margin: "auto",
-    padding: "15%",
+    paddingTop: "15%",
   },
 
   genres: {
@@ -41,11 +41,18 @@ const useStyles = makeStyles(() => ({
   },
 
   button2: {
+    display: "flex",
+    justifyContent: "center",
     color: "white",
     background: "rgb(46, 140, 240)",
     position: "absolute",
     border: "0",
   },
+
+  box: {
+    display: "flex",
+    justifyContent: "center",
+  }, 
 
   thumb: {
     color: "white",
@@ -56,13 +63,6 @@ const useStyles = makeStyles(() => ({
     '&:disabled': {
       color: 'rgba(255, 255, 255, 0.5)' 
     }
-  },
-
-  clickedThumb: {
-    color: "gray",
-    fontSize: "large",
-    padding: 10,
-
   },
 }));
 
