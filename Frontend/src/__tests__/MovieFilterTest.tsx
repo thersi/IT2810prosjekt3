@@ -29,10 +29,8 @@ describe("Movie Filter", () => {
     const shallowComp = shallow(component);
     expect(shallowComp.find(MenuItem)).toHaveLength(6);
   });
-  /* it("Should contain correct checked components", () => {
-    const shallowComp = shallow(component);
-    const checkIconAsc = shallowComp.find("");
-    console.log(shallowComp);
-    expect(shallowComp.contains("CheckIcon")).toBeTruthy;
-  }); */
+
+  it("Should show correct menuItems"), () => {};
+
+  it("Should show correct menuItem checked"), () => {};
 });

@@ -27,8 +27,8 @@ describe("Search Bar", () => {
     const shallowComp = shallow(component);
     const textInput = shallowComp.find("#search-bar");
     expect(textInput.text()).toContain("");
-    /*  userEvent.type(textInput, "Test"); //finn */
-    expect(textInput.text()).toContain("");
+    textInput.simulate("change", { target: { value: "some new input" } });
+    expect(textInput.get(0).props.value).toEqual("some new input");
     /* fireEvent.change(textInput, "Test"); */
     /*  shallowComp.simulate("click"); */
   });
