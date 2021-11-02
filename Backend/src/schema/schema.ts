@@ -2,6 +2,10 @@ const { Movie } = require('../model')
 import { gql } from 'apollo-server'
 import { makeExecutableSchema } from '@graphql-tools/schema';
 
+/**
+ * Schema for the Apollo-client. Contains type-defs and resolvers
+ */
+
 // Type of inputs for the searchAndFilter-query
 type searchAndFilterArgs = {
     page: number;
