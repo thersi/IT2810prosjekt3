@@ -11,6 +11,9 @@ import {
 } from "../../Interfaces/Interfaces";
 import { QUERY_ALL_MOVIES } from "../../Queries/queries";
 
+/**
+ * component used fo rquerying and calling on main components
+ */
 const MovieSearch = () => {
   const [genreValue, setGenre] = useState<string>("");
   const [sortValue, setSort] = useState<number>(1);

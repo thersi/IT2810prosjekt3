@@ -9,6 +9,9 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import { Divider } from "@mui/material";
 import { MovieFilterProps } from "../../Interfaces/Interfaces";
 
+/**
+ * component used for filtering movie output by title/year and asc/desc order
+ */
 export default function MovieFilter(props: MovieFilterProps) {
   const [isAsc, setIsAsc] =
     useState<boolean>(

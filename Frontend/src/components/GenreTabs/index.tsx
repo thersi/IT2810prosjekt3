@@ -33,6 +33,9 @@ const genres = [
   "WESTERN",
 ];
 
+/**
+ * component creating markdown with genres
+ */
 export default function GenreTabs(props: genreProps) {
   const [genre, setGenre] = useState("");
 

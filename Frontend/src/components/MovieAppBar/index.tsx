@@ -6,6 +6,9 @@ import SearchBar from "../SearchBar";
 import MovieFilter from "../MovieFilter";
 import { MovieAppBarProps } from "../../Interfaces/Interfaces";
 
+/**
+ * component creating appbar with filter and search components
+ */
 export default function MovieAppBar(props: MovieAppBarProps) {
   /* The below methods are used to get parent from child to parent */
   let searchValue = (value: string) => {

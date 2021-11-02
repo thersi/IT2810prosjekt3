@@ -2,6 +2,9 @@ import { Movie, MovieListProps } from "../../Interfaces/Interfaces";
 import SingleDisplay from "../SingleDisplay";
 import "./style.css";
 
+/**
+ * component that iterates through movies and calls SingleDisplay on each
+ */
 const MovieList = (props: MovieListProps) => {
   const { data, refetch } = props;
 

@@ -3,6 +3,9 @@ import { Search, SearchIconWrapper, StyledInputBase } from "./style";
 import { searchProps } from "../../Interfaces/Interfaces";
 import { ChangeEvent } from "react";
 
+/**
+ * component for displaying searchbar styled by mui.
+ */
 export default function SearchBar(props: searchProps) {
   /* Function that collects information tha user writes into search bar */
   const handleWrite = (

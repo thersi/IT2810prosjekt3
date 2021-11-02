@@ -22,6 +22,9 @@ import {
   THUMBS_DOWN_MUTATION,
 } from "../../Queries/queries";
 
+/**
+ * component used to display movie information in popup
+ */
 export default function MovieDialog(props: MovieDialogProps) {
   const classes = useStyles();
   const {
@@ -115,7 +118,6 @@ export default function MovieDialog(props: MovieDialogProps) {
                 }}
               >
                 <ThumbDownIcon />
-
               </button>
               <DialogContent id="sumDown" className={classes.text}>
                 {thumbsDown}
