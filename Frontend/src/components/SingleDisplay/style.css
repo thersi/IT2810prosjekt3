@@ -12,6 +12,12 @@
 @media screen and (max-width: 600px) {
   .movie {
     width: 95%;
+    min-width: 300px;
+  }
+}
+@media screen and (max-width: 300px) {
+  .movie {
+    width: 290px;
   }
 }
 

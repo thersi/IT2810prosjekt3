@@ -26,7 +26,7 @@ export default function MovieAppBar(props: MovieAppBarProps) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            Movies
+            Møvies
           </Typography>
           <MovieFilter
             aria-label={

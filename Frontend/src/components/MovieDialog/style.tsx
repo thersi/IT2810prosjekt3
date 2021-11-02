@@ -6,6 +6,9 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "70%",
     [theme.breakpoints.down("xs")]: {
       maxWidth: "95%",
+    },
+    [theme.breakpoints.down(315)]: {
+      minWidth: "290px",
     }
   },
 
@@ -52,7 +55,10 @@ const useStyles = makeStyles((theme) => ({
 
   box: {
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
+    justifyItems: "center",
+    textAlign: "center"
   }, 
 
   thumb: {
