@@ -133,7 +133,9 @@ Bildet under viser testene som kjøres (her ved `npm run cypress:open`)
 <img src="https://gitlab.stud.idi.ntnu.no/it2810-h21/team-37/prosjekt3/-/wikis/uploads/ee70f3558bc61fd3097410316c61175d/Skjermbilde_2021-11-01_kl._22.43.14.png" width="300" />
 
 #### Frontend:
-SKRIV OM FRONTENDTESTER HER 
+Vi har testet komponentene i frontend ved bruk av Jest og Enzyme. Vi har implementert enhetstesting for å teste de viktigste funksjonene til komponentene, samt sanapshot testing for å sjekke at komponentene rendrer på riktig måte og stemmer overens med sanapshotene. 
+
+Frontend testene kan kjøres via kommando `npm test` når man er inne i Frontend mappen. 
 
 <img src="https://gitlab.stud.idi.ntnu.no/it2810-h21/team-37/prosjekt3/-/wikis/uploads/5b32b776f6ad641971651c2d3438c232/Skjermbilde_2021-11-02_kl._13.53.43.png" width="300" />
 
