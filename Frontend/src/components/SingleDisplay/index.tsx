@@ -49,6 +49,7 @@ export default function SingleDisplay(props: SingleDisplayProps) {
   return (
     <div
       className="movie"
+      /* Function that  decides if moviedialiog is to be opened */
       onClick={() => {
         setOpen(true);
         fetchMovie({ variables: { movieByIdId: movie._id } });
