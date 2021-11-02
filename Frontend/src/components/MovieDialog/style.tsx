@@ -6,6 +6,9 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "70%",
     [theme.breakpoints.down("xs")]: {
       maxWidth: "95%",
+    },
+    [theme.breakpoints.down(315)]: {
+      minWidth: "290px",
     }
   },
 
@@ -52,20 +55,32 @@ const useStyles = makeStyles((theme) => ({
 
   box: {
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
+    justifyItems: "center",
+    textAlign: "center"
   }, 
 
   thumb: {
     color: "white",
     fontSize: "medium",
     marginTop: "10%",
-    padding: 10,
+    padding: 0,
+    margin: 0,
     border: "0",
+    marginBottom: 0,
     background: 'rgba(46, 140, 240, 1)',
     '&:disabled': {
       color: 'rgba(255, 255, 255, 0.5)' 
     }
   },
+
+  text: {
+    marginTop: 0,
+    marginBottom: 5,
+    color: "white",
+  }
+
 }));
 
 export default useStyles;

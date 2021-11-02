@@ -17,7 +17,7 @@ const MovieSearch = () => {
   const [filterValue, setFilter] = useState<string>("");
   const [searchValue, setSearch] = useState<string>("");
   const [page, setPage] = useState<number>(1);
-  const limit: number = 10;
+  const limit: number = 5;
 
   /* The below functions are used to determine values sent in to query*/
   const handleGenre = (value: string) => {

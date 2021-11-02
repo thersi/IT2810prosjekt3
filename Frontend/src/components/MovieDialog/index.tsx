@@ -94,10 +94,10 @@ export default function MovieDialog(props: MovieDialogProps) {
                 }}
               >
                 <ThumbUpIcon />
-                <DialogContent id="sumUp" className={classes.thumb}>
-                  {thumbsUp}
-                </DialogContent>
               </button>
+              <DialogContent id="sumUp" className={classes.text}>
+                {thumbsUp}
+              </DialogContent>
             </Box>
           </Grid>
           <Grid item xs={3}>
@@ -115,10 +115,11 @@ export default function MovieDialog(props: MovieDialogProps) {
                 }}
               >
                 <ThumbDownIcon />
-                <DialogContent id="sumDown" className={classes.thumb}>
-                  {thumbsDown}
-                </DialogContent>
+
               </button>
+              <DialogContent id="sumDown" className={classes.text}>
+                {thumbsDown}
+              </DialogContent>
             </Box>
           </Grid>
         </Grid>
