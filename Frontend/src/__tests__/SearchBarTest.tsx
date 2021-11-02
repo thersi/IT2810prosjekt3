@@ -1,6 +1,5 @@
 import EnzymeToJson from "enzyme-to-json";
-import { configure, mount, render, shallow } from "enzyme";
-
+import { configure, render, shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import SearchBar from "../components/SearchBar";
 
