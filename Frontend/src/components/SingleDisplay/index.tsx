@@ -20,7 +20,7 @@ export default function SingleDisplay(props: SingleDisplayProps) {
   const [thumbsUp, setThumbsUp] = useState(movie.thumbsUp);
   const [thumbsDown, setThumbsDown] = useState(movie.thumbsDown);
 
-  const vote = sessionStorage.getItem(movie._id);
+  const vote = localStorage.getItem(movie._id);
   const dflt_vote = vote !== null ? JSON.parse(vote) : false;
   const [voted, setVoted] = useState(dflt_vote);
 
@@ -47,7 +47,7 @@ export default function SingleDisplay(props: SingleDisplayProps) {
   }
 
   return (
-    <div
+    <button
       className="movie"
       /* Function that  decides if moviedialiog is to be opened */
       onClick={() => {
@@ -74,6 +74,6 @@ export default function SingleDisplay(props: SingleDisplayProps) {
           </div>
         </div>
       </div>
-    </div>
+    </button>
   );
 }
