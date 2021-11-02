@@ -20,10 +20,12 @@ export default function SingleDisplay(props: SingleDisplayProps) {
   const [thumbsUp, setThumbsUp] = useState(movie.thumbsUp);
   const [thumbsDown, setThumbsDown] = useState(movie.thumbsDown);
 
+  // Loads if the user has voted from localStorrage
   const vote = localStorage.getItem(movie._id);
   const dflt_vote = vote !== null ? JSON.parse(vote) : false;
   const [voted, setVoted] = useState(dflt_vote);
 
+  // query for loading a single movie from the database
   const [fetchMovie, { data: movieByIdData, loading: movieByIdLoading }] =
     useLazyQuery<MovieByIdResult, MovieByIdInput>(QUERY_MOVIE_BY_ID);
 

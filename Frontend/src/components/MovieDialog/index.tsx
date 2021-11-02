@@ -38,20 +38,20 @@ export default function MovieDialog(props: MovieDialogProps) {
     setVoted,
     refetch,
   } = props;
+
   /*  const for Mutations */
   const [incThumbsUp] = useMutation<ThumbsUpByIdResult, ThumbsByIdInput>(
-    THUMBS_UP_MUTATION
-  );
-  const [incThumbsDown] = useMutation<
-    ThumbsDownByIdResult,
-    ThumbsDownByIdInput
-  >(THUMBS_DOWN_MUTATION);
+    THUMBS_UP_MUTATION);
+
+  const [incThumbsDown] = useMutation<ThumbsDownByIdResult, ThumbsDownByIdInput>(
+    THUMBS_DOWN_MUTATION);
 
   return (
     <>
       <Container className={classes.root}>
         <Grid container justifyContent="flex-end">
           <button
+            // closes the pop-up 
             onClick={() => {
               setOpen(false);
             }}
@@ -88,6 +88,8 @@ export default function MovieDialog(props: MovieDialogProps) {
                 id="thDown"
                 disabled={voted}
                 className={classes.thumb}
+                // Sets localStorrage as voted, uses the graphQL mutation for thumbsUp 
+                // and refetches tha data from db
                 onClick={() => {
                   setVoted(true);
                   localStorage.setItem(movie._id, JSON.stringify(true));
@@ -109,6 +111,8 @@ export default function MovieDialog(props: MovieDialogProps) {
                 id="thUp"
                 disabled={voted}
                 className={classes.thumb}
+                // Sets localStorrage as voted, uses the graphQL mutation for thumbsDown 
+                // and refetches tha data from db
                 onClick={() => {
                   setVoted(true);
                   localStorage.setItem(movie._id, JSON.stringify(true));

@@ -73,24 +73,24 @@ const MovieSearch = () => {
         handleGenre={handleGenre}
       />
       {loading ||
-      typeof data ===
+        typeof data ===
         "undefined" /* If query data is being loaded or is undefined */ ? (
-        <p>Loading...</p>
-      ) : (
-        <div>
-          <MovieList data={data.searchAndFilter.movies} refetch={refetch} />
-          <Pagination
-            className="pagination"
-            count={Math.ceil(data.searchAndFilter.pages / limit)}
-            defaultPage={page}
-            showFirstButton
-            showLastButton
-            onChange={(event, value) => {
-              setPage(value);
-            }}
-          />
-        </div>
-      )}
+          <p>Loading...</p>
+        ) : (
+          <div>
+            <MovieList data={data.searchAndFilter.movies} refetch={refetch} />
+            <Pagination
+              className="pagination"
+              count={Math.ceil(data.searchAndFilter.pages / limit)}
+              defaultPage={page}
+              showFirstButton
+              showLastButton
+              onChange={(event, value) => {
+                setPage(value);
+              }}
+            />
+          </div>
+        )}
     </div>
   );
 };
