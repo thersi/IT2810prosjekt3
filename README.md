@@ -105,7 +105,7 @@ For hver singledisplay komponent, har vi både forklarende tekst i tillegg til b
 ##### Operable
 
 UI komponenter og navigasjon må være mulig.
-Her har vi tatt i bruk WAI ARIA i AppBar og GenreTabs, dette gjør det mulig å vite hvor komponenter er ved bruk av tastatur. Vi har også et simpel design på siden vår, uten elementer som blinker eller lignende som kan skape en reakson. Vi bruker også sidenummer slik at bare noen få filmer vises samtidig, noe som gjør det lettere for brukeren å ha oversikt og kontroll på elementene.
+Her har vi tatt i bruk WAI ARIA i AppBar og GenreTabs, dette gjør det mulig å vite hvor komponenter er ved bruk av tastatur. Vi har også et simpel design på siden vår, uten elementer som blinker eller lignende som kan skape en reakson. Vi bruker også sidenummer slik at bare noen få filmer vises samtidig, noe som gjør det lettere for brukeren å ha oversikt og kontroll på elementene. Man kan også navigere mellom komponenter på siden ved bruk av tastatur.
 
 ##### Understandable
 
