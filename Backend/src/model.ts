@@ -15,7 +15,7 @@ export interface IMovie extends Document {
     poster: String;
 }
 
-// Define the chema of the model for a movie 
+// Define the schema of the model for a movie 
 export const MovieSchema: Schema = new Schema({
     title: {
         type: String,
