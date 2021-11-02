@@ -77,7 +77,7 @@ MUI Material-UI:
 gruppen har brukt flere ferdiglagde komponenter fra MUI og Material-UI. Dette er det samme biblioteket, bare at MUI er den nyeste versjonen. Gruppen har likevel valgt å bruke noen komponenter fra den gamle versjonen, siden vi er mest vandt med disse. Komponenter fra MUI/Material-UI er blant annet brukt i komponentene *GenreTabs, MovieAppBar, og MovieDialog* m.fl. Grunnen for at vi har valgt å bruke komponenter fra disse bibliotekene er fordi de ser pene ut, har god funksjonalitet og det ville vært svært tidkrevende å lage disse selv.
 
 ### Responsivt webdesign:
-SKRIVE OM RESPONSIVT DESIGN 
+Vi har i hovedsak implementert et responsivt web design ved å bruke @media screen queries i kombinasjon med CSS-Flexbox og meta-taggen 'viewport' i HTML-filen. I tillegg har vi noen plasser brukt MUI-biblotektet til å style komponenter fra MUI. Da har vi brukt styled og useStyle for styling (i SearchBar og MovieDialog) og Grid-komponenter til å plassere komponentene på siden (i MovieDialog). Grunne for at vi noen plasser har valgt denne tilnærmingen framfor vanlig CSS-koding er fordi både stylingen og komponentene da kommer fra samme bibliotek og det er derfor svært lett å jobbe med.
 
 ### Universell utforming:
 SKRIVE LITT OM DETTE 
