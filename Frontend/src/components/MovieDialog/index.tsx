@@ -80,45 +80,6 @@ export default function MovieDialog(props: MovieDialogProps) {
               <b>Actors: </b> {movie.actors.toString()}
             </DialogContent>
           </Grid>
-<<<<<<< HEAD
-          <Grid item xs={1}>
-            <button
-              id="thUp"
-              disabled={voted}
-              className={classes.thumb}
-              onClick={() => {
-                setVoted(true);
-                sessionStorage.setItem(movie._id, JSON.stringify(true));
-                incThumbsUp({ variables: { thumbsUpByIdId: movie._id } });
-                setThumbsUp(movie.thumbsUp + 1);
-                refetch !== undefined && refetch();
-              }}
-            >
-              <ThumbUpIcon />
-            </button>
-            <DialogContent id="sumUp" className={classes.thumb}>
-              {thumbsUp}
-            </DialogContent>
-          </Grid>
-          <Grid item xs={1}>
-            <button
-              id="thDown"
-              disabled={voted}
-              className={classes.thumb}
-              onClick={() => {
-                setVoted(true);
-                sessionStorage.setItem(movie._id, JSON.stringify(true));
-                incThumbsDown({ variables: { thumbsDownByIdId: movie._id } });
-                setThumbsDown(movie.thumbsDown + 1);
-                refetch !== undefined && refetch();
-              }}
-            >
-              <ThumbDownIcon />
-            </button>
-            <DialogContent id="sumDown" className={classes.thumb}>
-              {thumbsDown}
-            </DialogContent>
-=======
           <Grid item xs={3}>
             <Box className={classes.box}>
               <button
@@ -160,7 +121,6 @@ export default function MovieDialog(props: MovieDialogProps) {
                 </DialogContent>
               </button>
             </Box>
->>>>>>> master
           </Grid>
         </Grid>
       </Container>
