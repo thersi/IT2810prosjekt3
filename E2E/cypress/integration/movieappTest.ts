@@ -1,11 +1,11 @@
-  //NEED TO ADD TEST FOR SORTING ON YEAR (ASC+DESC)
-  //AND TITLE (ASC+DESC)
-  //MABY FIND BETTER SOLUTION FOR BEFORE EACH INSTEAD
-  //OF REVISITING PAGE BEFORE EACH
+/**
+ * Performes end-2-end testing using Cypress. 
+ */
 
 describe("Test the movie web applicatoin", () => {
   beforeEach(() => {
     cy.visit("localhost:3000");
+    cy.clearLocalStorage();
   });
 
   it("test visit the page", () => {
@@ -46,12 +46,13 @@ describe("Test the movie web applicatoin", () => {
     cy.get("#thUp").click();
     const afterVoted = cy.get("#sumUp")
     expect(afterVoted).to.not.equal(initVotes)
+    cy.get('#thUp').should('be.disabled')
   });
 
   it("Test give thumbs down", () => {
-    cy.contains("Avengers: Endgame").click()
+    cy.contains("Avengers: Infinity War").click()
     const initVotes = cy.get("#sumDown")
-    cy.get("#thUp").click();
+    cy.get("#thDown").click();
     const afterVoted = cy.get("#sumDown")
     expect(afterVoted).to.not.equal(initVotes)
   });
@@ -77,6 +78,5 @@ describe("Test the movie web applicatoin", () => {
     cy.get("#checkAsc").click();
     cy.contains("Avengers: Endgame");
   });
-
 
 });

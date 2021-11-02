@@ -4,6 +4,10 @@ import {
   SetStateAction,
 } from "react-transition-group/node_modules/@types/react";
 
+/**
+ * File for interfaces used in the components.
+ */
+
 export interface Movie {
   _id: string;
   title: string;
@@ -78,12 +82,16 @@ export interface MovieByIdResult {
 
 export interface MovieListProps {
   data: Movie[];
-  refetch: (variables?: Partial<QueryMoviesInput> | undefined) => Promise<ApolloQueryResult<QueryMoviesResult>>
+  refetch?: (
+    variables?: Partial<QueryMoviesInput> | undefined
+  ) => Promise<ApolloQueryResult<QueryMoviesResult>>;
 }
 
 export interface SingleDisplayProps {
   movie: Movie;
-  refetch: (variables?: Partial<QueryMoviesInput> | undefined) => Promise<ApolloQueryResult<QueryMoviesResult>>
+  refetch?: (
+    variables?: Partial<QueryMoviesInput> | undefined
+  ) => Promise<ApolloQueryResult<QueryMoviesResult>>;
 }
 export interface searchProps {
   handleSearch: (value: string) => void;

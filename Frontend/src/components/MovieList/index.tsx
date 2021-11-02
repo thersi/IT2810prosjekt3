@@ -4,6 +4,7 @@ import "./style.css";
 
 const MovieList = (props: MovieListProps) => {
   const { data, refetch } = props;
+
   return (
     <div className="movieContainer">
       {data.length < 1 && <p>No movies to show </p>}

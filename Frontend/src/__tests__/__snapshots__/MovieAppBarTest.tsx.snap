@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Movie App Bar Should match snapshot 1`] = `
+<ForwardRef(Box)
+  sx={
+    Object {
+      "flexGrow": 1,
+    }
+  }
+>
+  <ForwardRef(AppBar)
+    position="static"
+  >
+    <ForwardRef(Toolbar)>
+      <ForwardRef(Typography)
+        component="div"
+        noWrap={true}
+        sx={
+          Object {
+            "display": Object {
+              "sm": "block",
+              "xs": "none",
+            },
+            "flexGrow": 1,
+          }
+        }
+        variant="h6"
+      >
+        Movies
+      </ForwardRef(Typography)>
+      <MovieFilter
+        aria-label="Movie filter to filter movies by ascending or descending order. Also filters by title og year. "
+        aria-required="true"
+        handleFilter={[Function]}
+        handleSort={[Function]}
+      />
+      <SearchBar
+        aria-label="Search bar to search through movie titles"
+        aria-required="true"
+        handleSearch={[Function]}
+      />
+    </ForwardRef(Toolbar)>
+  </ForwardRef(AppBar)>
+</ForwardRef(Box)>
+`;

@@ -37,19 +37,19 @@ const MovieSearch = () => {
     setPage(1);
   };
 
-  const { data, loading, refetch } = useQuery<QueryMoviesResult, QueryMoviesInput>(
-    QUERY_ALL_MOVIES,
-    {
-      variables: {
-        filterGenre: genreValue,
-        limit: limit,
-        page: page,
-        order: sortValue,
-        sortOn: filterValue,
-        word: searchValue,
-      },
-    }
-  );
+  const { data, loading, refetch } = useQuery<
+    QueryMoviesResult,
+    QueryMoviesInput
+  >(QUERY_ALL_MOVIES, {
+    variables: {
+      filterGenre: genreValue,
+      limit: limit,
+      page: page,
+      order: sortValue,
+      sortOn: filterValue,
+      word: searchValue,
+    },
+  });
 
   return (
     <div>
