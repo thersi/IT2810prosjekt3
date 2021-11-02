@@ -46,8 +46,11 @@ export interface MovieDialogProps {
   thumbsDown: number;
   voted: boolean;
   setVoted: Dispatch<SetStateAction<boolean>>;
-  refetch: (variables?: Partial<QueryMoviesInput> | undefined) => Promise<ApolloQueryResult<QueryMoviesResult>>;
+  refetch?: (
+    variables?: Partial<QueryMoviesInput> | undefined
+  ) => Promise<ApolloQueryResult<QueryMoviesResult>>;
 }
+
 
 export interface QueryMoviesResult {
   searchAndFilter: {

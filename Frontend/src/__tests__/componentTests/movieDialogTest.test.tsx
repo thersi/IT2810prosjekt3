@@ -1,62 +1,58 @@
-import React, { forwardRef, useState } from "react";
-import Enzyme, { ReactWrapper, render, shallow } from 'enzyme';
+import React from "react";
+import EnzymeToJson from "enzyme-to-json";
+import Enzyme, { configure, render, shallow, mount } from 'enzyme';
 import Adapter from "enzyme-adapter-react-16";
-import toJSON from "enzyme-to-json";
 import MovieDialog from "../../components/MovieDialog";
 import { Movie } from "../../Interfaces/Interfaces";
 import { USERWHITESPACABLE_TYPES } from "@babel/types";
 import { truncateSync } from "fs";
 import button from '../../components/MovieDialog';
+import "@testing-library/jest-dom";
 
-Enzyme.configure({ adapter: new Adapter() });
-
-const movie = {
-    _id:"1111",
-    title:"The Batman",
-    thumbsUp:50,
-    year:2022,
-    genre: ["Action", "Drama"],
-    actors: ["Amber Sienna", "Robert Pattinson"],
-    thumbsDown: 4,
-    poster: "https://img.rnudah.com/images/98/986929108829470.jpg"
-};
-
-const [open, setOpen] = useState(true);
-const [thumbsUp, setThumbsUp] = useState(movie.thumbsUp)
-const [thumbsDown, setThumbsDown] = useState(movie.thumbsDown)
-const [voted, setVoted] = useState(true)
-
-Enzyme.configure({ adapter: new Adapter() });
+const movie: Movie = {
+    _id: "6169c636b56d4",
+    title: "Avengers: Endgame",
+    year: 2019,
+    thumbsUp: 96,
+    thumbsDown: 7,
+    genre: ["action", "comedy"],
+    actors: ["Robert Downey Jr.", "Chris Evans"],
+    poster: "url",
+  };
 
 const component = ( //Must wrap in provider due to use of useSelector
     <MovieDialog
         movie = {movie}
-        setOpen = {setOpen}
-        setThumbsUp = {setThumbsUp}
-        thumbsUp = {thumbsUp}
-        setThumbsDown = {setThumbsDown}
-        thumbsDown = {thumbsDown}
-        voted = {voted}
-        setVoted = {setVoted}
-        refetch = {undefined}
+        setOpen = {React.useState}
+        setThumbsUp = {React.useState}
+        thumbsUp = {movie.thumbsUp}
+        setThumbsDown = {React.useState}
+        thumbsDown = {movie.thumbsDown}
+        voted = {false}
+        setVoted = {React.useState}
     />
 );
 
+configure({ adapter: new Adapter() });
 
 describe('MovieDialog', () => {
     it('renders', () => {
         render(component);
     });
-});
 
-describe('MovieDialog', () => {
-    it('test cancel button', () => {
-        const mockCallBack = jest.fn();
-
-        const cancelButton = shallow(<button onClick={mockCallBack}></button>)
-        cancelButton.find('cancel').simulate('click');
-        expect(mockCallBack.mock.calls.length).toEqual(1)
+    it('Should match snapshot test', () => {
+        const snapshotCheck = shallow(component);
+        expect(EnzymeToJson(snapshotCheck)).toMatchSnapshot();
     });
 
+    it('should display correct movie information', () => {
+        const shallowComp = mount(component);
+        expect(shallowComp.find(".thumbsUp").contains(96)).toBe(true);
+        expect(shallowComp.find(".thumbsDown").contains(7)).toBe(true);
+        expect(shallowComp.find(".text").contains("Avengers: Endgame")).toBe(true);
+
+    })
+
 });
+
 
