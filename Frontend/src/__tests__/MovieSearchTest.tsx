@@ -2,17 +2,11 @@ import EnzymeToJson from "enzyme-to-json";
 import { configure, render, shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import MovieSearch from "../components/MovieSearch";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import { Pagination } from "@mui/material";
-
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  uri: "http://localhost:4000/graphql",
-});
+import { MockedProvider } from "@apollo/client/testing";
 const component = (
-  <ApolloProvider client={client}>
+  <MockedProvider>
     <MovieSearch />
-  </ApolloProvider>
+  </MockedProvider>
 );
 
 configure({ adapter: new Adapter() });
@@ -32,5 +26,4 @@ describe("Movie Search", () => {
     expect(shallowComp.contains("GenreTabs"));
     expect(shallowComp.contains("MovieList"));
   });
-  // Usikker på hvoradan man skal sjekke pagination her?
 });
