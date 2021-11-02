@@ -95,7 +95,7 @@ export default function MovieDialog(props: MovieDialogProps) {
               >
                 <ThumbUpIcon />
               </button>
-              <DialogContent id="sumUp" className={classes.thumb}>
+              <DialogContent id="sumUp" className={classes.text}>
                 {thumbsUp}
               </DialogContent>
             </Box>
@@ -117,7 +117,7 @@ export default function MovieDialog(props: MovieDialogProps) {
                 <ThumbDownIcon />
 
               </button>
-              <DialogContent id="sumDown" className={classes.thumb}>
+              <DialogContent id="sumDown" className={classes.text}>
                 {thumbsDown}
               </DialogContent>
             </Box>

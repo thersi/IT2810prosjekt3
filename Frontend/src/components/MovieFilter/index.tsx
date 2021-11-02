@@ -58,14 +58,14 @@ export default function MovieFilter(props: MovieFilterProps) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem disabled>Sort by order: </MenuItem> //Disabled for visuals
+        <MenuItem disabled>Sort by order: </MenuItem> {/* Disabled for visuals */}
         <MenuItem
           id="checkAsc"
           value="asc"
           onClick={(_) => handleSort(_, true)}
         >
-          {isAsc && <CheckIcon id="ascCheck" />} //if ascending, checkIcon is
-          shown
+          {isAsc && <CheckIcon id="ascCheck" />} {/* if ascending, checkIcon is shown */}
+          
           <ArrowUpwardIcon /> Asc
         </MenuItem>
         <MenuItem
@@ -73,7 +73,7 @@ export default function MovieFilter(props: MovieFilterProps) {
           value="desc"
           onClick={(_) => handleSort(_, false)}
         >
-          {!isAsc && <CheckIcon />} //If descending, checkIcon is shown
+          {!isAsc && <CheckIcon />} {/* If descending, checkIcon is shown */}
           <ArrowDownwardIcon /> Desc
         </MenuItem>
         <Divider />
