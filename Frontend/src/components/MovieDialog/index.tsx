@@ -1,4 +1,10 @@
-import { Container, Grid, DialogTitle, DialogContent, Box } from "@material-ui/core";
+import {
+  Container,
+  Grid,
+  DialogTitle,
+  DialogContent,
+  Box,
+} from "@material-ui/core";
 import useStyles from "./style";
 import CancelIcon from "@material-ui/icons/Cancel";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
@@ -27,7 +33,7 @@ export default function MovieDialog(props: MovieDialogProps) {
     thumbsDown,
     voted,
     setVoted,
-    refetch
+    refetch,
   } = props;
   // const for Mutations
   const [incThumbsUp] = useMutation<ThumbsUpByIdResult, ThumbsByIdInput>(
@@ -84,7 +90,7 @@ export default function MovieDialog(props: MovieDialogProps) {
                   localStorage.setItem(movie._id, JSON.stringify(true));
                   incThumbsUp({ variables: { thumbsUpByIdId: movie._id } });
                   setThumbsUp(movie.thumbsUp + 1);
-                  refetch()
+                  refetch !== undefined && refetch();
                 }}
               >
                 <ThumbUpIcon />
@@ -105,7 +111,7 @@ export default function MovieDialog(props: MovieDialogProps) {
                   localStorage.setItem(movie._id, JSON.stringify(true));
                   incThumbsDown({ variables: { thumbsDownByIdId: movie._id } });
                   setThumbsDown(movie.thumbsDown + 1);
-                  refetch()
+                  refetch !== undefined && refetch();
                 }}
               >
                 <ThumbDownIcon />

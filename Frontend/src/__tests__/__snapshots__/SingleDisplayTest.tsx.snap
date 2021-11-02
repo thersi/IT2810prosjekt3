@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Single Movie Display Should match snapshot 1`] = `
+<div
+  className="movie"
+  onClick={[Function]}
+>
+  <div>
+    <img
+      alt="movie"
+      className="image"
+      src="url"
+    />
+  </div>
+  <div
+    className="movieInfo"
+  >
+    <div
+      className="text"
+    >
+      <label>
+        Avengers: Endgame (2019) 
+      </label>
+    </div>
+    <div
+      className="thumbButtons"
+    >
+       
+      <div
+        className="thumbUp"
+      >
+        <Memo(ForwardRef(ThumbUpIcon)) />
+        196
+      </div>
+      <div
+        className="thumbDown"
+      >
+        <Memo(ForwardRef(ThumbDownIcon)) />
+        37
+      </div>
+    </div>
+  </div>
+</div>
+`;

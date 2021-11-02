@@ -15,20 +15,20 @@ export default function MovieFilter(props: MovieFilterProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleMenu = (event: MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorEl(event.currentTarget); //Decides if popup menu open or closed
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setAnchorEl(null); //Closes menu
   };
 
   const handleSort = (e: MouseEvent<HTMLElement>, value: boolean) => {
     setIsAsc(value);
-    props.handleSort(value);
+    props.handleSort(value); //Sends value to parent
   };
   const handleFilter = (e: MouseEvent<HTMLElement>, value: string) => {
     setFilter(value);
-    props.handleFilter(value);
+    props.handleFilter(value); //Sends value to parent
   };
   return (
     <div>
@@ -58,13 +58,14 @@ export default function MovieFilter(props: MovieFilterProps) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem disabled>Sort by order: </MenuItem>
+        <MenuItem disabled>Sort by order: </MenuItem> //Disabled for visuals
         <MenuItem
           id="checkAsc"
           value="asc"
           onClick={(_) => handleSort(_, true)}
         >
-          {isAsc && <CheckIcon />}
+          {isAsc && <CheckIcon id="ascCheck" />} //if ascending, checkIcon is
+          shown
           <ArrowUpwardIcon /> Asc
         </MenuItem>
         <MenuItem
@@ -72,16 +73,24 @@ export default function MovieFilter(props: MovieFilterProps) {
           value="desc"
           onClick={(_) => handleSort(_, false)}
         >
-          {!isAsc && <CheckIcon />}
+          {!isAsc && <CheckIcon />} //If descending, checkIcon is shown
           <ArrowDownwardIcon /> Desc
         </MenuItem>
         <Divider />
         <MenuItem disabled>Sort by type: </MenuItem>
-        <MenuItem id="checkTitle" onClick={(_) => handleFilter(_, "title")}>
+        <MenuItem
+          id="checkTitle"
+          value="Title"
+          onClick={(_) => handleFilter(_, "title")}
+        >
           {filter === "title" && <CheckIcon />}
           Title
         </MenuItem>
-        <MenuItem id="checkYear" onClick={(_) => handleFilter(_, "year")}>
+        <MenuItem
+          id="checkYear"
+          value="Year"
+          onClick={(_) => handleFilter(_, "year")}
+        >
           {filter === "year" && <CheckIcon />}
           Year
         </MenuItem>

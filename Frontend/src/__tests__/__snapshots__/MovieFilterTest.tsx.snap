@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Movie Filter Should match snapshot 1`] = `
+<div>
+  <ForwardRef(IconButton)
+    aria-label="open drawer"
+    color="inherit"
+    edge="start"
+    id="sortButton"
+    onClick={[Function]}
+    size="large"
+    sx={
+      Object {
+        "mr": 2,
+      }
+    }
+  >
+    <Memo(ForwardRef(FilterListIcon)) />
+  </ForwardRef(IconButton)>
+  <ForwardRef(Menu)
+    anchorEl={null}
+    anchorOrigin={
+      Object {
+        "horizontal": "right",
+        "vertical": "top",
+      }
+    }
+    id="menu-appbar"
+    keepMounted={true}
+    onClose={[Function]}
+    open={false}
+    transformOrigin={
+      Object {
+        "horizontal": "right",
+        "vertical": "top",
+      }
+    }
+  >
+    <ForwardRef(MenuItem)
+      disabled={true}
+    >
+      Sort by order: 
+    </ForwardRef(MenuItem)>
+     //Disabled for visuals
+    <ForwardRef(MenuItem)
+      id="checkAsc"
+      onClick={[Function]}
+      value="asc"
+    >
+      <Memo(ForwardRef(CheckIcon))
+        id="ascCheck"
+      />
+       //if ascending, checkIcon is shown
+      <Memo(ForwardRef(ArrowUpwardIcon)) />
+       Asc
+    </ForwardRef(MenuItem)>
+    <ForwardRef(MenuItem)
+      id="checkDesc"
+      onClick={[Function]}
+      value="desc"
+    >
+       //If descending, checkIcon is shown
+      <Memo(ForwardRef(ArrowDownwardIcon)) />
+       Desc
+    </ForwardRef(MenuItem)>
+    <ForwardRef(Divider) />
+    <ForwardRef(MenuItem)
+      disabled={true}
+    >
+      Sort by type: 
+    </ForwardRef(MenuItem)>
+    <ForwardRef(MenuItem)
+      id="checkTitle"
+      onClick={[Function]}
+      value="Title"
+    >
+      Title
+    </ForwardRef(MenuItem)>
+    <ForwardRef(MenuItem)
+      id="checkYear"
+      onClick={[Function]}
+      value="Year"
+    >
+      Year
+    </ForwardRef(MenuItem)>
+  </ForwardRef(Menu)>
+</div>
+`;
