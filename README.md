@@ -134,8 +134,6 @@ Bildet under viser testene som kjøres (her ved `npm run cypress:open`)
 
 #### Frontend:
 
-SKRIV OM FRONTEND TESTER HER
-
 ### Cross browser testing
 
 Applikasjonen er testet i nettleserene Chrome og safari med variabel skjermstørrelse, samt på ulike telefoner.
