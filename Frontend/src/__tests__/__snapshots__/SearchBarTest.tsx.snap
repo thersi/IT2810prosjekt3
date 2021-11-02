@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search Bar Should match snapshot 1`] = `
+<Styled(div)>
+  <Styled(div)>
+    <Memo(ForwardRef(SearchIcon)) />
+  </Styled(div)>
+  <Styled(ForwardRef(InputBase))
+    id="search-bar"
+    inputProps={
+      Object {
+        "aria-label": "search",
+      }
+    }
+    onChange={[Function]}
+    placeholder="Movie Titles..."
+  />
+</Styled(div)>
+`;
