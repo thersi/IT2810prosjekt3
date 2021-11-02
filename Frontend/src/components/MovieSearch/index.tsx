@@ -19,7 +19,8 @@ const MovieSearch = () => {
   const [page, setPage] = useState<number>(1);
   const limit: number = 10;
 
-  let handleGenre = (value: string) => {
+  /* The below functions are used to determine values sent in to query*/
+  const handleGenre = (value: string) => {
     setGenre(value);
     setPage(1);
   };
@@ -36,7 +37,7 @@ const MovieSearch = () => {
     setSearch(value);
     setPage(1);
   };
-
+  /* Calls on query, getting values defined in child components */
   const { data, loading, refetch } = useQuery<
     QueryMoviesResult,
     QueryMoviesInput
@@ -53,6 +54,7 @@ const MovieSearch = () => {
 
   return (
     <div>
+      {/* Send in props to child components so that they can send user selected info back to parent */}
       <MovieAppBar
         aria-label={"App Bar"}
         aria-required="true"
@@ -67,7 +69,9 @@ const MovieSearch = () => {
         aria-required="true"
         handleGenre={handleGenre}
       />
-      {loading || typeof data === "undefined" ? (
+      {loading ||
+      typeof data ===
+        "undefined" /* If query data is being loaded or is undefined */ ? (
         <p>Loading...</p>
       ) : (
         <div>

@@ -35,7 +35,7 @@ export default function MovieDialog(props: MovieDialogProps) {
     setVoted,
     refetch,
   } = props;
-  // const for Mutations
+  /*  const for Mutations */
   const [incThumbsUp] = useMutation<ThumbsUpByIdResult, ThumbsByIdInput>(
     THUMBS_UP_MUTATION
   );

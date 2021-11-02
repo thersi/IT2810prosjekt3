@@ -7,9 +7,14 @@ const MovieList = (props: MovieListProps) => {
 
   return (
     <div className="movieContainer">
-      {data.length < 1 && <p>No movies to show </p>}
+      {data.length < 1 && <p>No movies to show </p>}{" "}
+      {/* If no movies are available, this is shown to user */}
       {data.map((movie: Movie) => (
-        <SingleDisplay key={movie._id} refetch={refetch} movie={movie} />
+        <SingleDisplay
+          key={movie._id}
+          refetch={refetch}
+          movie={movie}
+        /> /* Iterates through movies, creates a SingleDisplay for each  */
       ))}
     </div>
   );

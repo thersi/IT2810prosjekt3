@@ -1,8 +1,6 @@
 import { ApolloQueryResult } from "@apollo/client";
-import {
-  Dispatch,
-  SetStateAction,
-} from "react-transition-group/node_modules/@types/react";
+import { SetStateAction } from "react";
+import { Dispatch } from "react";
 
 /**
  * File for interfaces used in the components.

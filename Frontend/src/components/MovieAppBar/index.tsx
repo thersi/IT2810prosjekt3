@@ -7,7 +7,7 @@ import MovieFilter from "../MovieFilter";
 import { MovieAppBarProps } from "../../Interfaces/Interfaces";
 
 export default function MovieAppBar(props: MovieAppBarProps) {
-  //The below methods are used to get parent from child to parent
+  /* The below methods are used to get parent from child to parent */
   let searchValue = (value: string) => {
     props.handleSearch(value);
   };
@@ -34,13 +34,17 @@ export default function MovieAppBar(props: MovieAppBarProps) {
               "Movie filter to filter movies by ascending or descending order. Also filters by title og year. "
             }
             aria-required="true"
-            handleFilter={filterValue} //Sends filter value from child to parent
-            handleSort={sortValue} //Sends sort value from child to parent
+            handleFilter={
+              filterValue
+            } /* Sends filter value from child to parent */
+            handleSort={sortValue} /* Sends sort value from child to parent */
           />
           <SearchBar
             aria-label={"Search bar to search through movie titles"}
             aria-required="true"
-            handleSearch={searchValue} //Sends search value from child to parent
+            handleSearch={
+              searchValue
+            } /* Sends search value from child to parent */
           />
         </Toolbar>
       </AppBar>

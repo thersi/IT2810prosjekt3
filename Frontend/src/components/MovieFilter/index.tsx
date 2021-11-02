@@ -10,25 +10,31 @@ import { Divider } from "@mui/material";
 import { MovieFilterProps } from "../../Interfaces/Interfaces";
 
 export default function MovieFilter(props: MovieFilterProps) {
-  const [isAsc, setIsAsc] = useState<boolean>(true);
-  const [filter, setFilter] = useState<string>("");
+  const [isAsc, setIsAsc] =
+    useState<boolean>(
+      true
+    ); /* isAsc has value true if list is to be sorted in ascending order, false if descending */
+  const [filter, setFilter] =
+    useState<string>(
+      "title"
+    ); /* Initially filtered by title, sets filter to be chosen value. */
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleMenu = (event: MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget); //Decides if popup menu open or closed
+    setAnchorEl(event.currentTarget); /* Decides if popup menu open or closed */
   };
 
   const handleClose = () => {
-    setAnchorEl(null); //Closes menu
+    setAnchorEl(null); /* Closes menu */
   };
 
   const handleSort = (e: MouseEvent<HTMLElement>, value: boolean) => {
     setIsAsc(value);
-    props.handleSort(value); //Sends value to parent
+    props.handleSort(value); /* Sends value to parent */
   };
   const handleFilter = (e: MouseEvent<HTMLElement>, value: string) => {
     setFilter(value);
-    props.handleFilter(value); //Sends value to parent
+    props.handleFilter(value); /* Sends value to parent */
   };
   return (
     <div>
@@ -58,14 +64,16 @@ export default function MovieFilter(props: MovieFilterProps) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem disabled>Sort by order: </MenuItem> //Disabled for visuals
+        <MenuItem disabled>Sort by order: </MenuItem>
+        {/* Disabled for visuals */}
         <MenuItem
           id="checkAsc"
           value="asc"
           onClick={(_) => handleSort(_, true)}
         >
-          {isAsc && <CheckIcon id="ascCheck" />} //if ascending, checkIcon is
-          shown
+          {isAsc && <CheckIcon id="ascCheck" />}{" "}
+          {/* if ascending, checkIcon is
+          shown */}
           <ArrowUpwardIcon /> Asc
         </MenuItem>
         <MenuItem
@@ -73,7 +81,7 @@ export default function MovieFilter(props: MovieFilterProps) {
           value="desc"
           onClick={(_) => handleSort(_, false)}
         >
-          {!isAsc && <CheckIcon />} //If descending, checkIcon is shown
+          {!isAsc && <CheckIcon />} {/* If descending, checkIcon is shown */}
           <ArrowDownwardIcon /> Desc
         </MenuItem>
         <Divider />
@@ -81,7 +89,9 @@ export default function MovieFilter(props: MovieFilterProps) {
         <MenuItem
           id="checkTitle"
           value="Title"
-          onClick={(_) => handleFilter(_, "title")}
+          onClick={(_) =>
+            handleFilter(_, "title")
+          } /* Calls on function handlefilter to set filter value to 'title' */
         >
           {filter === "title" && <CheckIcon />}
           Title
@@ -89,9 +99,12 @@ export default function MovieFilter(props: MovieFilterProps) {
         <MenuItem
           id="checkYear"
           value="Year"
-          onClick={(_) => handleFilter(_, "year")}
+          onClick={(_) =>
+            handleFilter(_, "year")
+          } /* Calls on function handlefilter to set filter value to 'year' */
         >
-          {filter === "year" && <CheckIcon />}
+          {filter === "year" && <CheckIcon />}{" "}
+          {/* The value chosen is the one that has a checkmark */}
           Year
         </MenuItem>
       </Menu>

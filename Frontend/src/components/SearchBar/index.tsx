@@ -1,9 +1,10 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { Search, SearchIconWrapper, StyledInputBase } from "./style";
-import { ChangeEvent } from "react-transition-group/node_modules/@types/react";
 import { searchProps } from "../../Interfaces/Interfaces";
+import { ChangeEvent } from "react";
 
 export default function SearchBar(props: searchProps) {
+  /* Function that collects information tha user writes into search bar */
   const handleWrite = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {

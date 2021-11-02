@@ -38,11 +38,15 @@ export default function GenreTabs(props: genreProps) {
 
   const handleChange = (event: SelectChangeEvent) => {
     if (event.target.value === "ALL GENRES") {
-      // If target value is equal to ALL, genre is set to empty string to exit filter
-      props.handleGenre(""); //Sends info to parent
+      /*  If target value is equal to ALL, genre is set to empty string to exit filter */
+
+      props.handleGenre(""); /* Sends info to parent */
       setGenre("");
     } else {
-      props.handleGenre(event.target.value); //Else, sets filter to chosen genre, sends to parent
+      props.handleGenre(event.target.value);
+
+      /* Else, sets filter to chosen genre, sends to parent */
+
       setGenre(event.target.value);
     }
   };
@@ -67,7 +71,7 @@ export default function GenreTabs(props: genreProps) {
         >
           {genres.map(
             (
-              movieGenre //Map through the different genres to create menuItems for each.
+              movieGenre /* Map through the different genres to create menuItems for each. */
             ) => (
               <MenuItem key={movieGenre} value={movieGenre}>
                 {movieGenre}
